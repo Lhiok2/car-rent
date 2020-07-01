@@ -20,7 +20,7 @@ public interface CarService {
      * @param cid
      * @return
      */
-    void deleteCar(long cid);
+    int deleteCar(long cid);
 
     /**
      * 更新价格

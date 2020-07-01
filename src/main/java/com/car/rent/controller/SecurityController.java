@@ -40,8 +40,8 @@ public class SecurityController {
         if (!isValidTelAndPassword(tel, password) || !isValid(username, NAME_PATTERN)) {
             return CommonResult.notAcceptable();
         }
-        int resultCode = userService.addUser(username, tel, password);
-        return CommonResult.getResultByCode(resultCode);
+        int code = userService.addUser(username, tel, password);
+        return CommonResult.getResultByCode(code);
     }
 
     /**
@@ -57,9 +57,6 @@ public class SecurityController {
             return CommonResult.notAcceptable();
         }
         UserDTO userDTO = userService.loginByTelAndPassword(tel, password);
-        if (userDTO == null) {
-            return CommonResult.forbidden();
-        }
         putUserIntoSession(request, userDTO);
         return CommonResult.success(userDTO);
     }
@@ -77,8 +74,8 @@ public class SecurityController {
             return CommonResult.notAcceptable();
         }
         deleteUserFromSession(request);
-        int resultCode = userService.logoffByTelAndPassword(tel, password);
-        return CommonResult.getResultByCode(resultCode);
+        int code = userService.logoffByTelAndPassword(tel, password);
+        return CommonResult.getResultByCode(code);
     }
 
     /**

@@ -30,8 +30,8 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void deleteCar(long cid) {
-        carDAO.deleteById(cid);
+    public int deleteCar(long cid) {
+        return carDAO.deleteCarByCid(cid);
     }
 
     @Override

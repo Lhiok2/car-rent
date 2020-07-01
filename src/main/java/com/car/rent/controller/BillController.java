@@ -5,6 +5,7 @@ import com.car.rent.dto.CommonResult;
 import com.car.rent.dto.UserDTO;
 import com.car.rent.entity.User;
 import com.car.rent.enums.constants.State;
+import com.car.rent.enums.response.ResultCode;
 import com.car.rent.service.BillService;
 import com.car.rent.service.CarService;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +42,7 @@ public class BillController {
             return CommonResult.forbidden();
         }
         BillDTO billDTO = billService.addBill(userDTO.getUid(), cid);
-        return CommonResult.success(billDTO);
+        return CommonResult.success(billDTO, ResultCode.INTERNAL_ERROR);
     }
 
     @PutMapping
@@ -53,7 +54,7 @@ public class BillController {
             return CommonResult.notAcceptable();
         }
         BillDTO billDTO = billService.updateState(userDTO.getUid(), cid);
-        return CommonResult.success(billDTO);
+        return CommonResult.success(billDTO, ResultCode.FORBIDDEN);
     }
 
     @PutMapping("/pay")

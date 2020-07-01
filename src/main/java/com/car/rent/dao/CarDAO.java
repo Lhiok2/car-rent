@@ -16,7 +16,7 @@ public interface CarDAO extends CrudRepository<Car, Long> {
      * @param cid
      * @return
      */
-    Car findCarsByCid(Long cid);
+    Car findCarsByCid(long cid);
 
     /**
      * 更新价格
@@ -39,4 +39,14 @@ public interface CarDAO extends CrudRepository<Car, Long> {
     @Transactional
     @Query("update Car set state = :state where cid = :cid")
     int updateState(long cid, String state);
+
+    /**
+     * 通过id删除车辆
+     * @param cid
+     * @return
+     */
+    @Modifying
+    @Transactional
+    @Query("delete from Car where cid = :cid")
+    int deleteCarByCid(long cid);
 }

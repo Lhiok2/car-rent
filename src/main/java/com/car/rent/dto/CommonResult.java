@@ -31,6 +31,13 @@ public class CommonResult<T> {
     }
 
     /**
+     * data为空返回失败信息 非空返回成功信息
+     */
+    public static <T> CommonResult<T> success(T data, ResultCode failedCode) {
+        return data == null? failed(failedCode): getResult(ResultCode.SUCCESS, data);
+    }
+
+    /**
      * 成功返回结果
      */
     public static <T> CommonResult<T> success() {

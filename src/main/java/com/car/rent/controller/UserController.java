@@ -45,8 +45,8 @@ public class UserController {
         } else if (!isValid(oldPass, PASS_PATTERN) || !isValid(newPass, PASS_PATTERN)) {
             return CommonResult.notAcceptable();
         }
-        int resultCode = userService.updatePassword(userDTO.getTel(), oldPass, newPass);
+        int code = userService.updatePassword(userDTO.getTel(), oldPass, newPass);
         deleteUserFromSession(request);
-        return CommonResult.getResultByCode(resultCode, ResultCode.FORBIDDEN);
+        return CommonResult.getResultByCode(code, ResultCode.FORBIDDEN);
     }
 }

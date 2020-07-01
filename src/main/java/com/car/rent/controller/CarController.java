@@ -33,8 +33,8 @@ public class CarController {
         if (cid == null) {
             return CommonResult.notAcceptable();
         }
-        carService.deleteCar(cid);
-        return CommonResult.success();
+        int code = carService.deleteCar(cid);
+        return CommonResult.getResultByCode(code);
     }
 
     @PutMapping("/price")

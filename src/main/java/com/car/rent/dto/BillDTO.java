@@ -23,7 +23,7 @@ public class BillDTO {
 
     private User user;
 
-    private Car cid;
+    private Car car;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer cost;
