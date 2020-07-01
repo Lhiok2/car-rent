@@ -27,7 +27,7 @@ public class CommonResult<T> {
      * 成功返回数据
      */
     public static <T> CommonResult<T> success(T data) {
-        return getResult(ResultCode.SUCCESS, data);
+        return data == null? notFound(): getResult(ResultCode.SUCCESS, data);
     }
 
     /**
@@ -42,6 +42,17 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> failed(ResultCode resultCode) {
         return new CommonResult<>(resultCode.getCode(), resultCode.getMessage(), null);
+    }
+
+    public static <T> CommonResult<T> notAcceptable() {
+        return failed(ResultCode.NOT_ACCEPTABLE);
+    }
+
+    /**
+     * 未找到或请求字段为空
+     */
+    public static <T> CommonResult<T> notFound() {
+        return failed(ResultCode.NOTFOUND);
     }
 
     /**

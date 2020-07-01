@@ -21,4 +21,13 @@ public enum State {
     ;
 
     private final String state;
+
+    public static boolean belongs(String stateStr) {
+        for (State s : State.values()) {
+            if (stateStr.equals(s.getState())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

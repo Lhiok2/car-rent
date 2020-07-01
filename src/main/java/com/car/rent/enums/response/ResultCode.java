@@ -19,7 +19,7 @@ public enum ResultCode {
     // 拒绝访问
     FORBIDDEN(403, "Forbidden"),
 
-    // 未找到
+    // 未找到或请求字段为空
     NOTFOUND(404, "Not Found"),
 
     // 参数不符合要求
