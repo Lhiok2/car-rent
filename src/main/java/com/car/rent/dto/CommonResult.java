@@ -23,6 +23,10 @@ public class CommonResult<T> {
         return new CommonResult<>(resultCode.getCode(), resultCode.getMessage(), data);
     }
 
+    public static <T> CommonResult<T> success() {
+        return success(ResultCode.SUCCESS, null);
+    }
+
     public static <T> CommonResult<T> failed(ResultCode resultCode) {
         return new CommonResult<>(resultCode.getCode(), resultCode.getMessage(), null);
     }
@@ -64,5 +68,9 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> failed() {
         return failed(ResultCode.FAILED);
+    }
+
+    public static <T> CommonResult<T> getResultByCode(int resultCode) {
+        return resultCode > 0? success(): failed();
     }
 }
