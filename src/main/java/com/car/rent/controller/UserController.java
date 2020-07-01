@@ -28,9 +28,9 @@ public class UserController {
     private CommonResult<?> updateUsername(@RequestParam String username, HttpServletRequest request) {
         UserDTO userDTO = getUserFromSession(request);
         if (userDTO == null) {
-            return CommonResult.failed(ResultCode.UNAUTHORIZED);
+            return CommonResult.unauthorized();
         } else if (!isValid(username, NAME_PATTERN)) {
-            return CommonResult.failed(ResultCode.NOT_ACCEPTABLE);
+            return CommonResult.notAcceptable();
         }
         userDTO.setUsername(username);
         int code = userService.updateUsername(userDTO.getTel(), username);
@@ -41,9 +41,9 @@ public class UserController {
     private CommonResult<?> updatePassword(@RequestParam String oldPass, @RequestParam String newPass, HttpServletRequest request) {
         UserDTO userDTO = getUserFromSession(request);
         if (userDTO == null) {
-            return CommonResult.failed(ResultCode.UNAUTHORIZED);
+            return CommonResult.unauthorized();
         } else if (!isValid(oldPass, PASS_PATTERN) || !isValid(newPass, PASS_PATTERN)) {
-            return CommonResult.failed(ResultCode.NOT_ACCEPTABLE);
+            return CommonResult.notAcceptable();
         }
         int resultCode = userService.updatePassword(userDTO.getTel(), oldPass, newPass);
         deleteUserFromSession(request);

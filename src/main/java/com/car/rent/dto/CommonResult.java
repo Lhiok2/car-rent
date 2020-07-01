@@ -44,8 +44,25 @@ public class CommonResult<T> {
         return new CommonResult<>(resultCode.getCode(), resultCode.getMessage(), null);
     }
 
+    /**
+     * 身份过期
+     */
+    public static <T> CommonResult<T> unauthorized() {
+        return failed(ResultCode.UNAUTHORIZED);
+    }
+
+    /**
+     * 参数不符合要求
+     */
     public static <T> CommonResult<T> notAcceptable() {
         return failed(ResultCode.NOT_ACCEPTABLE);
+    }
+
+    /**
+     * 权限不足
+     */
+    public static <T> CommonResult<T> forbidden() {
+        return failed(ResultCode.FORBIDDEN);
     }
 
     /**

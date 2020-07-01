@@ -36,9 +36,9 @@ public class SecurityController {
      * @return
      */
     @PostMapping("/register/tel")
-    private CommonResult registerByTelAndPassword(@RequestParam String username, @RequestParam String tel, @RequestParam String password) {
+    private CommonResult<?> registerByTelAndPassword(@RequestParam String username, @RequestParam String tel, @RequestParam String password) {
         if (!isValidTelAndPassword(tel, password) || !isValid(username, NAME_PATTERN)) {
-            return CommonResult.failed(ResultCode.NOT_ACCEPTABLE);
+            return CommonResult.notAcceptable();
         }
         int resultCode = userService.addUser(username, tel, password);
         return CommonResult.getResultByCode(resultCode);
@@ -54,11 +54,11 @@ public class SecurityController {
     @GetMapping("/login/tel")
     private CommonResult<UserDTO> loginByTelAndPassword(@RequestParam String tel, @RequestParam String password, HttpServletRequest request) {
         if (!isValidTelAndPassword(tel, password)) {
-            return CommonResult.failed(ResultCode.NOT_ACCEPTABLE);
+            return CommonResult.notAcceptable();
         }
         UserDTO userDTO = userService.loginByTelAndPassword(tel, password);
         if (userDTO == null) {
-            return CommonResult.failed(ResultCode.FORBIDDEN);
+            return CommonResult.forbidden();
         }
         putUserIntoSession(request, userDTO);
         return CommonResult.success(userDTO);
@@ -72,9 +72,9 @@ public class SecurityController {
      * @return
      */
     @DeleteMapping("/logoff/tel")
-    private CommonResult logoffByTelAndPassword(@RequestParam String tel, @RequestParam String password, HttpServletRequest request) {
+    private CommonResult<?> logoffByTelAndPassword(@RequestParam String tel, @RequestParam String password, HttpServletRequest request) {
         if (!isValidTelAndPassword(tel, password)) {
-            return CommonResult.failed(ResultCode.NOT_ACCEPTABLE);
+            return CommonResult.notAcceptable();
         }
         deleteUserFromSession(request);
         int resultCode = userService.logoffByTelAndPassword(tel, password);
@@ -87,7 +87,7 @@ public class SecurityController {
      * @return
      */
     @DeleteMapping("/logout")
-    private CommonResult logout(HttpServletRequest request) {
+    private CommonResult<?> logout(HttpServletRequest request) {
         deleteUserFromSession(request);
         return CommonResult.success();
     }
