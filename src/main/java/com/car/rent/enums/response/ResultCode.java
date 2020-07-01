@@ -10,20 +10,23 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ResultCode {
-    // success
-    SUCCESS(200, "操作成功"),
+    // 成功
+    SUCCESS(200, "Success"),
 
-    // unauthorized
-    UNAUTHORIZED(401, "暂未登录或token已经过期"),
+    // 身份过期
+    UNAUTHORIZED(401, "Unauthorized"),
 
-    // forbidden
-    FORBIDDEN(403, "没有相关权限"),
+    // 拒绝访问
+    FORBIDDEN(403, "Forbidden"),
 
-    // validate failed
-    VALIDATE_FAILED(404, "参数检验失败"),
+    // 未找到
+    NOTFOUND(404, "Not Found"),
 
-    // failed
-    FAILED(500, "操作失败")
+    // 参数不符合要求
+    NOT_ACCEPTABLE(406, "Not Acceptable"),
+
+    // 服务器发生意料之外的错误
+    INTERNAL_ERROR(500, "Internal Server Error")
     ;
 
     private final long code;

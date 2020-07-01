@@ -2,16 +2,16 @@ package com.car.rent.controller;
 
 import com.car.rent.dto.CommonResult;
 import com.car.rent.dto.UserDTO;
+import com.car.rent.enums.response.ResultCode;
 import com.car.rent.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import static com.car.rent.utils.PassUtils.isValidPass;
 import static com.car.rent.utils.SessionUtils.deleteUserFromSession;
 import static com.car.rent.utils.SessionUtils.putUserIntoSession;
-import static com.car.rent.utils.TelUtils.isValidTel;
+import static com.car.rent.utils.StringUtils.*;
 
 /**
  * @author nayix
@@ -25,24 +25,22 @@ public class SecurityController {
     private UserService userService;
 
     private boolean isValidTelAndPassword(String tel, String password) {
-        return isValidTel(tel) && isValidPass(password);
-    }
-
-    private boolean isValidTelAndPassword(UserDTO userDTO) {
-        return isValidTelAndPassword(userDTO.getTel(), userDTO.getPassword());
+        return isValid(tel, TEL_PATTERN) && isValid(password, PASS_PATTERN);
     }
 
     /**
      * 通过手机和密码注册
-     * @param userDTO
+     * @param username
+     * @param tel
+     * @param password
      * @return
      */
     @PostMapping("/register/tel")
-    private CommonResult registerByTelAndPassword(@RequestBody UserDTO userDTO) {
-        if (!isValidTelAndPassword(userDTO)) {
-            return CommonResult.validateFailed();
+    private CommonResult registerByTelAndPassword(@RequestParam String username, @RequestParam String tel, @RequestParam String password) {
+        if (!isValidTelAndPassword(tel, password) || !isValid(username, NAME_PATTERN)) {
+            return CommonResult.failed(ResultCode.NOT_ACCEPTABLE);
         }
-        int resultCode = userService.addUser(userDTO);
+        int resultCode = userService.addUser(username, tel, password);
         return CommonResult.getResultByCode(resultCode);
     }
 
@@ -56,11 +54,11 @@ public class SecurityController {
     @GetMapping("/login/tel")
     private CommonResult<UserDTO> loginByTelAndPassword(@RequestParam String tel, @RequestParam String password, HttpServletRequest request) {
         if (!isValidTelAndPassword(tel, password)) {
-            return CommonResult.validateFailed();
+            return CommonResult.failed(ResultCode.NOT_ACCEPTABLE);
         }
         UserDTO userDTO = userService.loginByTelAndPassword(tel, password);
         if (userDTO == null) {
-            return CommonResult.failed(404, "用户名或密码错误");
+            return CommonResult.failed(ResultCode.FORBIDDEN);
         }
         putUserIntoSession(request, userDTO);
         return CommonResult.success(userDTO);
@@ -76,7 +74,7 @@ public class SecurityController {
     @DeleteMapping("/logoff/tel")
     private CommonResult logoffByTelAndPassword(@RequestParam String tel, @RequestParam String password, HttpServletRequest request) {
         if (!isValidTelAndPassword(tel, password)) {
-            return CommonResult.validateFailed();
+            return CommonResult.failed(ResultCode.NOT_ACCEPTABLE);
         }
         deleteUserFromSession(request);
         int resultCode = userService.logoffByTelAndPassword(tel, password);

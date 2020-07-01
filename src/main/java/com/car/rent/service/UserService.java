@@ -9,10 +9,12 @@ import com.car.rent.dto.UserDTO;
 public interface UserService {
     /**
      * 添加用户
-     * @param userDTO
+     * @param username
+     * @param tel
+     * @param password
      * @return
      */
-    int addUser(UserDTO userDTO);
+    int addUser(String username, String tel, String password);
 
     /**
      * 删除用户
@@ -23,11 +25,21 @@ public interface UserService {
     int logoffByTelAndPassword(String tel, String password);
 
     /**
-     * 更新用户信息
-     * @param userDTO
+     * 更改用户名
+     * @param tel
+     * @param username
      * @return
      */
-    int updateUser(UserDTO userDTO);
+    int updateUsername(String tel, String username);
+
+    /**
+     * 更改密码
+     * @param tel
+     * @param oldPass
+     * @param newPass
+     * @return
+     */
+    int updatePassword(String tel, String oldPass, String newPass);
 
     /**
      * 登录

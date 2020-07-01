@@ -19,58 +19,42 @@ public class CommonResult<T> {
     private String message;
     private T data;
 
-    public static <T> CommonResult<T> success(ResultCode resultCode, T data) {
+    private static <T> CommonResult<T> getResult(ResultCode resultCode, T data) {
         return new CommonResult<>(resultCode.getCode(), resultCode.getMessage(), data);
     }
 
-    public static <T> CommonResult<T> success() {
-        return success(ResultCode.SUCCESS, null);
-    }
-
-    public static <T> CommonResult<T> failed(ResultCode resultCode) {
-        return new CommonResult<>(resultCode.getCode(), resultCode.getMessage(), null);
-    }
-
-    public static <T> CommonResult<T> failed(long code, String message) {
-        return new CommonResult<>(code, message, null);
+    /**
+     * 成功返回数据
+     */
+    public static <T> CommonResult<T> success(T data) {
+        return getResult(ResultCode.SUCCESS, data);
     }
 
     /**
      * 成功返回结果
      */
-    public static <T> CommonResult<T> success(T data) {
-        return success(ResultCode.SUCCESS, data);
-    }
-
-    /**
-     * 未登录返回结果
-     */
-    public static <T> CommonResult<T> unauthorized() {
-        return failed(ResultCode.UNAUTHORIZED);
-    }
-
-    /**
-     * 权限不足返回结果
-     */
-    public static <T> CommonResult<T> forbidden() {
-        return failed(ResultCode.FORBIDDEN);
-    }
-
-    /**
-     * 参数验证失败返回结果
-     */
-    public static <T> CommonResult<T> validateFailed() {
-        return failed(ResultCode.VALIDATE_FAILED);
+    public static <T> CommonResult<T> success() {
+        return getResult(ResultCode.SUCCESS, null);
     }
 
     /**
      * 失败返回结果
      */
-    public static <T> CommonResult<T> failed() {
-        return failed(ResultCode.FAILED);
+    public static <T> CommonResult<T> failed(ResultCode resultCode) {
+        return new CommonResult<>(resultCode.getCode(), resultCode.getMessage(), null);
     }
 
-    public static <T> CommonResult<T> getResultByCode(int resultCode) {
-        return resultCode > 0? success(): failed();
+    /**
+     * 根据code返回结果 >0: success else: failed
+     */
+    public static <T> CommonResult<T> getResultByCode(int code) {
+        return code > 0? success(): failed(ResultCode.INTERNAL_ERROR);
+    }
+
+    /**
+     * 根据code返回结果 >0: success else: 自定义错误
+     */
+    public static <T> CommonResult<T> getResultByCode(int code, ResultCode resultCode) {
+        return code > 0? success(): failed(resultCode);
     }
 }

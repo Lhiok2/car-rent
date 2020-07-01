@@ -14,6 +14,9 @@ public class DozerUtils {
     private static final DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 
     public static <T> T map(Object sourceObj, Class<T> destinationClass) {
+        if (sourceObj == null) {
+            return null;
+        }
         return dozerBeanMapper.map(sourceObj, destinationClass);
     }
 
