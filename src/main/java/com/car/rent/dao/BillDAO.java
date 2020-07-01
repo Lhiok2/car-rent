@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author nayix
  * @date 2020/6/30 16:19
  */
-public interface BillDao extends CrudRepository<Bill, Long> {
+public interface BillDAO extends CrudRepository<Bill, Long> {
 }

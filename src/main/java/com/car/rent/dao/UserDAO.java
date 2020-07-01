@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
  * @author nayix
  * @date 2020/6/28 20:09
  */
-public interface UserDao extends CrudRepository<User, Long> {
+public interface UserDAO extends CrudRepository<User, Long> {
     /**
      * 通过tel查询用户
      * @param tel
