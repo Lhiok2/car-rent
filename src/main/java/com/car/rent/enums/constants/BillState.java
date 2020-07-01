@@ -17,8 +17,8 @@ public enum BillState {
     // unpaid
     UNPAID("Unpaid"),
 
-    // complete
-    COMPLETE("Complete")
+    // paid
+    PAID("Paid")
     ;
 
     private final String state;

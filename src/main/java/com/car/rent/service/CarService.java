@@ -44,4 +44,11 @@ public interface CarService {
      * @return
      */
     CarDTO getCar(long cid);
+
+    /**
+     * 获取车辆状态
+     * @param cid
+     * @return
+     */
+    String getCarState(long cid);
 }

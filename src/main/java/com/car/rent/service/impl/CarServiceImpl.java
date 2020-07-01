@@ -49,4 +49,10 @@ public class CarServiceImpl implements CarService {
         Car car = carDAO.findCarsByCid(cid);
         return DozerUtils.map(car, CarDTO.class);
     }
+
+    @Override
+    public String getCarState(long cid) {
+        CarDTO car = getCar(cid);
+        return car == null? null: car.getState();
+    }
 }

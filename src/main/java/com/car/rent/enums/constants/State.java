@@ -30,4 +30,8 @@ public enum State {
         }
         return false;
     }
+
+    public static boolean isNormal(String stateStr) {
+        return stateStr.equals(NORMAL.getState());
+    }
 }

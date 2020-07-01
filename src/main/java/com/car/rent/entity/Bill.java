@@ -30,13 +30,13 @@ public class Bill {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "cid", referencedColumnName = "cid")
-    private Car cid;
+    private Car car;
 
     @Column(insertable = false)
     private Integer cost;
 
     @Column(name = "bill_state", nullable = false)
-    private Integer billState;
+    private String billState;
 
     @Column(name = "start_time", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

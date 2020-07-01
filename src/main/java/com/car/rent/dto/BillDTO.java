@@ -28,7 +28,7 @@ public class BillDTO {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer cost;
 
-    private Integer billState;
+    private String billState;
 
     private Date startTime;
 
