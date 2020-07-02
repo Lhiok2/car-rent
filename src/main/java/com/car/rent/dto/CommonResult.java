@@ -1,6 +1,8 @@
 package com.car.rent.dto;
 
 import com.car.rent.enums.response.ResultCode;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,9 +16,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ApiModel("通用响应数据构造类")
 public class CommonResult<T> {
+    @ApiModelProperty("请求响应状态码")
     private long code;
+    @ApiModelProperty("请求结果描述信息")
     private String message;
+    @ApiModelProperty("请求结果数据")
     private T data;
 
     private static <T> CommonResult<T> getResult(ResultCode resultCode, T data) {

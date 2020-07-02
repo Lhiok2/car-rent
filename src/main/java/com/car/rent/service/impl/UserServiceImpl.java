@@ -31,8 +31,7 @@ public class UserServiceImpl implements UserService {
                     .password(password)
                     .balance(0)
                     .identity(Identity.USER.getIdentity())
-                    .createTime(new Date())
-                    .lastEditTime(new Date()).build());
+                    .createTime(new Date()).build());
             return 1;
         } catch (Exception e) {
             log.error("UserService-addUser: " + e.toString());

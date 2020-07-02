@@ -1,5 +1,7 @@
 package com.car.rent.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,12 +18,17 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ApiModel("车辆信息构造类")
 public class CarDTO {
+    @ApiModelProperty("车辆id")
     private Long cid;
 
+    @ApiModelProperty("车辆状态")
     private String state;
 
+    @ApiModelProperty("车辆基础价格")
     private Integer price;
 
+    @ApiModelProperty("车辆注册时间")
     private Date createTime;
 }

@@ -4,6 +4,7 @@ import com.car.rent.dto.CommonResult;
 import com.car.rent.dto.UserDTO;
 import com.car.rent.enums.response.ResultCode;
 import com.car.rent.service.UserService;
+import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import static com.car.rent.utils.StringUtils.*;
  * @author nayix
  * @date 2020/7/1 13:14
  */
+@Api(tags = "安全相关")
 @RestController
 @RequestMapping(value = "/api/v1/security")
 public class SecurityController {
@@ -28,13 +30,7 @@ public class SecurityController {
         return isValid(tel, TEL_PATTERN) && isValid(password, PASS_PATTERN);
     }
 
-    /**
-     * 通过手机和密码注册
-     * @param username
-     * @param tel
-     * @param password
-     * @return
-     */
+    @ApiOperation("通过手机号和密码进行注册")
     @PostMapping("/register/tel")
     private CommonResult<?> registerByTelAndPassword(@RequestParam String username, @RequestParam String tel, @RequestParam String password) {
         if (!isValidTelAndPassword(tel, password) || !isValid(username, NAME_PATTERN)) {
@@ -44,13 +40,7 @@ public class SecurityController {
         return CommonResult.getResultByCode(code);
     }
 
-    /**
-     * 通过手机和密码登录
-     * @param tel
-     * @param password
-     * @param request
-     * @return
-     */
+    @ApiOperation("通过手机和密码登录")
     @GetMapping("/login/tel")
     private CommonResult<UserDTO> loginByTelAndPassword(@RequestParam String tel, @RequestParam String password, HttpServletRequest request) {
         if (!isValidTelAndPassword(tel, password)) {
@@ -61,13 +51,7 @@ public class SecurityController {
         return CommonResult.success(userDTO);
     }
 
-    /**
-     * 通过手机和密码注销
-     * @param tel
-     * @param password
-     * @param request
-     * @return
-     */
+    @ApiOperation("通过手机和密码注销")
     @DeleteMapping("/logoff/tel")
     private CommonResult<?> logoffByTelAndPassword(@RequestParam String tel, @RequestParam String password, HttpServletRequest request) {
         if (!isValidTelAndPassword(tel, password)) {
@@ -78,11 +62,7 @@ public class SecurityController {
         return CommonResult.getResultByCode(code);
     }
 
-    /**
-     * 登出
-     * @param request
-     * @return
-     */
+    @ApiOperation("登出")
     @DeleteMapping("/logout")
     private CommonResult<?> logout(HttpServletRequest request) {
         deleteUserFromSession(request);

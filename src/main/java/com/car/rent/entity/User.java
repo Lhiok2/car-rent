@@ -42,8 +42,4 @@ public class User {
     @Column(name = "create_time", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
-
-    @Column(name = "last_edit_time", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastEditTime;
 }
