@@ -2,6 +2,7 @@ package com.car.rent.service.impl;
 
 import com.car.rent.dao.BillDAO;
 import com.car.rent.dao.CarDAO;
+import com.car.rent.dao.UserDAO;
 import com.car.rent.dto.BillDTO;
 import com.car.rent.entity.Bill;
 import com.car.rent.entity.Car;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 
+import static com.car.rent.enums.constants.BillState.isUnpaid;
 import static com.car.rent.enums.constants.State.isNormal;
 import static com.car.rent.utils.BillUtils.settleBill;
 
@@ -28,6 +30,8 @@ public class BillServiceImpl implements BillService {
     private BillDAO billDAO;
     @Resource
     private CarDAO carDAO;
+    @Resource
+    private UserDAO userDAO;
 
     @Override
     public BillDTO addBill(long uid, long cid) {
@@ -60,7 +64,18 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public int completePayment(long billId) {
-        return billDAO.updateStateToPaid(billId);
+        Bill bill = billDAO.findBIllByBillId(billId);
+        if (bill == null || !isUnpaid(bill.getBillState())) {
+            return 0;
+        }
+        User user = userDAO.findUserByUid(bill.getUser().getUid());
+        if (user.getBalance() < bill.getCost()) {
+            return -1;
+        }
+        int balance = user.getBalance() - bill.getCost();
+        userDAO.updateBalance(user.getUid(), balance);
+        billDAO.updateStateToPaid(billId);
+        return 1;
     }
 
     @Override

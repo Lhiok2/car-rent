@@ -22,4 +22,8 @@ public enum BillState {
     ;
 
     private final String state;
+
+    public static boolean isUnpaid(String str) {
+        return str.equals(UNPAID.state);
+    }
 }

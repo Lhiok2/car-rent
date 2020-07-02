@@ -28,4 +28,11 @@ public interface BillDAO extends CrudRepository<Bill, Long> {
     @Transactional
     @Query("update Bill set billState = 'Paid' where billId = :billId")
     int updateStateToPaid(long billId);
+
+    /**
+     * 通过id获取账单
+     * @param billId
+     * @return
+     */
+    Bill findBIllByBillId(long billId);
 }

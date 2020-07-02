@@ -21,6 +21,13 @@ public interface UserDAO extends CrudRepository<User, Long> {
     User findUserByTelAndPassword(String tel, String password);
 
     /**
+     * 通过id获取user
+     * @param uid
+     * @return
+     */
+    User findUserByUid(long uid);
+
+    /**
      * 通过手机号和密码删除用户
      * @param tel
      * @param password
@@ -30,6 +37,16 @@ public interface UserDAO extends CrudRepository<User, Long> {
     @Transactional
     @Query("delete from User where tel = :tel and password = :password")
     int deleteByTelAndPassword(@Param("tel") String tel, @Param("password") String password);
+
+    /**
+     * 通过id更新余额
+     * @param uid
+     * @param balance
+     */
+    @Modifying
+    @Transactional
+    @Query("update User set balance = :balance where uid = :uid")
+    void updateBalance(long uid, int balance);
 
     /**
      * 通过手机号更改用户名

@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import static com.car.rent.utils.SessionUtils.deleteUserFromSession;
-import static com.car.rent.utils.SessionUtils.getUserFromSession;
+import static com.car.rent.utils.SessionUtils.*;
 import static com.car.rent.utils.StringUtils.*;
 
 /**
@@ -48,5 +47,14 @@ public class UserController {
         int code = userService.updatePassword(userDTO.getTel(), oldPass, newPass);
         deleteUserFromSession(request);
         return CommonResult.getResultByCode(code, ResultCode.FORBIDDEN);
+    }
+
+    @PutMapping("/recharge")
+    private CommonResult<?> recharge(@RequestParam Integer money, HttpServletRequest request) {
+        UserDTO userDTO = getUserFromSession(request);
+        // TODO 充值校验
+        userDTO = userService.recharge(userDTO.getUid(), money);
+        putUserIntoSession(request, userDTO);
+        return CommonResult.success();
     }
 }

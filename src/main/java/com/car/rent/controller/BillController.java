@@ -59,9 +59,8 @@ public class BillController {
 
     @PutMapping("/pay")
     private CommonResult<?> payBill(@RequestParam Long billId) {
-        // TODO 支付
         int code = billService.completePayment(billId);
-        return CommonResult.getResultByCode(code);
+        return CommonResult.getResultByCode(code, ResultCode.FORBIDDEN);
     }
 
     @GetMapping("/unfinished")

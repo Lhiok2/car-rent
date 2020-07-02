@@ -48,4 +48,12 @@ public interface UserService {
      * @return
      */
     UserDTO loginByTelAndPassword(String tel, String password);
+
+    /**
+     * 充值
+     * @param uid
+     * @param money
+     * @return
+     */
+    UserDTO recharge(long uid, int money);
 }
