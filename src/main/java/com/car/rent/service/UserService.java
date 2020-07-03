@@ -44,10 +44,9 @@ public interface UserService {
     /**
      * 登录
      * @param tel
-     * @param password
      * @return
      */
-    UserDTO loginByTelAndPassword(String tel, String password);
+    UserDTO getUserByTel(String tel);
 
     /**
      * 充值
@@ -55,5 +54,5 @@ public interface UserService {
      * @param money
      * @return
      */
-    UserDTO recharge(long uid, int money);
+    void recharge(long uid, int money);
 }

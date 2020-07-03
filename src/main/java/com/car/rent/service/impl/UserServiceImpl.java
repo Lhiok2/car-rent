@@ -55,16 +55,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO loginByTelAndPassword(String tel, String password) {
-        User user = userDAO.findUserByTelAndPassword(tel, password);
+    public UserDTO getUserByTel(String tel) {
+        User user = userDAO.findUserByTel(tel);
         return DozerUtils.map(user, UserDTO.class);
     }
 
     @Override
-    public UserDTO recharge(long uid, int money) {
+    public void recharge(long uid, int money) {
         User user = userDAO.findUserByUid(uid);
         user.setBalance(user.getBalance() + money);
         userDAO.updateBalance(uid, user.getBalance());
-        return DozerUtils.map(user, UserDTO.class);
     }
 }

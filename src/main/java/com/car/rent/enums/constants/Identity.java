@@ -24,4 +24,12 @@ public enum Identity {
     ;
 
     private final String identity;
+
+    public static boolean hasAdminRole(String identityStr) {
+        return identityStr.equals(ADMIN.identity);
+    }
+
+    public static boolean hasUserRole(String identityStr) {
+        return identityStr.equals(USER.identity) || identityStr.equals(ADMIN.identity);
+    }
 }

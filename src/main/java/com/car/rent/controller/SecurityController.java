@@ -2,17 +2,18 @@ package com.car.rent.controller;
 
 import com.car.rent.dto.CommonResult;
 import com.car.rent.dto.UserDTO;
-import com.car.rent.enums.response.ResultCode;
 import com.car.rent.service.UserService;
 import io.swagger.annotations.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
-import static com.car.rent.utils.SessionUtils.deleteUserFromSession;
-import static com.car.rent.utils.SessionUtils.putUserIntoSession;
 import static com.car.rent.utils.StringUtils.*;
+import static com.car.rent.utils.UserUtils.deleteUserFromSubject;
 
 /**
  * @author nayix
@@ -41,31 +42,46 @@ public class SecurityController {
     }
 
     @ApiOperation("通过手机和密码登录")
-    @GetMapping("/login/tel")
-    private CommonResult<UserDTO> loginByTelAndPassword(@RequestParam String tel, @RequestParam String password, HttpServletRequest request) {
+    @PostMapping("/login/tel")
+    private CommonResult<UserDTO> loginByTelAndPassword(@RequestParam String tel, @RequestParam String password) {
         if (!isValidTelAndPassword(tel, password)) {
             return CommonResult.notAcceptable();
         }
-        UserDTO userDTO = userService.loginByTelAndPassword(tel, password);
-        putUserIntoSession(request, userDTO);
-        return CommonResult.success(userDTO);
+        // 获取当前用户
+        Subject subject = SecurityUtils.getSubject();
+        // 封装用户的登录数据
+        UsernamePasswordToken token = new UsernamePasswordToken(tel, password);
+        // 执行登录方法，无异常说明登陆成功
+        try {
+            subject.login(token);
+        } catch (UnknownAccountException e) {
+            // 账号不存在
+            return CommonResult.notFound();
+        } catch (IncorrectCredentialsException e) {
+            // 密码错误
+            return CommonResult.forbidden();
+        } catch (Exception e) {
+            // 未知错误
+            return CommonResult.internalError();
+        }
+        return CommonResult.success();
     }
 
     @ApiOperation("通过手机和密码注销")
-    @DeleteMapping("/logoff/tel")
-    private CommonResult<?> logoffByTelAndPassword(@RequestParam String tel, @RequestParam String password, HttpServletRequest request) {
+    @PostMapping("/logoff/tel")
+    private CommonResult<?> logoffByTelAndPassword(@RequestParam String tel, @RequestParam String password) {
         if (!isValidTelAndPassword(tel, password)) {
             return CommonResult.notAcceptable();
         }
-        deleteUserFromSession(request);
+        deleteUserFromSubject();
         int code = userService.logoffByTelAndPassword(tel, password);
         return CommonResult.getResultByCode(code);
     }
 
     @ApiOperation("登出")
-    @DeleteMapping("/logout")
-    private CommonResult<?> logout(HttpServletRequest request) {
-        deleteUserFromSession(request);
+    @PostMapping("/logout")
+    private CommonResult<?> logout() {
+        deleteUserFromSubject();
         return CommonResult.success();
     }
 }

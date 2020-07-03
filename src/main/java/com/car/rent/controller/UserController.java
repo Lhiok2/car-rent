@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import static com.car.rent.utils.SessionUtils.*;
 import static com.car.rent.utils.StringUtils.*;
+import static com.car.rent.utils.UserUtils.deleteUserFromSubject;
+import static com.car.rent.utils.UserUtils.getUserFromSubject;
 
 /**
  * @author nayix
@@ -28,8 +29,8 @@ public class UserController {
 
     @ApiOperation("更改用户名")
     @PutMapping("/username")
-    private CommonResult<?> updateUsername(@RequestParam String username, HttpServletRequest request) {
-        UserDTO userDTO = getUserFromSession(request);
+    private CommonResult<?> updateUsername(@RequestParam String username) {
+        UserDTO userDTO = getUserFromSubject();
         if (userDTO == null) {
             return CommonResult.unauthorized();
         } else if (!isValid(username, NAME_PATTERN)) {
@@ -42,25 +43,24 @@ public class UserController {
 
     @ApiOperation("更改密码")
     @PutMapping("/password")
-    private CommonResult<?> updatePassword(@RequestParam String oldPass, @RequestParam String newPass, HttpServletRequest request) {
-        UserDTO userDTO = getUserFromSession(request);
+    private CommonResult<?> updatePassword(@RequestParam String oldPass, @RequestParam String newPass) {
+        UserDTO userDTO = getUserFromSubject();
         if (userDTO == null) {
             return CommonResult.unauthorized();
         } else if (!isValid(oldPass, PASS_PATTERN) || !isValid(newPass, PASS_PATTERN)) {
             return CommonResult.notAcceptable();
         }
         int code = userService.updatePassword(userDTO.getTel(), oldPass, newPass);
-        deleteUserFromSession(request);
+        deleteUserFromSubject();
         return CommonResult.getResultByCode(code, ResultCode.FORBIDDEN);
     }
 
     @ApiOperation("充值")
     @PutMapping("/recharge")
-    private CommonResult<?> recharge(@RequestParam Integer money, HttpServletRequest request) {
-        UserDTO userDTO = getUserFromSession(request);
+    private CommonResult<?> recharge(@RequestParam Integer money) {
+        UserDTO userDTO = getUserFromSubject();
         // TODO 充值校验
-        userDTO = userService.recharge(userDTO.getUid(), money);
-        putUserIntoSession(request, userDTO);
+        userService.recharge(userDTO.getUid(), money);
         return CommonResult.success();
     }
 }

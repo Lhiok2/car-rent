@@ -13,12 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface UserDAO extends CrudRepository<User, Long> {
     /**
-     * 通过tel和密码查询用户
+     * 通过tel查询用户
      * @param tel
-     * @param password
      * @return
      */
-    User findUserByTelAndPassword(String tel, String password);
+    User findUserByTel(String tel);
 
     /**
      * 通过id获取user

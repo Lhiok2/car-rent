@@ -85,6 +85,10 @@ public class CommonResult<T> {
         return failed(ResultCode.NOTFOUND);
     }
 
+    public static <T> CommonResult<T> internalError() {
+        return failed(ResultCode.INTERNAL_ERROR);
+    }
+
     /**
      * 根据code返回结果 >0: success else: failed
      */
