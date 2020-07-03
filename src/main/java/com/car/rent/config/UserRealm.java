@@ -2,18 +2,17 @@ package com.car.rent.config;
 
 import com.car.rent.dto.UserDTO;
 import com.car.rent.service.UserService;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.Resource;
 
 import static com.car.rent.enums.constants.Identity.*;
-import static com.car.rent.utils.UserUtils.getUserFromSubject;
+import static com.car.rent.utils.SubjectUtils.getUserFromSubject;
 
 /**
  * @author nayix
@@ -52,6 +51,9 @@ public class UserRealm extends AuthorizingRealm {
             return null;
         }
         // 密码认证，shiro做
-        return new SimpleAuthenticationInfo(userDTO, userDTO.getPassword(), "");
+        return new SimpleAuthenticationInfo(userDTO,
+                userDTO.getPassword(),
+                ByteSource.Util.bytes(userDTO.getSalt()),
+                getName());
     }
 }

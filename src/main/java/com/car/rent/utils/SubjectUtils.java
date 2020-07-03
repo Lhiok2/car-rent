@@ -8,7 +8,7 @@ import org.apache.shiro.subject.Subject;
  * @author nayix
  * @date 2020/7/3 18:27
  */
-public class UserUtils {
+public class SubjectUtils {
     /**
      * @return currentUser
      */

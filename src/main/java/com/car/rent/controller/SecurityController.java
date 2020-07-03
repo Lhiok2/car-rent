@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import static com.car.rent.utils.StringUtils.*;
-import static com.car.rent.utils.UserUtils.deleteUserFromSubject;
+import static com.car.rent.utils.SubjectUtils.deleteUserFromSubject;
 
 /**
  * @author nayix

@@ -17,7 +17,6 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 import static com.car.rent.enums.constants.BillState.isUnpaid;
-import static com.car.rent.enums.constants.State.isNormal;
 import static com.car.rent.utils.BillUtils.settleBill;
 
 /**

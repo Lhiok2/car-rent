@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 
+import static com.car.rent.utils.PassUtils.*;
+
 /**
  * @author nayix
  * @date 2020/6/30 16:24
@@ -24,11 +26,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int addUser(String username, String tel, String password) {
+        String salt = getRandomSalt();
+        String encodedPass = getEncodedPass(password, salt);
         try {
             userDAO.save(User.builder()
                     .username(username)
                     .tel(tel)
-                    .password(password)
+                    .password(encodedPass)
+                    .salt(salt)
                     .balance(0)
                     .identity(Identity.USER.getIdentity())
                     .createTime(new Date()).build());
@@ -41,7 +46,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int logoffByTelAndPassword(String tel, String password) {
-        return userDAO.deleteByTelAndPassword(tel, password);
+        String salt = userDAO.getSaltByTel(tel);
+        String encodedPass = getEncodedPass(password, salt);
+        return userDAO.deleteByTelAndPassword(tel, encodedPass);
     }
 
     @Override
@@ -51,7 +58,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int updatePassword(String tel, String oldPass, String newPass) {
-        return userDAO.updatePassword(tel, oldPass, newPass);
+        String oldSalt = userDAO.getSaltByTel(tel);
+        String encodedOldPass = getEncodedPass(oldPass, oldSalt);
+        String newSalt = getRandomSalt();
+        String encodedNewPass = getEncodedPass(newPass, newSalt);
+        return userDAO.updatePassword(tel, encodedOldPass, encodedNewPass, newSalt);
     }
 
     @Override

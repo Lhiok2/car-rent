@@ -33,6 +33,9 @@ public class UserDTO {
     @JsonIgnore
     private String password;
 
+    @JsonIgnore
+    private String salt;
+
     @ApiModelProperty("用户余额")
     private Integer balance;
 

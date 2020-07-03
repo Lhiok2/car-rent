@@ -13,6 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface UserDAO extends CrudRepository<User, Long> {
     /**
+     * 通过tel获取用户MD5盐
+     * @param tel
+     * @return
+     */
+    @Query("select salt from User where tel = :tel")
+    String getSaltByTel(@Param("tel") String tel);
+
+    /**
      * 通过tel查询用户
      * @param tel
      * @return
@@ -67,6 +75,6 @@ public interface UserDAO extends CrudRepository<User, Long> {
      */
     @Modifying
     @Transactional
-    @Query("update User set password = :newPass where tel = :tel and password = :oldPass")
-    int updatePassword(@Param("tel") String tel, @Param("oldPass") String oldPass, @Param("newPass") String newPass);
+    @Query("update User set password = :newPass, salt = :newSalt where tel = :tel and password = :oldPass")
+    int updatePassword(@Param("tel") String tel, @Param("oldPass") String oldPass, @Param("newPass") String newPass, @Param("newSalt") String newSalt);
 }

@@ -9,11 +9,10 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import static com.car.rent.utils.StringUtils.*;
-import static com.car.rent.utils.UserUtils.deleteUserFromSubject;
-import static com.car.rent.utils.UserUtils.getUserFromSubject;
+import static com.car.rent.utils.SubjectUtils.deleteUserFromSubject;
+import static com.car.rent.utils.SubjectUtils.getUserFromSubject;
 
 /**
  * @author nayix
