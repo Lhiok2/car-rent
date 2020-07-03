@@ -36,7 +36,7 @@ public class ShiroConfig {
         // 设置安全管理器
         bean.setSecurityManager(securityManager);
         // 设置登录的请求路径
-        bean.setLoginUrl("/toLogin");
+        bean.setLoginUrl("/views/security/toLogin");
 
         /*
         * 拦截
