@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import static com.car.rent.utils.SessionUtils.getUserFromSession;
+import static com.car.rent.utils.SubjectUtils.getUserFromSubject;
 
 /**
  * @author nayix
@@ -34,7 +34,7 @@ public class BillController {
     @ApiOperation("租贷车辆")
     @PostMapping
     private CommonResult<?> addBill(@RequestParam Long cid, HttpServletRequest request) {
-        UserDTO userDTO = getUserFromSession(request);
+        UserDTO userDTO = getUserFromSubject();
         if (userDTO == null) {
             return CommonResult.unauthorized();
         } else if (cid == null) {
@@ -51,7 +51,7 @@ public class BillController {
     @ApiOperation("结束租贷")
     @PutMapping
     private CommonResult<BillDTO> updateBill(@RequestParam Long cid, HttpServletRequest request) {
-        UserDTO userDTO = getUserFromSession(request);
+        UserDTO userDTO = getUserFromSubject();
         if (userDTO == null) {
             return CommonResult.unauthorized();
         } else if (cid == null) {
@@ -71,7 +71,7 @@ public class BillController {
     @ApiOperation("获取未完成订单信息")
     @GetMapping("/unfinished")
     private CommonResult<BillDTO> getUnfinishedBill(HttpServletRequest request) {
-        UserDTO userDTO = getUserFromSession(request);
+        UserDTO userDTO = getUserFromSubject();
         if (userDTO == null) {
             return CommonResult.unauthorized();
         }
