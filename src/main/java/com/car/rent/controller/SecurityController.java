@@ -1,12 +1,10 @@
 package com.car.rent.controller;
 
 import com.car.rent.dto.CommonResult;
-import com.car.rent.enums.response.ResultCode;
 import com.car.rent.service.UserService;
 import io.swagger.annotations.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +25,7 @@ public class SecurityController {
     @Resource
     private UserService userService;
 
-    @ApiOperation(value = "通过手机号和密码进行注册", httpMethod = "Post")
+    @ApiOperation(value = "通过手机号和密码进行注册", httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "用户名", dataType = "String"),
             @ApiImplicitParam(name = "tel", value = "手机号", dataType = "String"),
@@ -42,7 +40,7 @@ public class SecurityController {
         return CommonResult.success();
     }
 
-    @ApiOperation(value = "通过手机和密码登录", httpMethod = "Post")
+    @ApiOperation(value = "通过手机和密码登录", httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "tel", value = "手机号", dataType = "String"),
             @ApiImplicitParam(name = "password", value = "密码", dataType = "String")
@@ -65,7 +63,7 @@ public class SecurityController {
         return CommonResult.success();
     }
 
-    @ApiOperation(value = "通过手机和密码注销", httpMethod = "Post")
+    @ApiOperation(value = "通过手机和密码注销", httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "tel", value = "手机号", dataType = "String"),
             @ApiImplicitParam(name = "password", value = "密码", dataType = "String")
@@ -79,7 +77,7 @@ public class SecurityController {
         return CommonResult.success();
     }
 
-    @ApiOperation(value = "登出", httpMethod = "Post")
+    @ApiOperation(value = "登出", httpMethod = "POST")
     @PostMapping("/logout")
     private CommonResult<?> logout() {
         deleteUserFromSubject();

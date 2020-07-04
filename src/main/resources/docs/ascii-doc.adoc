@@ -24,7 +24,7 @@ __基础路径__ : /
 
 === 标签
 
-* 业务相关 : Bill Controller
+* bill-controller : Bill Controller
 * 安全相关 : Security Controller
 * 用户信息 : User Controller
 * 车辆管理 : Car Controller
@@ -35,8 +35,8 @@ __基础路径__ : /
 [[_paths]]
 == 资源
 
-[[_1101be8288349aafa3a5b7cf55b455b2]]
-=== 业务相关
+[[_bill-controller_resource]]
+=== Bill-controller
 Bill Controller
 
 
@@ -52,78 +52,8 @@ POST /api/v1/bills
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**cid** +
-__必填__|cid|integer (int64)
-|===
-
-
-===== 响应
-
-[options="header", cols=".^2,.^14,.^4"]
-|===
-|HTTP代码|说明|类型
-|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
-|**201**|Created|无内容
-|**401**|Unauthorized|无内容
-|**403**|Forbidden|无内容
-|**404**|Not Found|无内容
-|===
-
-
-===== 消耗
-
-* `application/json`
-
-
-===== 生成
-
-* `*/*`
-
-
-===== HTTP请求示例
-
-====== 请求 path
-----
-/api/v1/bills
-----
-
-
-====== 请求 query
-[source,json]
-----
-{
-  "cid" : 0
-}
-----
-
-
-===== HTTP响应示例
-
-====== 响应 200
-[source,json]
-----
-{
-  "code" : 0,
-  "data" : "object",
-  "message" : "string"
-}
-----
-
-
-[[_updatebillusingput]]
-==== 结束租贷
-....
-PUT /api/v1/bills
-....
-
-
-===== 参数
-
-[options="header", cols=".^2,.^3,.^9,.^4"]
-|===
-|类型|名称|说明|类型
-|**Query**|**cid** +
-__必填__|cid|integer (int64)
+|**Body**|**cid** +
+__必填__|车辆id|<<_long,Long>>
 |===
 
 
@@ -158,12 +88,86 @@ __必填__|cid|integer (int64)
 ----
 
 
-====== 请求 query
+===== HTTP响应示例
+
+====== 响应 200
 [source,json]
 ----
 {
-  "cid" : 0
+  "code" : 0,
+  "data" : {
+    "billId" : 0,
+    "billState" : "string",
+    "car" : {
+      "cid" : 0,
+      "createTime" : "string",
+      "price" : 0,
+      "state" : "string"
+    },
+    "cost" : 0,
+    "endTime" : "string",
+    "startTime" : "string",
+    "user" : {
+      "balance" : 0,
+      "createTime" : "string",
+      "identity" : "string",
+      "password" : "string",
+      "salt" : "string",
+      "tel" : "string",
+      "uid" : 0,
+      "username" : "string"
+    }
+  },
+  "message" : "string"
 }
+----
+
+
+[[_updatebillusingput]]
+==== 结束租贷
+....
+PUT /api/v1/bills
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Body**|**cid** +
+__必填__|车辆id|<<_long,Long>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_bd24d8ef62fa01f42c74364a830b9a30,通用响应数据构造类«账单信息构造类»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/bills
 ----
 
 
@@ -214,8 +218,8 @@ PUT /api/v1/bills/pay
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**billId** +
-__必填__|billId|integer (int64)
+|**Body**|**billId** +
+__必填__|账单id|<<_long,Long>>
 |===
 
 
@@ -247,15 +251,6 @@ __必填__|billId|integer (int64)
 ====== 请求 path
 ----
 /api/v1/bills/pay
-----
-
-
-====== 请求 query
-[source,json]
-----
-{
-  "billId" : 0
-}
 ----
 
 
@@ -361,10 +356,10 @@ POST /api/v1/security/login/tel
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**password** +
-__必填__|password|string
-|**Query**|**tel** +
-__必填__|tel|string
+|**Body**|**password** +
+__可选__|密码|<<_string,String>>
+|**Body**|**tel** +
+__可选__|手机号|<<_string,String>>
 |===
 
 
@@ -373,7 +368,7 @@ __必填__|tel|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP代码|说明|类型
-|**200**|OK|<<_d2775f6254700e80f137ac940bd1ff4f,通用响应数据构造类«用户信息构造类»>>
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
 |**201**|Created|无内容
 |**401**|Unauthorized|无内容
 |**403**|Forbidden|无内容
@@ -399,16 +394,6 @@ __必填__|tel|string
 ----
 
 
-====== 请求 query
-[source,json]
-----
-{
-  "password" : "string",
-  "tel" : "string"
-}
-----
-
-
 ===== HTTP响应示例
 
 ====== 响应 200
@@ -416,14 +401,7 @@ __必填__|tel|string
 ----
 {
   "code" : 0,
-  "data" : {
-    "balance" : 0,
-    "createTime" : "string",
-    "identity" : "string",
-    "tel" : "string",
-    "uid" : 0,
-    "username" : "string"
-  },
+  "data" : "object",
   "message" : "string"
 }
 ----
@@ -441,10 +419,10 @@ POST /api/v1/security/logoff/tel
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**password** +
-__必填__|password|string
-|**Query**|**tel** +
-__必填__|tel|string
+|**Body**|**password** +
+__可选__|密码|<<_string,String>>
+|**Body**|**tel** +
+__可选__|手机号|<<_string,String>>
 |===
 
 
@@ -476,16 +454,6 @@ __必填__|tel|string
 ====== 请求 path
 ----
 /api/v1/security/logoff/tel
-----
-
-
-====== 请求 query
-[source,json]
-----
-{
-  "password" : "string",
-  "tel" : "string"
-}
 ----
 
 
@@ -565,12 +533,12 @@ POST /api/v1/security/register/tel
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**password** +
-__必填__|password|string
-|**Query**|**tel** +
-__必填__|tel|string
-|**Query**|**username** +
-__必填__|username|string
+|**Body**|**password** +
+__可选__|密码|<<_string,String>>
+|**Body**|**tel** +
+__可选__|手机号|<<_string,String>>
+|**Body**|**username** +
+__可选__|用户名|<<_string,String>>
 |===
 
 
@@ -605,17 +573,6 @@ __必填__|username|string
 ----
 
 
-====== 请求 query
-[source,json]
-----
-{
-  "password" : "string",
-  "tel" : "string",
-  "username" : "string"
-}
-----
-
-
 ===== HTTP响应示例
 
 ====== 响应 200
@@ -646,10 +603,10 @@ PUT /api/v1/users/password
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**newPass** +
-__必填__|newPass|string
-|**Query**|**oldPass** +
-__必填__|oldPass|string
+|**Body**|**newPass** +
+__可选__|新密码|<<_string,String>>
+|**Body**|**oldPass** +
+__可选__|旧密码|<<_string,String>>
 |===
 
 
@@ -684,16 +641,6 @@ __必填__|oldPass|string
 ----
 
 
-====== 请求 query
-[source,json]
-----
-{
-  "newPass" : "string",
-  "oldPass" : "string"
-}
-----
-
-
 ===== HTTP响应示例
 
 ====== 响应 200
@@ -719,8 +666,8 @@ PUT /api/v1/users/recharge
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**money** +
-__必填__|money|integer (int32)
+|**Body**|**money** +
+__可选__|金额|<<_integer,Integer>>
 |===
 
 
@@ -755,15 +702,6 @@ __必填__|money|integer (int32)
 ----
 
 
-====== 请求 query
-[source,json]
-----
-{
-  "money" : 0
-}
-----
-
-
 ===== HTTP响应示例
 
 ====== 响应 200
@@ -789,8 +727,8 @@ PUT /api/v1/users/username
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**username** +
-__必填__|username|string
+|**Body**|**username** +
+__可选__|用户名|<<_string,String>>
 |===
 
 
@@ -825,15 +763,6 @@ __必填__|username|string
 ----
 
 
-====== 请求 query
-[source,json]
-----
-{
-  "username" : "string"
-}
-----
-
-
 ===== HTTP响应示例
 
 ====== 响应 200
@@ -864,8 +793,8 @@ POST /api/v1/cars
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**price** +
-__必填__|price|integer (int32)
+|**Body**|**price** +
+__必填__|单价|<<_integer,Integer>>
 |===
 
 
@@ -900,15 +829,6 @@ __必填__|price|integer (int32)
 ----
 
 
-====== 请求 query
-[source,json]
-----
-{
-  "price" : 0
-}
-----
-
-
 ===== HTTP响应示例
 
 ====== 响应 200
@@ -939,8 +859,8 @@ GET /api/v1/cars
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**cid** +
-__必填__|cid|integer (int64)
+|**Body**|**cid** +
+__可选__|车辆id|<<_long,Long>>
 |===
 
 
@@ -974,15 +894,6 @@ __必填__|cid|integer (int64)
 ----
 
 
-====== 请求 query
-[source,json]
-----
-{
-  "cid" : 0
-}
-----
-
-
 ===== HTTP响应示例
 
 ====== 响应 200
@@ -1013,8 +924,8 @@ DELETE /api/v1/cars
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**cid** +
-__必填__|cid|integer (int64)
+|**Body**|**cid** +
+__必填__|车辆id|<<_long,Long>>
 |===
 
 
@@ -1048,15 +959,6 @@ __必填__|cid|integer (int64)
 ----
 
 
-====== 请求 query
-[source,json]
-----
-{
-  "cid" : 0
-}
-----
-
-
 ===== HTTP响应示例
 
 ====== 响应 200
@@ -1082,10 +984,10 @@ PUT /api/v1/cars/price
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**cid** +
-__必填__|cid|integer (int64)
-|**Query**|**price** +
-__必填__|price|integer (int32)
+|**Body**|**cid** +
+__可选__|车辆id|<<_long,Long>>
+|**Body**|**price** +
+__可选__|价格|<<_integer,Integer>>
 |===
 
 
@@ -1120,16 +1022,6 @@ __必填__|price|integer (int32)
 ----
 
 
-====== 请求 query
-[source,json]
-----
-{
-  "cid" : 0,
-  "price" : 0
-}
-----
-
-
 ===== HTTP响应示例
 
 ====== 响应 200
@@ -1155,10 +1047,10 @@ PUT /api/v1/cars/state
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Query**|**cid** +
-__必填__|cid|integer (int64)
-|**Query**|**state** +
-__必填__|state|string
+|**Body**|**cid** +
+__可选__|车辆id|<<_long,Long>>
+|**Body**|**state** +
+__可选__|车辆状态|<<_string,String>>
 |===
 
 
@@ -1190,16 +1082,6 @@ __必填__|state|string
 ====== 请求 path
 ----
 /api/v1/cars/state
-----
-
-
-====== 请求 query
-[source,json]
-----
-{
-  "cid" : 0,
-  "state" : "string"
-}
 ----
 
 
@@ -1260,33 +1142,6 @@ __可选__|**样例** : `"string"`|string
 __可选__|**样例** : `0`|integer (int64)
 |**username** +
 __可选__|**样例** : `"string"`|string
-|===
-
-
-[[_cd25c2d2e32f946af4456cf281a66a54]]
-=== 用户信息构造类
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|名称|说明|类型
-|**balance** +
-__可选__|用户余额 +
-**样例** : `0`|integer (int32)
-|**createTime** +
-__可选__|用户注册时间 +
-**样例** : `"string"`|string (date-time)
-|**identity** +
-__可选__|用户状态 +
-**样例** : `"string"`|string
-|**tel** +
-__可选__|11位电话号码 +
-**样例** : `"string"`|string
-|**uid** +
-__可选__|用户id +
-**样例** : `0`|integer (int64)
-|**username** +
-__可选__|用户名(2-16位英文字母及数字) +
-**样例** : `"string"`|string
 |===
 
 
@@ -1353,24 +1208,6 @@ __可选__|请求响应状态码 +
 |**data** +
 __可选__|请求结果数据 +
 **样例** : `"object"`|object
-|**message** +
-__可选__|请求结果描述信息 +
-**样例** : `"string"`|string
-|===
-
-
-[[_d2775f6254700e80f137ac940bd1ff4f]]
-=== 通用响应数据构造类«用户信息构造类»
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|名称|说明|类型
-|**code** +
-__可选__|请求响应状态码 +
-**样例** : `0`|integer (int64)
-|**data** +
-__可选__|请求结果数据 +
-**样例** : `"<<_cd25c2d2e32f946af4456cf281a66a54>>"`|<<_cd25c2d2e32f946af4456cf281a66a54,用户信息构造类>>
 |**message** +
 __可选__|请求结果描述信息 +
 **样例** : `"string"`|string

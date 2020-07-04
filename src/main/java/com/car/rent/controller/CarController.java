@@ -23,7 +23,7 @@ public class CarController {
     @Resource
     private CarService carService;
 
-    @ApiOperation(value = "添加车辆", httpMethod = "Post")
+    @ApiOperation(value = "添加车辆", httpMethod = "POST")
     @ApiImplicitParam(name = "price", value = "单价", required = true, dataType = "Integer")
     @PostMapping
     private CommonResult<CarDTO> addCar(@RequestParam Integer price) {
@@ -33,7 +33,7 @@ public class CarController {
         return CommonResult.success(carDTO);
     }
 
-    @ApiOperation(value = "删除车辆", httpMethod = "Delete")
+    @ApiOperation(value = "删除车辆", httpMethod = "DELETE")
     @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long")
     @DeleteMapping
     private CommonResult<?> deleteCar(@RequestParam Long cid) {
@@ -43,7 +43,7 @@ public class CarController {
         return CommonResult.success();
     }
 
-    @ApiOperation(value = "更新车辆价格", httpMethod = "Put")
+    @ApiOperation(value = "更新车辆价格", httpMethod = "PUT")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "cid", value = "车辆id", dataType = "Long"),
             @ApiImplicitParam(name = "price", value = "价格", dataType = "Integer")
@@ -56,7 +56,7 @@ public class CarController {
         return CommonResult.success();
     }
 
-    @ApiOperation(value = "更新车辆状态", httpMethod = "Put")
+    @ApiOperation(value = "更新车辆状态", httpMethod = "PUT")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "cid", value = "车辆id", dataType = "Long"),
             @ApiImplicitParam(name = "state", value = "车辆状态", dataType = "String")
@@ -70,7 +70,7 @@ public class CarController {
         return CommonResult.success();
     }
 
-    @ApiOperation(value = "获取车辆信息", httpMethod = "Get")
+    @ApiOperation(value = "获取车辆信息", httpMethod = "GET")
     @ApiImplicitParam(name = "cid", value = "车辆id", dataType = "Long")
     @GetMapping
     private CommonResult<CarDTO> getCar(@RequestParam Long cid) {

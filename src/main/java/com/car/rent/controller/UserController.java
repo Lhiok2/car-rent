@@ -25,7 +25,7 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @ApiOperation(value = "更改用户名", httpMethod = "Put")
+    @ApiOperation(value = "更改用户名", httpMethod = "PUT")
     @ApiImplicitParam(name = "username", value = "用户名", dataType = "String")
     @PutMapping("/username")
     private CommonResult<?> updateUsername(@RequestParam String username) {
@@ -35,7 +35,7 @@ public class UserController {
         return CommonResult.success();
     }
 
-    @ApiOperation(value = "更改密码", httpMethod = "Put")
+    @ApiOperation(value = "更改密码", httpMethod = "PUT")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "oldPass", value = "旧密码", dataType = "String"),
             @ApiImplicitParam(name = "newPass", value = "新密码", dataType = "String")
@@ -50,7 +50,7 @@ public class UserController {
         return CommonResult.success();
     }
 
-    @ApiOperation(value = "充值", httpMethod = "Put")
+    @ApiOperation(value = "充值", httpMethod = "PUT")
     @ApiImplicitParam(name = "money", value = "金额", dataType = "Integer")
     @PutMapping("/recharge")
     private CommonResult<?> recharge(@RequestParam Integer money) {
