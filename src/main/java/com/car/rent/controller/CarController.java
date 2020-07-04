@@ -45,8 +45,8 @@ public class CarController {
 
     @ApiOperation(value = "更新车辆价格", httpMethod = "PUT")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "cid", value = "车辆id", dataType = "Long"),
-            @ApiImplicitParam(name = "price", value = "价格", dataType = "Integer")
+            @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long"),
+            @ApiImplicitParam(name = "price", value = "价格", required = true, dataType = "Integer")
     })
     @PutMapping("/price")
     private CommonResult<?> updatePrice(@RequestParam Long cid, @RequestParam Integer price) {
@@ -58,8 +58,8 @@ public class CarController {
 
     @ApiOperation(value = "更新车辆状态", httpMethod = "PUT")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "cid", value = "车辆id", dataType = "Long"),
-            @ApiImplicitParam(name = "state", value = "车辆状态", dataType = "String")
+            @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long"),
+            @ApiImplicitParam(name = "state", value = "车辆状态", required = true, dataType = "String")
     })
     @PutMapping("/state")
     private CommonResult<?> updateState(@RequestParam Long cid, @RequestParam String state) {
@@ -71,7 +71,7 @@ public class CarController {
     }
 
     @ApiOperation(value = "获取车辆信息", httpMethod = "GET")
-    @ApiImplicitParam(name = "cid", value = "车辆id", dataType = "Long")
+    @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long")
     @GetMapping
     private CommonResult<CarDTO> getCar(@RequestParam Long cid) {
         notNullVerify(cid);

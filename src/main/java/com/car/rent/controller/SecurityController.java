@@ -27,9 +27,9 @@ public class SecurityController {
 
     @ApiOperation(value = "通过手机号和密码进行注册", httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户名", dataType = "String"),
-            @ApiImplicitParam(name = "tel", value = "手机号", dataType = "String"),
-            @ApiImplicitParam(name = "password", value = "密码", dataType = "String")
+            @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "tel", value = "手机号", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String")
     })
     @PostMapping("/register/tel")
     private CommonResult<?> registerByTelAndPassword(@RequestParam String username, @RequestParam String tel, @RequestParam String password) {
@@ -42,8 +42,8 @@ public class SecurityController {
 
     @ApiOperation(value = "通过手机和密码登录", httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "tel", value = "手机号", dataType = "String"),
-            @ApiImplicitParam(name = "password", value = "密码", dataType = "String")
+            @ApiImplicitParam(name = "tel", value = "手机号", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String")
     })
     @PostMapping("/login/tel")
     private CommonResult<?> loginByTelAndPassword(@RequestParam String tel, @RequestParam String password) {
@@ -65,8 +65,8 @@ public class SecurityController {
 
     @ApiOperation(value = "通过手机和密码注销", httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "tel", value = "手机号", dataType = "String"),
-            @ApiImplicitParam(name = "password", value = "密码", dataType = "String")
+            @ApiImplicitParam(name = "tel", value = "手机号", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String")
     })
     @PostMapping("/logoff/tel")
     private CommonResult<?> logoffByTelAndPassword(@RequestParam String tel, @RequestParam String password) {

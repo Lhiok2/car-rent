@@ -26,7 +26,7 @@ public class UserController {
     private UserService userService;
 
     @ApiOperation(value = "更改用户名", httpMethod = "PUT")
-    @ApiImplicitParam(name = "username", value = "用户名", dataType = "String")
+    @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String")
     @PutMapping("/username")
     private CommonResult<?> updateUsername(@RequestParam String username) {
         long uid = getUidFromSubject();
@@ -37,8 +37,8 @@ public class UserController {
 
     @ApiOperation(value = "更改密码", httpMethod = "PUT")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "oldPass", value = "旧密码", dataType = "String"),
-            @ApiImplicitParam(name = "newPass", value = "新密码", dataType = "String")
+            @ApiImplicitParam(name = "oldPass", value = "旧密码", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "newPass", value = "新密码", required = true, dataType = "String")
     })
     @PutMapping("/password")
     private CommonResult<?> updatePassword(@RequestParam String oldPass, @RequestParam String newPass) {
@@ -51,7 +51,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "充值", httpMethod = "PUT")
-    @ApiImplicitParam(name = "money", value = "金额", dataType = "Integer")
+    @ApiImplicitParam(name = "money", value = "金额", required = true, dataType = "Integer")
     @PutMapping("/recharge")
     private CommonResult<?> recharge(@RequestParam Integer money) {
         long uid = getUidFromSubject();

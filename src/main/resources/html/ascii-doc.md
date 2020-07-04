@@ -335,8 +335,8 @@ POST /api/v1/security/login/tel
 
 |类型|名称|说明|类型|
 |---|---|---|---|
-|**Body**|**password**  <br>*可选*|密码|[String](#string)|
-|**Body**|**tel**  <br>*可选*|手机号|[String](#string)|
+|**Body**|**password**  <br>*必填*|密码|[String](#string)|
+|**Body**|**tel**  <br>*必填*|手机号|[String](#string)|
 
 
 ##### 响应
@@ -392,8 +392,8 @@ POST /api/v1/security/logoff/tel
 
 |类型|名称|说明|类型|
 |---|---|---|---|
-|**Body**|**password**  <br>*可选*|密码|[String](#string)|
-|**Body**|**tel**  <br>*可选*|手机号|[String](#string)|
+|**Body**|**password**  <br>*必填*|密码|[String](#string)|
+|**Body**|**tel**  <br>*必填*|手机号|[String](#string)|
 
 
 ##### 响应
@@ -498,9 +498,9 @@ POST /api/v1/security/register/tel
 
 |类型|名称|说明|类型|
 |---|---|---|---|
-|**Body**|**password**  <br>*可选*|密码|[String](#string)|
-|**Body**|**tel**  <br>*可选*|手机号|[String](#string)|
-|**Body**|**username**  <br>*可选*|用户名|[String](#string)|
+|**Body**|**password**  <br>*必填*|密码|[String](#string)|
+|**Body**|**tel**  <br>*必填*|手机号|[String](#string)|
+|**Body**|**username**  <br>*必填*|用户名|[String](#string)|
 
 
 ##### 响应
@@ -561,8 +561,8 @@ PUT /api/v1/users/password
 
 |类型|名称|说明|类型|
 |---|---|---|---|
-|**Body**|**newPass**  <br>*可选*|新密码|[String](#string)|
-|**Body**|**oldPass**  <br>*可选*|旧密码|[String](#string)|
+|**Body**|**newPass**  <br>*必填*|新密码|[String](#string)|
+|**Body**|**oldPass**  <br>*必填*|旧密码|[String](#string)|
 
 
 ##### 响应
@@ -618,7 +618,7 @@ PUT /api/v1/users/recharge
 
 |类型|名称|说明|类型|
 |---|---|---|---|
-|**Body**|**money**  <br>*可选*|金额|[Integer](#integer)|
+|**Body**|**money**  <br>*必填*|金额|[Integer](#integer)|
 
 
 ##### 响应
@@ -674,7 +674,7 @@ PUT /api/v1/users/username
 
 |类型|名称|说明|类型|
 |---|---|---|---|
-|**Body**|**username**  <br>*可选*|用户名|[String](#string)|
+|**Body**|**username**  <br>*必填*|用户名|[String](#string)|
 
 
 ##### 响应
@@ -796,7 +796,7 @@ GET /api/v1/cars
 
 |类型|名称|说明|类型|
 |---|---|---|---|
-|**Body**|**cid**  <br>*可选*|车辆id|[Long](#long)|
+|**Body**|**cid**  <br>*必填*|车辆id|[Long](#long)|
 
 
 ##### 响应
@@ -911,8 +911,8 @@ PUT /api/v1/cars/price
 
 |类型|名称|说明|类型|
 |---|---|---|---|
-|**Body**|**cid**  <br>*可选*|车辆id|[Long](#long)|
-|**Body**|**price**  <br>*可选*|价格|[Integer](#integer)|
+|**Body**|**cid**  <br>*必填*|车辆id|[Long](#long)|
+|**Body**|**price**  <br>*必填*|价格|[Integer](#integer)|
 
 
 ##### 响应
@@ -968,8 +968,8 @@ PUT /api/v1/cars/state
 
 |类型|名称|说明|类型|
 |---|---|---|---|
-|**Body**|**cid**  <br>*可选*|车辆id|[Long](#long)|
-|**Body**|**state**  <br>*可选*|车辆状态|[String](#string)|
+|**Body**|**cid**  <br>*必填*|车辆id|[Long](#long)|
+|**Body**|**state**  <br>*必填*|车辆状态|[String](#string)|
 
 
 ##### 响应

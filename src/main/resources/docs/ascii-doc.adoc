@@ -357,9 +357,9 @@ POST /api/v1/security/login/tel
 |===
 |类型|名称|说明|类型
 |**Body**|**password** +
-__可选__|密码|<<_string,String>>
+__必填__|密码|<<_string,String>>
 |**Body**|**tel** +
-__可选__|手机号|<<_string,String>>
+__必填__|手机号|<<_string,String>>
 |===
 
 
@@ -420,9 +420,9 @@ POST /api/v1/security/logoff/tel
 |===
 |类型|名称|说明|类型
 |**Body**|**password** +
-__可选__|密码|<<_string,String>>
+__必填__|密码|<<_string,String>>
 |**Body**|**tel** +
-__可选__|手机号|<<_string,String>>
+__必填__|手机号|<<_string,String>>
 |===
 
 
@@ -534,11 +534,11 @@ POST /api/v1/security/register/tel
 |===
 |类型|名称|说明|类型
 |**Body**|**password** +
-__可选__|密码|<<_string,String>>
+__必填__|密码|<<_string,String>>
 |**Body**|**tel** +
-__可选__|手机号|<<_string,String>>
+__必填__|手机号|<<_string,String>>
 |**Body**|**username** +
-__可选__|用户名|<<_string,String>>
+__必填__|用户名|<<_string,String>>
 |===
 
 
@@ -604,9 +604,9 @@ PUT /api/v1/users/password
 |===
 |类型|名称|说明|类型
 |**Body**|**newPass** +
-__可选__|新密码|<<_string,String>>
+__必填__|新密码|<<_string,String>>
 |**Body**|**oldPass** +
-__可选__|旧密码|<<_string,String>>
+__必填__|旧密码|<<_string,String>>
 |===
 
 
@@ -667,7 +667,7 @@ PUT /api/v1/users/recharge
 |===
 |类型|名称|说明|类型
 |**Body**|**money** +
-__可选__|金额|<<_integer,Integer>>
+__必填__|金额|<<_integer,Integer>>
 |===
 
 
@@ -728,7 +728,7 @@ PUT /api/v1/users/username
 |===
 |类型|名称|说明|类型
 |**Body**|**username** +
-__可选__|用户名|<<_string,String>>
+__必填__|用户名|<<_string,String>>
 |===
 
 
@@ -860,7 +860,7 @@ GET /api/v1/cars
 |===
 |类型|名称|说明|类型
 |**Body**|**cid** +
-__可选__|车辆id|<<_long,Long>>
+__必填__|车辆id|<<_long,Long>>
 |===
 
 
@@ -985,9 +985,9 @@ PUT /api/v1/cars/price
 |===
 |类型|名称|说明|类型
 |**Body**|**cid** +
-__可选__|车辆id|<<_long,Long>>
+__必填__|车辆id|<<_long,Long>>
 |**Body**|**price** +
-__可选__|价格|<<_integer,Integer>>
+__必填__|价格|<<_integer,Integer>>
 |===
 
 
@@ -1048,9 +1048,9 @@ PUT /api/v1/cars/state
 |===
 |类型|名称|说明|类型
 |**Body**|**cid** +
-__可选__|车辆id|<<_long,Long>>
+__必填__|车辆id|<<_long,Long>>
 |**Body**|**state** +
-__可选__|车辆状态|<<_string,String>>
+__必填__|车辆状态|<<_string,String>>
 |===
 
 
