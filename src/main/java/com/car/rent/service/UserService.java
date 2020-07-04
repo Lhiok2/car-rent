@@ -14,7 +14,7 @@ public interface UserService {
      * @param password
      * @return
      */
-    int addUser(String username, String tel, String password);
+    void addUser(String username, String tel, String password);
 
     /**
      * 删除用户
@@ -22,24 +22,24 @@ public interface UserService {
      * @param password
      * @return
      */
-    int logoffByTelAndPassword(String tel, String password);
+    void logoffByTelAndPass(String tel, String password);
 
     /**
      * 更改用户名
-     * @param tel
+     * @param uid
      * @param username
      * @return
      */
-    int updateUsername(String tel, String username);
+    void updateUsername(long uid, String username);
 
     /**
      * 更改密码
-     * @param tel
+     * @param uid
      * @param oldPass
      * @param newPass
      * @return
      */
-    int updatePassword(String tel, String oldPass, String newPass);
+    void updatePassword(long uid, String oldPass, String newPass);
 
     /**
      * 登录

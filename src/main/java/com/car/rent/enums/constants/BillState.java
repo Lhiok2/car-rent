@@ -1,8 +1,12 @@
 package com.car.rent.enums.constants;
 
+import com.car.rent.entity.Bill;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author nayix
@@ -23,7 +27,11 @@ public enum BillState {
 
     private final String state;
 
-    public static boolean isUnpaid(String str) {
-        return str.equals(UNPAID.state);
+    public static List<String> toStringList() {
+        return Arrays.stream(BillState.values()).map(BillState::getState).collect(Collectors.toList());
+    }
+
+    public static boolean isUnpaid(Bill bill) {
+        return UNPAID.state.equals(bill.getBillState());
     }
 }

@@ -9,24 +9,33 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum ResultCode {
+public enum ResultCode implements IErrorCode {
     // 成功
-    SUCCESS(200, "Success"),
+    SUCCESS(200, "操作成功"),
 
     // 身份过期
-    UNAUTHORIZED(401, "Unauthorized"),
+    UNAUTHORIZED(401, "身份过期"),
 
     // 拒绝访问
-    FORBIDDEN(403, "Forbidden"),
+    FORBIDDEN(403, "权限不足"),
 
     // 未找到或请求字段为空
-    NOTFOUND(404, "Not Found"),
+    NOTFOUND(404, "未找到"),
 
     // 参数不符合要求
-    NOT_ACCEPTABLE(406, "Not Acceptable"),
+    VALIDATE_FAILED(406, "参数校验失败"),
 
-    // 服务器发生意料之外的错误
-    INTERNAL_ERROR(500, "Internal Server Error")
+    // 操作失败
+    FAILED(500, "操作失败"),
+
+    // 车辆不可用
+    UNAVAILABLE(4001, "车辆不可用"),
+
+    // 存在未完成账单
+    UNFINISHED(4002, "有账单正在进行中"),
+
+    // 余额不足
+    POOR(4003, "余额不足"),
     ;
 
     private final long code;

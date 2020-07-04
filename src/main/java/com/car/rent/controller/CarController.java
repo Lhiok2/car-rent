@@ -4,11 +4,12 @@ import com.car.rent.dto.CarDTO;
 import com.car.rent.dto.CommonResult;
 import com.car.rent.enums.constants.State;
 import com.car.rent.service.CarService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+
+import static com.car.rent.utils.VerifyUtils.*;
 
 /**
  * @author nayix
@@ -22,52 +23,58 @@ public class CarController {
     @Resource
     private CarService carService;
 
-    @ApiOperation("添加车辆")
+    @ApiOperation(value = "添加车辆", httpMethod = "Post")
+    @ApiImplicitParam(name = "price", value = "单价", required = true, dataType = "Integer")
     @PostMapping
     private CommonResult<CarDTO> addCar(@RequestParam Integer price) {
-        if (price == null) {
-            return CommonResult.notAcceptable();
-        }
+        adminVerify();
+        notNullVerify(price);
         CarDTO carDTO = carService.addCar(price);
         return CommonResult.success(carDTO);
     }
 
-    @ApiOperation("删除车辆")
+    @ApiOperation(value = "删除车辆", httpMethod = "Delete")
+    @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long")
     @DeleteMapping
     private CommonResult<?> deleteCar(@RequestParam Long cid) {
-        if (cid == null) {
-            return CommonResult.notAcceptable();
-        }
-        int code = carService.deleteCar(cid);
-        return CommonResult.getResultByCode(code);
+        adminVerify();
+        notNullVerify(cid);
+        carService.deleteCar(cid);
+        return CommonResult.success();
     }
 
-    @ApiOperation("更新车辆价格")
+    @ApiOperation(value = "更新车辆价格", httpMethod = "Put")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "cid", value = "车辆id", dataType = "Long"),
+            @ApiImplicitParam(name = "price", value = "价格", dataType = "Integer")
+    })
     @PutMapping("/price")
     private CommonResult<?> updatePrice(@RequestParam Long cid, @RequestParam Integer price) {
-        if (cid == null || price == null) {
-            return CommonResult.notAcceptable();
-        }
-        int code = carService.updatePrice(cid, price);
-        return CommonResult.getResultByCode(code);
+        adminVerify();
+        notNullVerify(cid, price);
+        carService.updatePrice(cid, price);
+        return CommonResult.success();
     }
 
-    @ApiOperation("更新车辆状态")
+    @ApiOperation(value = "更新车辆状态", httpMethod = "Put")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "cid", value = "车辆id", dataType = "Long"),
+            @ApiImplicitParam(name = "state", value = "车辆状态", dataType = "String")
+    })
     @PutMapping("/state")
     private CommonResult<?> updateState(@RequestParam Long cid, @RequestParam String state) {
-        if (cid == null || !State.belongs(state)) {
-            return CommonResult.notAcceptable();
-        }
-        int code = carService.updateState(cid, state);
-        return CommonResult.getResultByCode(code);
+        adminVerify();
+        notNullVerify(cid);
+        stringVerify(state, State.toStringList());
+        carService.updateState(cid, state);
+        return CommonResult.success();
     }
 
-    @ApiOperation("获取车辆信息")
+    @ApiOperation(value = "获取车辆信息", httpMethod = "Get")
+    @ApiImplicitParam(name = "cid", value = "车辆id", dataType = "Long")
     @GetMapping
     private CommonResult<CarDTO> getCar(@RequestParam Long cid) {
-        if (cid == null) {
-            return CommonResult.notAcceptable();
-        }
+        notNullVerify(cid);
         CarDTO carDTO = carService.getCar(cid);
         return CommonResult.success(carDTO);
     }

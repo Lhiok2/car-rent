@@ -20,7 +20,7 @@ public interface CarService {
      * @param cid
      * @return
      */
-    int deleteCar(long cid);
+    void deleteCar(long cid);
 
     /**
      * 更新价格
@@ -28,7 +28,7 @@ public interface CarService {
      * @param price
      * @return
      */
-    int updatePrice(long cid, int price);
+    void updatePrice(long cid, int price);
 
     /**
      * 更新状态
@@ -36,7 +36,7 @@ public interface CarService {
      * @param state
      * @return
      */
-    int updateState(long cid, String state);
+    void updateState(long cid, String state);
 
     /**
      * 获取车辆信息
@@ -44,11 +44,4 @@ public interface CarService {
      * @return
      */
     CarDTO getCar(long cid);
-
-    /**
-     * 获取车辆状态
-     * @param cid
-     * @return
-     */
-    String getCarState(long cid);
 }

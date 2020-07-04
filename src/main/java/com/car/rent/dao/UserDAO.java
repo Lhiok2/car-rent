@@ -13,6 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface UserDAO extends CrudRepository<User, Long> {
     /**
+     * 通过id获取用户MD5盐
+     * @param uid
+     * @return
+     */
+    @Query("select salt from User where uid = :uid")
+    String getSaltByUid(@Param("uid") long uid);
+
+    /**
      * 通过tel获取用户MD5盐
      * @param tel
      * @return
@@ -49,32 +57,34 @@ public interface UserDAO extends CrudRepository<User, Long> {
      * 通过id更新余额
      * @param uid
      * @param balance
+     * @return
      */
     @Modifying
     @Transactional
     @Query("update User set balance = :balance where uid = :uid")
-    void updateBalance(long uid, int balance);
+    int updateBalance(long uid, int balance);
 
     /**
      * 通过手机号更改用户名
-     * @param tel
+     * @param uid
      * @param username
      * @return
      */
     @Modifying
     @Transactional
-    @Query("update User set username = :username where tel = :tel")
-    int updateUsername(@Param("tel") String tel, @Param("username") String username);
+    @Query("update User set username = :username where uid = :uid")
+    int updateUsername(@Param("uid") long uid, @Param("username") String username);
 
     /**
-     * 通过手机号和旧密码更改密码
-     * @param tel
+     * 通过id和旧密码更改密码
+     * @param uid
      * @param oldPass
      * @param newPass
+     * @param newSalt
      * @return
      */
     @Modifying
     @Transactional
-    @Query("update User set password = :newPass, salt = :newSalt where tel = :tel and password = :oldPass")
-    int updatePassword(@Param("tel") String tel, @Param("oldPass") String oldPass, @Param("newPass") String newPass, @Param("newSalt") String newSalt);
+    @Query("update User set password = :newPass, salt = :newSalt where uid = :uid and password = :oldPass")
+    int updatePassword(@Param("uid") long uid, @Param("oldPass") String oldPass, @Param("newPass") String newPass, @Param("newSalt") String newSalt);
 }

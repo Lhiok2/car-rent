@@ -1,6 +1,7 @@
 package com.car.rent.service;
 
 import com.car.rent.dto.BillDTO;
+import com.car.rent.exception.ApiException;
 
 /**
  * @author nayix
@@ -13,7 +14,7 @@ public interface BillService {
      * @param cid
      * @return
      */
-    BillDTO addBill(long uid, long cid);
+    BillDTO addBill(long uid, long cid) throws ApiException;
 
     /**
      * 结束骑行
@@ -26,9 +27,10 @@ public interface BillService {
     /**
      * 完成支付
      * @param billId
+     * @param uid
      * @return
      */
-    int completePayment(long billId);
+    void completePayment(long billId, long uid);
 
     /**
      * 获取最近一次订单

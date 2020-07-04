@@ -1,7 +1,11 @@
 package com.car.rent.enums.constants;
 
+import com.car.rent.entity.Car;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author nayix
@@ -22,16 +26,11 @@ public enum State {
 
     private final String state;
 
-    public static boolean belongs(String stateStr) {
-        for (State s : State.values()) {
-            if (stateStr.equals(s.getState())) {
-                return true;
-            }
-        }
-        return false;
+    public static List<String> toStringList() {
+        return Arrays.stream(State.values()).map(State::getState).collect(Collectors.toList());
     }
 
-    public static boolean isNormal(String stateStr) {
-        return stateStr.equals(NORMAL.getState());
+    public static boolean isNormal(Car car) {
+        return NORMAL.state.equals(car.getState());
     }
 }

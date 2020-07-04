@@ -1,7 +1,7 @@
 package com.car.rent.controller;
 
 import com.car.rent.dto.CommonResult;
-import com.car.rent.dto.UserDTO;
+import com.car.rent.enums.response.ResultCode;
 import com.car.rent.service.UserService;
 import io.swagger.annotations.*;
 import org.apache.shiro.SecurityUtils;
@@ -12,8 +12,8 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import static com.car.rent.utils.StringUtils.*;
-import static com.car.rent.utils.SubjectUtils.deleteUserFromSubject;
+import static com.car.rent.utils.UserUtils.deleteUserFromSubject;
+import static com.car.rent.utils.VerifyUtils.*;
 
 /**
  * @author nayix
@@ -27,26 +27,30 @@ public class SecurityController {
     @Resource
     private UserService userService;
 
-    private boolean isValidTelAndPassword(String tel, String password) {
-        return isValid(tel, TEL_PATTERN) && isValid(password, PASS_PATTERN);
-    }
-
-    @ApiOperation("通过手机号和密码进行注册")
+    @ApiOperation(value = "通过手机号和密码进行注册", httpMethod = "Post")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", value = "用户名", dataType = "String"),
+            @ApiImplicitParam(name = "tel", value = "手机号", dataType = "String"),
+            @ApiImplicitParam(name = "password", value = "密码", dataType = "String")
+    })
     @PostMapping("/register/tel")
     private CommonResult<?> registerByTelAndPassword(@RequestParam String username, @RequestParam String tel, @RequestParam String password) {
-        if (!isValidTelAndPassword(tel, password) || !isValid(username, NAME_PATTERN)) {
-            return CommonResult.notAcceptable();
-        }
-        int code = userService.addUser(username, tel, password);
-        return CommonResult.getResultByCode(code);
+        usernameVerify(username);
+        telVerify(tel);
+        passwordVerify(password);
+        userService.addUser(username, tel, password);
+        return CommonResult.success();
     }
 
-    @ApiOperation("通过手机和密码登录")
+    @ApiOperation(value = "通过手机和密码登录", httpMethod = "Post")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "tel", value = "手机号", dataType = "String"),
+            @ApiImplicitParam(name = "password", value = "密码", dataType = "String")
+    })
     @PostMapping("/login/tel")
-    private CommonResult<UserDTO> loginByTelAndPassword(@RequestParam String tel, @RequestParam String password) {
-        if (!isValidTelAndPassword(tel, password)) {
-            return CommonResult.notAcceptable();
-        }
+    private CommonResult<?> loginByTelAndPassword(@RequestParam String tel, @RequestParam String password) {
+        telVerify(tel);
+        passwordVerify(password);
         // 获取当前用户
         Subject subject = SecurityUtils.getSubject();
         // 封装用户的登录数据
@@ -54,31 +58,28 @@ public class SecurityController {
         // 执行登录方法，无异常说明登陆成功
         try {
             subject.login(token);
-        } catch (UnknownAccountException e) {
-            // 账号不存在
-            return CommonResult.notFound();
         } catch (IncorrectCredentialsException e) {
             // 密码错误
-            return CommonResult.forbidden();
-        } catch (Exception e) {
-            // 未知错误
-            return CommonResult.internalError();
+            return CommonResult.forbiddenFailed();
         }
         return CommonResult.success();
     }
 
-    @ApiOperation("通过手机和密码注销")
+    @ApiOperation(value = "通过手机和密码注销", httpMethod = "Post")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "tel", value = "手机号", dataType = "String"),
+            @ApiImplicitParam(name = "password", value = "密码", dataType = "String")
+    })
     @PostMapping("/logoff/tel")
     private CommonResult<?> logoffByTelAndPassword(@RequestParam String tel, @RequestParam String password) {
-        if (!isValidTelAndPassword(tel, password)) {
-            return CommonResult.notAcceptable();
-        }
+        telVerify(tel);
+        passwordVerify(password);
         deleteUserFromSubject();
-        int code = userService.logoffByTelAndPassword(tel, password);
-        return CommonResult.getResultByCode(code);
+        userService.logoffByTelAndPass(tel, password);
+        return CommonResult.success();
     }
 
-    @ApiOperation("登出")
+    @ApiOperation(value = "登出", httpMethod = "Post")
     @PostMapping("/logout")
     private CommonResult<?> logout() {
         deleteUserFromSubject();

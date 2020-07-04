@@ -1,18 +1,17 @@
 package com.car.rent.controller;
 
 import com.car.rent.dto.CommonResult;
-import com.car.rent.dto.UserDTO;
-import com.car.rent.enums.response.ResultCode;
 import com.car.rent.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-import static com.car.rent.utils.StringUtils.*;
-import static com.car.rent.utils.SubjectUtils.deleteUserFromSubject;
-import static com.car.rent.utils.SubjectUtils.getUserFromSubject;
+import static com.car.rent.utils.UserUtils.*;
+import static com.car.rent.utils.VerifyUtils.*;
 
 /**
  * @author nayix
@@ -26,40 +25,39 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @ApiOperation("更改用户名")
+    @ApiOperation(value = "更改用户名", httpMethod = "Put")
+    @ApiImplicitParam(name = "username", value = "用户名", dataType = "String")
     @PutMapping("/username")
     private CommonResult<?> updateUsername(@RequestParam String username) {
-        UserDTO userDTO = getUserFromSubject();
-        if (userDTO == null) {
-            return CommonResult.unauthorized();
-        } else if (!isValid(username, NAME_PATTERN)) {
-            return CommonResult.notAcceptable();
-        }
-        userDTO.setUsername(username);
-        int code = userService.updateUsername(userDTO.getTel(), username);
-        return CommonResult.getResultByCode(code);
+        long uid = getUidFromSubject();
+        usernameVerify(username);
+        userService.updateUsername(uid, username);
+        return CommonResult.success();
     }
 
-    @ApiOperation("更改密码")
+    @ApiOperation(value = "更改密码", httpMethod = "Put")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "oldPass", value = "旧密码", dataType = "String"),
+            @ApiImplicitParam(name = "newPass", value = "新密码", dataType = "String")
+    })
     @PutMapping("/password")
     private CommonResult<?> updatePassword(@RequestParam String oldPass, @RequestParam String newPass) {
-        UserDTO userDTO = getUserFromSubject();
-        if (userDTO == null) {
-            return CommonResult.unauthorized();
-        } else if (!isValid(oldPass, PASS_PATTERN) || !isValid(newPass, PASS_PATTERN)) {
-            return CommonResult.notAcceptable();
-        }
-        int code = userService.updatePassword(userDTO.getTel(), oldPass, newPass);
+        long uid = getUidFromSubject();
+        passwordVerify(oldPass);
+        passwordVerify(newPass);
+        userService.updatePassword(uid, oldPass, newPass);
         deleteUserFromSubject();
-        return CommonResult.getResultByCode(code, ResultCode.FORBIDDEN);
+        return CommonResult.success();
     }
 
-    @ApiOperation("充值")
+    @ApiOperation(value = "充值", httpMethod = "Put")
+    @ApiImplicitParam(name = "money", value = "金额", dataType = "Integer")
     @PutMapping("/recharge")
     private CommonResult<?> recharge(@RequestParam Integer money) {
-        UserDTO userDTO = getUserFromSubject();
+        long uid = getUidFromSubject();
+        notNullVerify(money);
         // TODO 充值校验
-        userService.recharge(userDTO.getUid(), money);
+        userService.recharge(uid, money);
         return CommonResult.success();
     }
 }
