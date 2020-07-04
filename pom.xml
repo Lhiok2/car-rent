@@ -18,6 +18,18 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <!-- 添加jcenter仓库 -->
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>jcenter-releases</id>
+            <name>jcenter</name>
+            <url>https://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!-- swagger -->
         <dependency>
@@ -29,6 +41,25 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.6.1</version>
+        </dependency>
+
+        <!-- swagger离线文档导出 -->
+        <dependency>
+            <groupId>io.github.swagger2markup</groupId>
+            <artifactId>swagger2markup</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
+        <!-- 解决依赖冲突 -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-core</artifactId>
+            <version>1.5.16</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>1.5.16</version>
         </dependency>
 
         <!-- dozer -->
@@ -52,11 +83,6 @@
         </dependency>
 
         <!-- shiro -->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.shiro</groupId>-->
-<!--            <artifactId>shiro-spring-boot-web-starter</artifactId>-->
-<!--            <version>1.5.3</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
@@ -112,6 +138,25 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>1.5.6</version>
+                <configuration>
+                    <sourceDirectory>src/main/resources/docs</sourceDirectory>
+                    <outputDirectory>src/main/resources/html</outputDirectory>
+                    <backend>html</backend>
+                    <sourceHighlighter>coderay</sourceHighlighter>
+                    <attributes>
+                        <!-- 导航栏在左 -->
+                        <toc>left</toc>
+                        <!-- 显示层级数 -->
+                        <toclevels>3</toclevels>
+                        <!-- 自动打数字序号 -->
+                        <sectnums>true</sectnums>
+                    </attributes>
+                </configuration>
             </plugin>
         </plugins>
     </build>

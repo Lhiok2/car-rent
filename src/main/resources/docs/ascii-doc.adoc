@@ -1,0 +1,1418 @@
+= car-rent项目API文档
+
+
+[[_overview]]
+== 概览
+car-rent-1.0项目API文档
+
+
+=== 版本信息
+[%hardbreaks]
+__版本__ : 1.0
+
+
+=== 许可信息
+[%hardbreaks]
+__服务条款__ : http://localhost:8080
+
+
+=== URI scheme
+[%hardbreaks]
+__域名__ : localhost:8080
+__基础路径__ : /
+
+
+=== 标签
+
+* 业务相关 : Bill Controller
+* 安全相关 : Security Controller
+* 用户信息 : User Controller
+* 车辆管理 : Car Controller
+
+
+
+
+[[_paths]]
+== 资源
+
+[[_1101be8288349aafa3a5b7cf55b455b2]]
+=== 业务相关
+Bill Controller
+
+
+[[_addbillusingpost]]
+==== 租贷车辆
+....
+POST /api/v1/bills
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**cid** +
+__必填__|cid|integer (int64)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/bills
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "cid" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_updatebillusingput]]
+==== 结束租贷
+....
+PUT /api/v1/bills
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**cid** +
+__必填__|cid|integer (int64)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_bd24d8ef62fa01f42c74364a830b9a30,通用响应数据构造类«账单信息构造类»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/bills
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "cid" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : {
+    "billId" : 0,
+    "billState" : "string",
+    "car" : {
+      "cid" : 0,
+      "createTime" : "string",
+      "price" : 0,
+      "state" : "string"
+    },
+    "cost" : 0,
+    "endTime" : "string",
+    "startTime" : "string",
+    "user" : {
+      "balance" : 0,
+      "createTime" : "string",
+      "identity" : "string",
+      "password" : "string",
+      "salt" : "string",
+      "tel" : "string",
+      "uid" : 0,
+      "username" : "string"
+    }
+  },
+  "message" : "string"
+}
+----
+
+
+[[_paybillusingput]]
+==== 支付账单
+....
+PUT /api/v1/bills/pay
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**billId** +
+__必填__|billId|integer (int64)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/bills/pay
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "billId" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_getunfinishedbillusingget]]
+==== 获取未完成订单信息
+....
+GET /api/v1/bills/unfinished
+....
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_bd24d8ef62fa01f42c74364a830b9a30,通用响应数据构造类«账单信息构造类»>>
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/bills/unfinished
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : {
+    "billId" : 0,
+    "billState" : "string",
+    "car" : {
+      "cid" : 0,
+      "createTime" : "string",
+      "price" : 0,
+      "state" : "string"
+    },
+    "cost" : 0,
+    "endTime" : "string",
+    "startTime" : "string",
+    "user" : {
+      "balance" : 0,
+      "createTime" : "string",
+      "identity" : "string",
+      "password" : "string",
+      "salt" : "string",
+      "tel" : "string",
+      "uid" : 0,
+      "username" : "string"
+    }
+  },
+  "message" : "string"
+}
+----
+
+
+[[_e01e2f0e04f2177266b031b6cf063891]]
+=== 安全相关
+Security Controller
+
+
+[[_loginbytelandpasswordusingpost]]
+==== 通过手机和密码登录
+....
+POST /api/v1/security/login/tel
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**password** +
+__必填__|password|string
+|**Query**|**tel** +
+__必填__|tel|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_d2775f6254700e80f137ac940bd1ff4f,通用响应数据构造类«用户信息构造类»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/security/login/tel
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "password" : "string",
+  "tel" : "string"
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : {
+    "balance" : 0,
+    "createTime" : "string",
+    "identity" : "string",
+    "tel" : "string",
+    "uid" : 0,
+    "username" : "string"
+  },
+  "message" : "string"
+}
+----
+
+
+[[_logoffbytelandpasswordusingpost]]
+==== 通过手机和密码注销
+....
+POST /api/v1/security/logoff/tel
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**password** +
+__必填__|password|string
+|**Query**|**tel** +
+__必填__|tel|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/security/logoff/tel
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "password" : "string",
+  "tel" : "string"
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_logoutusingpost]]
+==== 登出
+....
+POST /api/v1/security/logout
+....
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/security/logout
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_registerbytelandpasswordusingpost]]
+==== 通过手机号和密码进行注册
+....
+POST /api/v1/security/register/tel
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**password** +
+__必填__|password|string
+|**Query**|**tel** +
+__必填__|tel|string
+|**Query**|**username** +
+__必填__|username|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/security/register/tel
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "password" : "string",
+  "tel" : "string",
+  "username" : "string"
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_60dde0f49f7ce039b17e49eae5687c9e]]
+=== 用户信息
+User Controller
+
+
+[[_updatepasswordusingput]]
+==== 更改密码
+....
+PUT /api/v1/users/password
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**newPass** +
+__必填__|newPass|string
+|**Query**|**oldPass** +
+__必填__|oldPass|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/users/password
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "newPass" : "string",
+  "oldPass" : "string"
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_rechargeusingput]]
+==== 充值
+....
+PUT /api/v1/users/recharge
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**money** +
+__必填__|money|integer (int32)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/users/recharge
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "money" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_updateusernameusingput]]
+==== 更改用户名
+....
+PUT /api/v1/users/username
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**username** +
+__必填__|username|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/users/username
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "username" : "string"
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_1b179c9abbec782bc336c39b4e1bdb52]]
+=== 车辆管理
+Car Controller
+
+
+[[_addcarusingpost]]
+==== 添加车辆
+....
+POST /api/v1/cars
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**price** +
+__必填__|price|integer (int32)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_cb47b5e1ec320e3c6f62e964385aca73,通用响应数据构造类«车辆信息构造类»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/cars
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "price" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : {
+    "cid" : 0,
+    "createTime" : "string",
+    "price" : 0,
+    "state" : "string"
+  },
+  "message" : "string"
+}
+----
+
+
+[[_getcarusingget]]
+==== 获取车辆信息
+....
+GET /api/v1/cars
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**cid** +
+__必填__|cid|integer (int64)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_cb47b5e1ec320e3c6f62e964385aca73,通用响应数据构造类«车辆信息构造类»>>
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/cars
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "cid" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : {
+    "cid" : 0,
+    "createTime" : "string",
+    "price" : 0,
+    "state" : "string"
+  },
+  "message" : "string"
+}
+----
+
+
+[[_deletecarusingdelete]]
+==== 删除车辆
+....
+DELETE /api/v1/cars
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**cid** +
+__必填__|cid|integer (int64)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**204**|No Content|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/cars
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "cid" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_updatepriceusingput]]
+==== 更新车辆价格
+....
+PUT /api/v1/cars/price
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**cid** +
+__必填__|cid|integer (int64)
+|**Query**|**price** +
+__必填__|price|integer (int32)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/cars/price
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "cid" : 0,
+  "price" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_updatestateusingput]]
+==== 更新车辆状态
+....
+PUT /api/v1/cars/state
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**cid** +
+__必填__|cid|integer (int64)
+|**Query**|**state** +
+__必填__|state|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/cars/state
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "cid" : 0,
+  "state" : "string"
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+
+
+[[_definitions]]
+== 定义
+
+[[_car]]
+=== Car
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**cid** +
+__可选__|**样例** : `0`|integer (int64)
+|**createTime** +
+__可选__|**样例** : `"string"`|string (date-time)
+|**price** +
+__可选__|**样例** : `0`|integer (int32)
+|**state** +
+__可选__|**样例** : `"string"`|string
+|===
+
+
+[[_user]]
+=== User
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**balance** +
+__可选__|**样例** : `0`|integer (int32)
+|**createTime** +
+__可选__|**样例** : `"string"`|string (date-time)
+|**identity** +
+__可选__|**样例** : `"string"`|string
+|**password** +
+__可选__|**样例** : `"string"`|string
+|**salt** +
+__可选__|**样例** : `"string"`|string
+|**tel** +
+__可选__|**样例** : `"string"`|string
+|**uid** +
+__可选__|**样例** : `0`|integer (int64)
+|**username** +
+__可选__|**样例** : `"string"`|string
+|===
+
+
+[[_cd25c2d2e32f946af4456cf281a66a54]]
+=== 用户信息构造类
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**balance** +
+__可选__|用户余额 +
+**样例** : `0`|integer (int32)
+|**createTime** +
+__可选__|用户注册时间 +
+**样例** : `"string"`|string (date-time)
+|**identity** +
+__可选__|用户状态 +
+**样例** : `"string"`|string
+|**tel** +
+__可选__|11位电话号码 +
+**样例** : `"string"`|string
+|**uid** +
+__可选__|用户id +
+**样例** : `0`|integer (int64)
+|**username** +
+__可选__|用户名(2-16位英文字母及数字) +
+**样例** : `"string"`|string
+|===
+
+
+[[_a0fc378e12a63b55e0c8efbc17f7c8d9]]
+=== 账单信息构造类
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**billId** +
+__可选__|账单id +
+**样例** : `0`|integer (int64)
+|**billState** +
+__可选__|账单状态 +
+**样例** : `"string"`|string
+|**car** +
+__可选__|账单关联车辆 +
+**样例** : `"<<_car>>"`|<<_car,Car>>
+|**cost** +
+__可选__|账单价格 +
+**样例** : `0`|integer (int32)
+|**endTime** +
+__可选__|交易结束时间 +
+**样例** : `"string"`|string (date-time)
+|**startTime** +
+__可选__|交易起始时间 +
+**样例** : `"string"`|string (date-time)
+|**user** +
+__可选__|账单关联用户 +
+**样例** : `"<<_user>>"`|<<_user,User>>
+|===
+
+
+[[_632bdc41786a16f54ae345210d828dcd]]
+=== 车辆信息构造类
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**cid** +
+__可选__|车辆id +
+**样例** : `0`|integer (int64)
+|**createTime** +
+__可选__|车辆注册时间 +
+**样例** : `"string"`|string (date-time)
+|**price** +
+__可选__|车辆基础价格 +
+**样例** : `0`|integer (int32)
+|**state** +
+__可选__|车辆状态 +
+**样例** : `"string"`|string
+|===
+
+
+[[_df580c20e80ec85f87a1879ed07e557f]]
+=== 通用响应数据构造类«object»
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|请求响应状态码 +
+**样例** : `0`|integer (int64)
+|**data** +
+__可选__|请求结果数据 +
+**样例** : `"object"`|object
+|**message** +
+__可选__|请求结果描述信息 +
+**样例** : `"string"`|string
+|===
+
+
+[[_d2775f6254700e80f137ac940bd1ff4f]]
+=== 通用响应数据构造类«用户信息构造类»
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|请求响应状态码 +
+**样例** : `0`|integer (int64)
+|**data** +
+__可选__|请求结果数据 +
+**样例** : `"<<_cd25c2d2e32f946af4456cf281a66a54>>"`|<<_cd25c2d2e32f946af4456cf281a66a54,用户信息构造类>>
+|**message** +
+__可选__|请求结果描述信息 +
+**样例** : `"string"`|string
+|===
+
+
+[[_bd24d8ef62fa01f42c74364a830b9a30]]
+=== 通用响应数据构造类«账单信息构造类»
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|请求响应状态码 +
+**样例** : `0`|integer (int64)
+|**data** +
+__可选__|请求结果数据 +
+**样例** : `"<<_a0fc378e12a63b55e0c8efbc17f7c8d9>>"`|<<_a0fc378e12a63b55e0c8efbc17f7c8d9,账单信息构造类>>
+|**message** +
+__可选__|请求结果描述信息 +
+**样例** : `"string"`|string
+|===
+
+
+[[_cb47b5e1ec320e3c6f62e964385aca73]]
+=== 通用响应数据构造类«车辆信息构造类»
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|请求响应状态码 +
+**样例** : `0`|integer (int64)
+|**data** +
+__可选__|请求结果数据 +
+**样例** : `"<<_632bdc41786a16f54ae345210d828dcd>>"`|<<_632bdc41786a16f54ae345210d828dcd,车辆信息构造类>>
+|**message** +
+__可选__|请求结果描述信息 +
+**样例** : `"string"`|string
+|===
+
+
+
+
+
