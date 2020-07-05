@@ -1,4 +1,4 @@
-package com.car.rent.controller;
+package com.car.rent.controller.api;
 
 import com.car.rent.vo.CarVO;
 import com.car.rent.vo.CommonResult;
