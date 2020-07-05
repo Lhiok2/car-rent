@@ -49,6 +49,13 @@ public interface UserService {
     UserVO getUserByTel(String tel);
 
     /**
+     * 获取个人信息
+     * @param uid
+     * @return
+     */
+    UserVO getUserByUid(long uid);
+
+    /**
      * 充值
      * @param uid
      * @param money

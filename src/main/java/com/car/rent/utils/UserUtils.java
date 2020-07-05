@@ -4,6 +4,7 @@ import com.car.rent.vo.UserVO;
 import com.car.rent.constant.response.ResultCode;
 import com.car.rent.exception.Asserts;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
 /**
@@ -11,6 +12,8 @@ import org.apache.shiro.subject.Subject;
  * @date 2020/7/3 18:27
  */
 public class UserUtils {
+    private static final String PROFILE_NAME_IN_SESSION = "profile";
+
     /**
      * @return currentUser
      */
@@ -23,6 +26,36 @@ public class UserUtils {
             Asserts.fail(ResultCode.UNAUTHORIZED);
         }
         return userVO;
+    }
+
+    private static Session getSessionFromSubject() {
+        Subject subject = SecurityUtils.getSubject();
+        return subject.getSession();
+    }
+
+    /**
+     * 将个人信息放入session
+     * @param profile 个人信息
+     */
+    public static void putProfileIntoSession(UserVO profile) {
+        Session session = getSessionFromSubject();
+        session.setAttribute(PROFILE_NAME_IN_SESSION, profile);
+    }
+
+    /**
+     * 将个人信息从session移除
+     */
+    public static void deleteProfileFromSession() {
+        Session session = getSessionFromSubject();
+        session.removeAttribute(PROFILE_NAME_IN_SESSION);
+    }
+
+    /**
+     * @return 个人信息
+     */
+    public static UserVO getProfileFromSession() {
+        Session session = getSessionFromSubject();
+        return (UserVO) session.getAttribute(PROFILE_NAME_IN_SESSION);
     }
 
     /**

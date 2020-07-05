@@ -2,6 +2,7 @@ package com.car.rent.controller.api;
 
 import com.car.rent.vo.CommonResult;
 import com.car.rent.service.UserService;
+import com.car.rent.vo.UserVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -32,6 +33,7 @@ public class UserController {
         long uid = getUidFromSubject();
         usernameVerify(username);
         userService.updateUsername(uid, username);
+        deleteProfileFromSession();
         return CommonResult.success();
     }
 
@@ -58,6 +60,19 @@ public class UserController {
         notNullVerify(money);
         // TODO 充值校验
         userService.recharge(uid, money);
+        deleteProfileFromSession();
         return CommonResult.success();
+    }
+
+    @ApiOperation(value = "获取个人信息", httpMethod = "GET")
+    @GetMapping("/profile")
+    private CommonResult<UserVO> getProfile() {
+        UserVO profile = getProfileFromSession();
+        if (profile == null) {
+            long uid = getUidFromSubject();
+            profile = userService.getUserByUid(uid);
+            putProfileIntoSession(profile);
+        }
+        return CommonResult.success(profile);
     }
 }

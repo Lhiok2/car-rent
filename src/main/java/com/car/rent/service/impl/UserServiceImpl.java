@@ -105,6 +105,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserVO getUserByUid(long uid) {
+        User user = userRepository.findUserByUid(uid);
+        return DozerUtils.map(user, UserVO.class);
+    }
+
+    @Override
     @Transactional
     public void recharge(long uid, int money) {
         try {
