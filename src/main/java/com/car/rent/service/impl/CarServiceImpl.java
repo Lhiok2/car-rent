@@ -27,13 +27,13 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional
-    public CarVO addCar(int price) {
+    public long addCar(int price) {
         try {
             Car car = carRepository.save(Car.builder()
                     .price(price)
                     .state(State.NORMAL.getState())
                     .createTime(new Date()).build());
-            return DozerUtils.map(car, CarVO.class);
+            return car.getCid();
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             log.info("CarService-addCar[ message:" + e.getMessage() + "]");

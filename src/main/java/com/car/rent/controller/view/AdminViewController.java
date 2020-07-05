@@ -26,4 +26,10 @@ public class AdminViewController {
     public String toCarList() {
         return "/admin/car-list";
     }
+
+    @ApiOperation(value = "前往车辆详情界面", httpMethod = "GET")
+    @GetMapping("/toCarDetail")
+    public String toCarDetail() {
+        return "/admin/car-detail";
+    }
 }

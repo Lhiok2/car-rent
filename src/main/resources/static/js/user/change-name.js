@@ -3,12 +3,13 @@ $(function(){
     var toProfileUrl = "/views/user/toProfile";
     //添加用户名接口Url
     var userNameUrl = "/api/v1/users/username";
+
     //id=back组件点击事件
     $('#back').click(function(){
         window.location.href = toProfileUrl;
-    })
+    });
 
-    $('#yes').click(function(){
+    $('#submit').click(function(){
         $.ajax({
             async : false,
             url : userNameUrl,

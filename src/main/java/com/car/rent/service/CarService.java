@@ -12,7 +12,7 @@ public interface CarService {
      * @param price
      * @return
      */
-    CarVO addCar(int price);
+    long addCar(int price);
 
     /**
      * 删除车辆

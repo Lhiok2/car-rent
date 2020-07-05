@@ -3,11 +3,13 @@ $(function(){
     var toProfileUrl = "/views/user/toProfile";
     //添加密码接口Url
     var passwordUrl = "/api/v1/users/password";
+
     //id=back组件点击事件
     $('#back').click(function(){
         window.location.href = toProfileUrl;
-    })
-    $('#yes').click(function(){
+    });
+
+    $('#submit').click(function(){
         $.ajax({
             async : false,
             url : passwordUrl,
@@ -26,4 +28,4 @@ $(function(){
             }
         });
     });
-})
+});

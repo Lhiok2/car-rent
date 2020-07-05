@@ -26,11 +26,11 @@ public class CarController {
     @ApiOperation(value = "添加车辆", httpMethod = "POST")
     @ApiImplicitParam(name = "price", value = "单价", required = true, dataType = "Integer")
     @PostMapping
-    private CommonResult<CarVO> addCar(@RequestParam Integer price) {
+    private CommonResult<Long> addCar(@RequestParam Integer price) {
         adminVerify();
         notNullVerify(price);
-        CarVO carVO = carService.addCar(price);
-        return CommonResult.success(carVO);
+        long cid = carService.addCar(price);
+        return CommonResult.success(cid);
     }
 
     @ApiOperation(value = "删除车辆", httpMethod = "DELETE")
