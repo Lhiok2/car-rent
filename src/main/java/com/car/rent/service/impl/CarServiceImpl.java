@@ -1,10 +1,9 @@
 package com.car.rent.service.impl;
 
-import com.car.rent.dao.CarDAO;
-import com.car.rent.dto.CarDTO;
-import com.car.rent.entity.Car;
-import com.car.rent.enums.constants.State;
-import com.car.rent.exception.ApiException;
+import com.car.rent.repository.CarRepository;
+import com.car.rent.vo.CarVO;
+import com.car.rent.domain.Car;
+import com.car.rent.constant.State;
 import com.car.rent.exception.Asserts;
 import com.car.rent.service.CarService;
 import com.car.rent.utils.DozerUtils;
@@ -24,17 +23,17 @@ import java.util.Date;
 @Service
 public class CarServiceImpl implements CarService {
     @Resource
-    private CarDAO carDAO;
+    private CarRepository carRepository;
 
     @Override
     @Transactional
-    public CarDTO addCar(int price) {
+    public CarVO addCar(int price) {
         try {
-            Car car = carDAO.save(Car.builder()
+            Car car = carRepository.save(Car.builder()
                     .price(price)
                     .state(State.NORMAL.getState())
                     .createTime(new Date()).build());
-            return DozerUtils.map(car, CarDTO.class);
+            return DozerUtils.map(car, CarVO.class);
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             log.info("CarService-addCar[ message:" + e.getMessage() + "]");
@@ -46,7 +45,7 @@ public class CarServiceImpl implements CarService {
     @Transactional
     public void deleteCar(long cid) {
         try {
-            int code = carDAO.deleteCarByCid(cid);
+            int code = carRepository.deleteCarByCid(cid);
             if (code != 1) {
                 Asserts.fail();
             }
@@ -61,7 +60,7 @@ public class CarServiceImpl implements CarService {
     @Transactional
     public void updatePrice(long cid, int price) {
         try {
-            int code = carDAO.updatePrice(cid, price);
+            int code = carRepository.updatePrice(cid, price);
             if (code != 1) {
                 Asserts.fail();
             }
@@ -76,7 +75,7 @@ public class CarServiceImpl implements CarService {
     @Transactional
     public void updateState(long cid, String state) {
         try {
-            int code = carDAO.updateState(cid, state);
+            int code = carRepository.updateState(cid, state);
             if (code != 1) {
                 Asserts.fail();
             }
@@ -88,8 +87,8 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public CarDTO getCar(long cid) {
-        Car car = carDAO.findCarsByCid(cid);
-        return DozerUtils.map(car, CarDTO.class);
+    public CarVO getCar(long cid) {
+        Car car = carRepository.findCarsByCid(cid);
+        return DozerUtils.map(car, CarVO.class);
     }
 }

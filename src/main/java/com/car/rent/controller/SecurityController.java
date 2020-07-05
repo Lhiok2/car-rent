@@ -1,6 +1,6 @@
 package com.car.rent.controller;
 
-import com.car.rent.dto.CommonResult;
+import com.car.rent.vo.CommonResult;
 import com.car.rent.service.UserService;
 import io.swagger.annotations.*;
 import org.apache.shiro.SecurityUtils;

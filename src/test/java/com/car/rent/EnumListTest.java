@@ -1,6 +1,6 @@
 package com.car.rent;
 
-import com.car.rent.enums.constants.State;
+import com.car.rent.constant.State;
 import org.junit.jupiter.api.Test;
 
 /**

@@ -1,7 +1,7 @@
 package com.car.rent.utils;
 
-import com.car.rent.entity.Bill;
-import com.car.rent.enums.constants.BillState;
+import com.car.rent.domain.Bill;
+import com.car.rent.constant.BillState;
 
 import java.util.Date;
 

@@ -1,6 +1,6 @@
 package com.car.rent.service;
 
-import com.car.rent.dto.BillDTO;
+import com.car.rent.vo.BillVO;
 import com.car.rent.exception.ApiException;
 
 /**
@@ -14,7 +14,7 @@ public interface BillService {
      * @param cid
      * @return
      */
-    BillDTO addBill(long uid, long cid) throws ApiException;
+    BillVO addBill(long uid, long cid) throws ApiException;
 
     /**
      * 结束骑行
@@ -22,7 +22,7 @@ public interface BillService {
      * @param cid
      * @return
      */
-    BillDTO updateState(long uid, long cid);
+    BillVO updateState(long uid, long cid);
 
     /**
      * 完成支付
@@ -37,5 +37,5 @@ public interface BillService {
      * @param uid
      * @return
      */
-    BillDTO getUnfinishedBill(long uid);
+    BillVO getUnfinishedBill(long uid);
 }

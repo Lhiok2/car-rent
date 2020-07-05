@@ -1,7 +1,6 @@
 package com.car.rent.service;
 
-import com.car.rent.dto.CarDTO;
-import com.car.rent.enums.constants.State;
+import com.car.rent.vo.CarVO;
 
 /**
  * @author nayix
@@ -13,7 +12,7 @@ public interface CarService {
      * @param price
      * @return
      */
-    CarDTO addCar(int price);
+    CarVO addCar(int price);
 
     /**
      * 删除车辆
@@ -43,5 +42,5 @@ public interface CarService {
      * @param cid
      * @return
      */
-    CarDTO getCar(long cid);
+    CarVO getCar(long cid);
 }

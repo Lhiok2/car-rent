@@ -1,6 +1,6 @@
 package com.car.rent.utils;
 
-import com.car.rent.enums.response.ResultCode;
+import com.car.rent.constant.response.ResultCode;
 import com.car.rent.exception.Asserts;
 import org.dozer.DozerBeanMapper;
 

@@ -1,15 +1,12 @@
 package com.car.rent.utils;
 
-import com.car.rent.enums.constants.BillState;
-import com.car.rent.enums.constants.Identity;
-import com.car.rent.enums.constants.State;
-import com.car.rent.enums.response.ResultCode;
+import com.car.rent.constant.response.ResultCode;
 import com.car.rent.exception.Asserts;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static com.car.rent.enums.constants.Identity.hasAdminRole;
+import static com.car.rent.constant.Identity.hasAdminRole;
 import static com.car.rent.utils.UserUtils.getUserFromSubject;
 
 /**

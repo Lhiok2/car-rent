@@ -1,6 +1,6 @@
 package com.car.rent.config;
 
-import com.car.rent.enums.constants.Identity;
+import com.car.rent.constant.Identity;
 import com.car.rent.utils.PassUtils;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;

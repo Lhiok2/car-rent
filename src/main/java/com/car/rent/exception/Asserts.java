@@ -1,7 +1,7 @@
 package com.car.rent.exception;
 
-import com.car.rent.enums.response.IErrorCode;
-import com.car.rent.enums.response.ResultCode;
+import com.car.rent.constant.response.IErrorCode;
+import com.car.rent.constant.response.ResultCode;
 
 /**
  * 断言处理类，用于抛出各种API异常

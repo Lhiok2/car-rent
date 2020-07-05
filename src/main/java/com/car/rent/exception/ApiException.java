@@ -1,6 +1,6 @@
 package com.car.rent.exception;
 
-import com.car.rent.enums.response.IErrorCode;
+import com.car.rent.constant.response.IErrorCode;
 import lombok.Getter;
 
 /**

@@ -1,7 +1,7 @@
 package com.car.rent.controller;
 
-import com.car.rent.dto.BillDTO;
-import com.car.rent.dto.CommonResult;
+import com.car.rent.vo.BillVO;
+import com.car.rent.vo.CommonResult;
 import com.car.rent.service.BillService;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
@@ -26,21 +26,21 @@ public class BillController {
     @ApiOperation(value = "租贷车辆", httpMethod = "POST")
     @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long")
     @PostMapping
-    private CommonResult<BillDTO> addBill(@RequestParam Long cid) {
+    private CommonResult<BillVO> addBill(@RequestParam Long cid) {
         long uid = getUidFromSubject();
         notNullVerify(cid);
-        BillDTO billDTO = billService.addBill(uid, cid);
-        return CommonResult.success(billDTO);
+        BillVO billVO = billService.addBill(uid, cid);
+        return CommonResult.success(billVO);
     }
 
     @ApiOperation(value = "结束租贷", httpMethod = "PUT")
     @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long")
     @PutMapping
-    private CommonResult<BillDTO> updateBill(@RequestParam Long cid) {
+    private CommonResult<BillVO> updateBill(@RequestParam Long cid) {
         long uid = getUidFromSubject();
         notNullVerify(cid);
-        BillDTO billDTO = billService.updateState(uid, cid);
-        return CommonResult.success(billDTO);
+        BillVO billVO = billService.updateState(uid, cid);
+        return CommonResult.success(billVO);
     }
 
     @ApiOperation(value = "支付账单", httpMethod = "PUT")
@@ -55,9 +55,9 @@ public class BillController {
 
     @ApiOperation(value = "获取未完成订单信息", httpMethod = "GET")
     @GetMapping("/unfinished")
-    private CommonResult<BillDTO> getUnfinishedBill() {
+    private CommonResult<BillVO> getUnfinishedBill() {
         long uid = getUidFromSubject();
-        BillDTO billDTO = billService.getUnfinishedBill(uid);
-        return CommonResult.success(billDTO);
+        BillVO billVO = billService.getUnfinishedBill(uid);
+        return CommonResult.success(billVO);
     }
 }

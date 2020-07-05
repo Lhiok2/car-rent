@@ -1,11 +1,10 @@
 package com.car.rent.service.impl;
 
-import com.car.rent.dao.UserDAO;
-import com.car.rent.dto.UserDTO;
-import com.car.rent.entity.User;
-import com.car.rent.enums.constants.Identity;
-import com.car.rent.enums.response.ResultCode;
-import com.car.rent.exception.ApiException;
+import com.car.rent.repository.UserRepository;
+import com.car.rent.vo.UserVO;
+import com.car.rent.domain.User;
+import com.car.rent.constant.Identity;
+import com.car.rent.constant.response.ResultCode;
 import com.car.rent.exception.Asserts;
 import com.car.rent.service.UserService;
 import com.car.rent.utils.DozerUtils;
@@ -27,7 +26,7 @@ import static com.car.rent.utils.PassUtils.*;
 @Service
 public class UserServiceImpl implements UserService {
     @Resource
-    private UserDAO userDAO;
+    private UserRepository userRepository;
 
     @Transactional
     @Override
@@ -35,7 +34,7 @@ public class UserServiceImpl implements UserService {
         String salt = getRandomSalt();
         String encodedPass = getEncodedPass(password, salt);
         try {
-            userDAO.save(User.builder()
+            userRepository.save(User.builder()
                     .username(username)
                     .tel(tel)
                     .password(encodedPass)
@@ -54,9 +53,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void logoffByTelAndPass(String tel, String password) {
         try {
-            String salt = userDAO.getSaltByTel(tel);
+            String salt = userRepository.getSaltByTel(tel);
             String encodedPass = getEncodedPass(password, salt);
-            int code = userDAO.deleteByTelAndPassword(tel, encodedPass);
+            int code = userRepository.deleteByTelAndPassword(tel, encodedPass);
             if (code != 1) {
                 Asserts.fail(ResultCode.FORBIDDEN);
             }
@@ -70,7 +69,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUsername(long uid, String username) {
         try {
-            int code = userDAO.updateUsername(uid, username);
+            int code = userRepository.updateUsername(uid, username);
             if (code != 1) {
                 Asserts.fail();
             }
@@ -84,11 +83,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updatePassword(long uid, String oldPass, String newPass) {
         try {
-            String oldSalt = userDAO.getSaltByUid(uid);
+            String oldSalt = userRepository.getSaltByUid(uid);
             String encodedOldPass = getEncodedPass(oldPass, oldSalt);
             String newSalt = getRandomSalt();
             String encodedNewPass = getEncodedPass(newPass, newSalt);
-            int code = userDAO.updatePassword(uid, encodedOldPass, encodedNewPass, newSalt);
+            int code = userRepository.updatePassword(uid, encodedOldPass, encodedNewPass, newSalt);
             if (code != 1) {
                 Asserts.fail(ResultCode.FORBIDDEN);
             }
@@ -100,21 +99,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getUserByTel(String tel) {
-        User user = userDAO.findUserByTel(tel);
-        return DozerUtils.map(user, UserDTO.class);
+    public UserVO getUserByTel(String tel) {
+        User user = userRepository.findUserByTel(tel);
+        return DozerUtils.map(user, UserVO.class);
     }
 
     @Override
     @Transactional
     public void recharge(long uid, int money) {
         try {
-            User user = userDAO.findUserByUid(uid);
+            User user = userRepository.findUserByUid(uid);
             if (user == null) {
                 Asserts.notFound();
             }
             user.setBalance(user.getBalance() + money);
-            int code = userDAO.updateBalance(uid, user.getBalance());
+            int code = userRepository.updateBalance(uid, user.getBalance());
             if (code != 1) {
                 Asserts.fail();
             }

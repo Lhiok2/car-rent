@@ -1,6 +1,6 @@
 package com.car.rent.service;
 
-import com.car.rent.dto.UserDTO;
+import com.car.rent.vo.UserVO;
 
 /**
  * @author nayix
@@ -46,7 +46,7 @@ public interface UserService {
      * @param tel
      * @return
      */
-    UserDTO getUserByTel(String tel);
+    UserVO getUserByTel(String tel);
 
     /**
      * 充值

@@ -1,8 +1,8 @@
 package com.car.rent.controller;
 
-import com.car.rent.dto.CarDTO;
-import com.car.rent.dto.CommonResult;
-import com.car.rent.enums.constants.State;
+import com.car.rent.vo.CarVO;
+import com.car.rent.vo.CommonResult;
+import com.car.rent.constant.State;
 import com.car.rent.service.CarService;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
@@ -26,11 +26,11 @@ public class CarController {
     @ApiOperation(value = "添加车辆", httpMethod = "POST")
     @ApiImplicitParam(name = "price", value = "单价", required = true, dataType = "Integer")
     @PostMapping
-    private CommonResult<CarDTO> addCar(@RequestParam Integer price) {
+    private CommonResult<CarVO> addCar(@RequestParam Integer price) {
         adminVerify();
         notNullVerify(price);
-        CarDTO carDTO = carService.addCar(price);
-        return CommonResult.success(carDTO);
+        CarVO carVO = carService.addCar(price);
+        return CommonResult.success(carVO);
     }
 
     @ApiOperation(value = "删除车辆", httpMethod = "DELETE")
@@ -73,9 +73,9 @@ public class CarController {
     @ApiOperation(value = "获取车辆信息", httpMethod = "GET")
     @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long")
     @GetMapping
-    private CommonResult<CarDTO> getCar(@RequestParam Long cid) {
+    private CommonResult<CarVO> getCar(@RequestParam Long cid) {
         notNullVerify(cid);
-        CarDTO carDTO = carService.getCar(cid);
-        return CommonResult.success(carDTO);
+        CarVO carVO = carService.getCar(cid);
+        return CommonResult.success(carVO);
     }
 }
