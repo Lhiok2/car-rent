@@ -8,12 +8,15 @@ import com.car.rent.exception.Asserts;
 import com.car.rent.service.CarService;
 import com.car.rent.utils.DozerUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author nayix
@@ -90,5 +93,11 @@ public class CarServiceImpl implements CarService {
     public CarVO getCar(long cid) {
         Car car = carRepository.findCarsByCid(cid);
         return DozerUtils.map(car, CarVO.class);
+    }
+
+    @Override
+    public List<CarVO> getCarList(Pageable pageable) {
+        Page<Car> carList = carRepository.getCarList(pageable);
+        return DozerUtils.mapList(carList, CarVO.class);
     }
 }

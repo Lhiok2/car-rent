@@ -3,6 +3,7 @@ package com.car.rent.utils;
 import com.car.rent.constant.response.ResultCode;
 import com.car.rent.exception.Asserts;
 import org.dozer.DozerBeanMapper;
+import org.springframework.data.domain.Page;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,10 +23,7 @@ public class DozerUtils {
         return dozerBeanMapper.map(sourceObj, destinationClass);
     }
 
-    public static <T> List<T> mapList(Collection<?> sourceList, Class<T> destinationClass) {
-        if (sourceList == null) {
-            Asserts.fail(ResultCode.NOTFOUND);
-        }
+    public static <T> List<T> mapList(Page<?> sourceList, Class<T> destinationClass) {
         return sourceList.stream().map((o) -> map(o, destinationClass)).collect(Collectors.toList());
     }
 }

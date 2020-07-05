@@ -1,6 +1,9 @@
 package com.car.rent.service;
 
 import com.car.rent.vo.CarVO;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 /**
  * @author nayix
@@ -44,4 +47,11 @@ public interface CarService {
      * @return
      */
     CarVO getCar(long cid);
+
+    /**
+     * 获取车辆列表
+     * @param pageable
+     * @return
+     */
+    List<CarVO> getCarList(Pageable pageable);
 }

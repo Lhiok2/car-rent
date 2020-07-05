@@ -1,10 +1,14 @@
 package com.car.rent.repository;
 
 import com.car.rent.domain.Car;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author nayix
@@ -17,6 +21,14 @@ public interface CarRepository extends CrudRepository<Car, Long> {
      * @return
      */
     Car findCarsByCid(long cid);
+
+    /**
+     * 获取车辆列表
+     * @param pageable
+     * @return
+     */
+    @Query("select c from Car c")
+    Page<Car> getCarList(Pageable pageable);
 
     /**
      * 更新价格
