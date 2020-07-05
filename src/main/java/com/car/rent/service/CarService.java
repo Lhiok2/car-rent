@@ -25,9 +25,10 @@ public interface CarService {
      * 更新价格
      * @param cid
      * @param price
+     * @param state
      * @return
      */
-    void updatePrice(long cid, int price);
+    void updatePrice(long cid, int price, String state);
 
     /**
      * 更新状态

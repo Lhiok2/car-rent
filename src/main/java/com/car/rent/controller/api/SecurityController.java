@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import static com.car.rent.utils.UserUtils.deleteUserFromSubject;
+import static com.car.rent.utils.UserUtils.isAdmin;
 import static com.car.rent.utils.VerifyUtils.*;
 
 /**
@@ -46,7 +47,7 @@ public class SecurityController {
             @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String")
     })
     @PostMapping("/login/tel")
-    private CommonResult<?> loginByTelAndPassword(@RequestParam String tel, @RequestParam String password) {
+    private CommonResult<Boolean> loginByTelAndPassword(@RequestParam String tel, @RequestParam String password) {
         telVerify(tel);
         passwordVerify(password);
         // 获取当前用户
@@ -60,7 +61,7 @@ public class SecurityController {
             // 密码错误
             return CommonResult.forbiddenFailed();
         }
-        return CommonResult.success();
+        return CommonResult.success(isAdmin());
     }
 
     @ApiOperation(value = "通过手机和密码注销", httpMethod = "POST")

@@ -22,12 +22,13 @@ public interface CarRepository extends CrudRepository<Car, Long> {
      * 更新价格
      * @param cid
      * @param price
+     * @param state
      * @return
      */
     @Modifying
     @Transactional
-    @Query("update Car set price = :price where cid = :cid")
-    int updatePrice(long cid, int price);
+    @Query("update Car set price = :price, state = :state where cid = :cid")
+    int updatePrice(long cid, int price, String state);
 
     /**
      * 更新车辆状态

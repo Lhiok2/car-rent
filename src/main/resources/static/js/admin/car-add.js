@@ -1,10 +1,10 @@
 $(function(){
     //返回车辆列表Url
-    var toCarListUrl = "/views/admin/toCarList";
+    let toCarListUrl = "/views/admin/toCarList";
     //添加车辆api接口Url
-    var addUrl = "/api/v1/cars";
+    let carAddUrl = "/api/v1/cars";
     // 车辆详情页
-    var toCarDetailUrl = "/views/admin/toCarDetail?cid=";
+    let toCarDetailUrl = "/views/admin/toCarDetail?cid=";
 
     //id=back组件点击事件
     $('#back').click(function(){
@@ -14,7 +14,7 @@ $(function(){
     $('#submit').click(function(){
         $.ajax({
             async : false,
-            url : addUrl,
+            url : carAddUrl,
             type : 'POST',
             contentType : 'application/x-www-form-urlencoded',
             data : ({

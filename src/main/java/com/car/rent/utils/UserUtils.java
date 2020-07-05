@@ -1,5 +1,6 @@
 package com.car.rent.utils;
 
+import com.car.rent.constant.Identity;
 import com.car.rent.vo.UserVO;
 import com.car.rent.constant.response.ResultCode;
 import com.car.rent.exception.Asserts;
@@ -31,6 +32,14 @@ public class UserUtils {
     private static Session getSessionFromSubject() {
         Subject subject = SecurityUtils.getSubject();
         return subject.getSession();
+    }
+
+    /**
+     * 判断当前用户是否为管理员
+     */
+    public static boolean isAdmin() {
+        UserVO userVO = getUserFromSubject();
+        return Identity.ADMIN.getIdentity().equals(userVO.getIdentity());
     }
 
     /**

@@ -14,6 +14,7 @@ import org.apache.shiro.util.ByteSource;
 import javax.annotation.Resource;
 
 import static com.car.rent.constant.Identity.*;
+import static com.car.rent.utils.UserUtils.putProfileIntoSession;
 
 /**
  * @author nayix
@@ -31,6 +32,7 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         Subject subjects = SecurityUtils.getSubject();
         UserVO currentUser = (UserVO) subjects.getPrincipal();
+        putProfileIntoSession(currentUser);
         if (hasUserRole(currentUser)) {
             info.addRole(USER.getIdentity());
             if (hasAdminRole(currentUser)) {

@@ -58,9 +58,9 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional
-    public void updatePrice(long cid, int price) {
+    public void updatePrice(long cid, int price, String state) {
         try {
-            int code = carRepository.updatePrice(cid, price);
+            int code = carRepository.updatePrice(cid, price, state);
             if (code != 1) {
                 Asserts.fail();
             }

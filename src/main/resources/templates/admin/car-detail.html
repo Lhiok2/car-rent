@@ -2,9 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>车辆详情</title>
+    <link rel="shortcut icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="/css/admin/car-detail.css">
 </head>
 <body>
+<header class="bar bar-nav">
+    <h1 class='title'>车辆详情</h1>
+</header>
+<div class="content">
+    <div class="list-block">
+        <ul>
+            <!-- 车辆id -->
+            <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">ID</div>
+                        <div class="item-input">
+                            <input id="cid" disabled type="text">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- 状态 -->
+            <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">状态</div>
+                        <div class="item-input">
+                            <select id="state">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- 价格 -->
+            <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">价格</div>
+                        <div class="item-input">
+                            <input id="price" type="text">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- 注册时间 -->
+            <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">注册时间</div>
+                        <div class="item-input">
+                            <input id="create-time" disabled type="text">
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="content-block">
+        <div class="row">
+            <div class="col-50"><a id="back" href="#" class="button button-big button-fill button-danger">返回</a></div>
+            <div class="col-50"><a id="submit" href="#" class="button button-big button-fill button-success">提交</a></div>
+        </div>
+    </div>
+</div>
 
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script src="/js/admin/car-detail.js"></script>
+<script src="/js/common/common.js"></script>
 </body>
 </html>

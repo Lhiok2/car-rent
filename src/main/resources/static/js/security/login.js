@@ -1,12 +1,12 @@
 $(function () {
     // 注册页面url
-    var toRegisterUrl = "/views/security/toRegister";
+    let toRegisterUrl = "/views/security/toRegister";
     // 用户首页url
-    var toIndexUrl = "/views/user/toIndex";
+    let toIndexUrl = "/views/user/toIndex";
     // 管理员首页url
-    var toAdminIndexUrl = "/views/admin/toCarList";
+    let toAdminIndexUrl = "/views/admin/toCarList";
     // 登录api接口url
-    var loginUrl = "/api/v1/security/login/tel";
+    let loginUrl = "/api/v1/security/login/tel";
 
     $('#back').click(function () {
         window.location.href = toRegisterUrl;
@@ -24,7 +24,8 @@ $(function () {
             }),
             success : function (data) {
                 if (data.code == 200) {
-                    window.location.href = toIndexUrl;
+                    console.log(data.data);
+                    window.location.href = (data.data? toAdminIndexUrl: toIndexUrl);
                 } else {
                     $.toast(data.code + " : " + data.message);
                 }

@@ -1,8 +1,8 @@
 $(function () {
     // 登录页面url
-    var toLoginUrl = "/views/security/toLogin";
+    let toLoginUrl = "/views/security/toLogin";
     // 注册api接口url
-    var registerUrl = "/api/v1/security/register/tel";
+    let registerUrl = "/api/v1/security/register/tel";
 
     // id=back的组件点击事件
     $('#back').click(function () {

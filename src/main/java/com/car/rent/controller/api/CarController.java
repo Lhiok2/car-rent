@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
 import static com.car.rent.utils.VerifyUtils.*;
 
 /**
@@ -43,31 +45,25 @@ public class CarController {
         return CommonResult.success();
     }
 
-    @ApiOperation(value = "更新车辆价格", httpMethod = "PUT")
+    @ApiOperation(value = "更新车辆信息", httpMethod = "PUT")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long"),
-            @ApiImplicitParam(name = "price", value = "价格", required = true, dataType = "Integer")
+            @ApiImplicitParam(name = "price", value = "价格", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "state", value = "车辆状态", required = true, dataType = "String")
     })
-    @PutMapping("/price")
-    private CommonResult<?> updatePrice(@RequestParam Long cid, @RequestParam Integer price) {
+    @PutMapping
+    private CommonResult<?> updatePrice(@RequestParam Long cid, @RequestParam Integer price, @RequestParam String state) {
         adminVerify();
         notNullVerify(cid, price);
-        carService.updatePrice(cid, price);
+        stringVerify(state, State.toStringList());
+        carService.updatePrice(cid, price, state);
         return CommonResult.success();
     }
 
-    @ApiOperation(value = "更新车辆状态", httpMethod = "PUT")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long"),
-            @ApiImplicitParam(name = "state", value = "车辆状态", required = true, dataType = "String")
-    })
-    @PutMapping("/state")
-    private CommonResult<?> updateState(@RequestParam Long cid, @RequestParam String state) {
-        adminVerify();
-        notNullVerify(cid);
-        stringVerify(state, State.toStringList());
-        carService.updateState(cid, state);
-        return CommonResult.success();
+    @ApiOperation(value = "获取车辆状态列表", httpMethod = "GET")
+    @GetMapping("/states")
+    private CommonResult<List<String>> getStates() {
+        return CommonResult.success(State.toStringList());
     }
 
     @ApiOperation(value = "获取车辆信息", httpMethod = "GET")
