@@ -3,6 +3,7 @@ package com.car.rent.config;
 import com.car.rent.constant.Identity;
 import com.car.rent.utils.PassUtils;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,15 +20,11 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    /**
-     * 对密码进行MD5编码
-     */
-    @Bean(name = "hashedCredentialsMatcher")
-    public HashedCredentialsMatcher hashedCredentialsMatcher() {
-        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
-        credentialsMatcher.setHashAlgorithmName("MD5");
-        credentialsMatcher.setHashIterations(PassUtils.HASH_ITERATIONS);
-        return credentialsMatcher;
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Qualifier("securityManager") DefaultWebSecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+        return authorizationAttributeSourceAdvisor;
     }
 
     @Bean
@@ -82,6 +79,20 @@ public class ShiroConfig {
      */
     @Bean(name = "userRealm")
     public UserRealm getUserRealm() {
-        return new UserRealm();
+        UserRealm userRealm = new UserRealm();
+        userRealm.setCredentialsMatcher(getHashedCredentialsMatcher());
+        return userRealm;
+    }
+
+    /**
+     * 对密码进行MD5编码
+     */
+    @Bean(name = "hashedCredentialsMatcher")
+    public HashedCredentialsMatcher getHashedCredentialsMatcher() {
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        credentialsMatcher.setHashAlgorithmName("MD5");
+        credentialsMatcher.setHashIterations(PassUtils.HASH_ITERATIONS);
+        credentialsMatcher.setStoredCredentialsHexEncoded(false);
+        return credentialsMatcher;
     }
 }

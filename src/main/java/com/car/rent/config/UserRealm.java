@@ -49,9 +49,11 @@ public class UserRealm extends AuthorizingRealm {
         // 连接真实数据库
         UserVO userVO = userService.getUserByTel(userToken.getUsername());
         // 密码认证，shiro做
-        return new SimpleAuthenticationInfo(userVO,
+        SimpleAuthenticationInfo authorizationInfo = new SimpleAuthenticationInfo(
+                userVO,
                 userVO.getPassword(),
                 ByteSource.Util.bytes(userVO.getSalt()),
                 getName());
+        return authorizationInfo;
     }
 }
