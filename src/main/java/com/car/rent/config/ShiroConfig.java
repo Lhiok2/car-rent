@@ -48,23 +48,23 @@ public class ShiroConfig {
         * */
         Map<String, String> filterMap = new LinkedHashMap<>();
         // 对静态资源设置匿名访问
-//        filterMap.put("/css/**", "anon");
-//        filterMap.put("/bootstrap/**", "anon");
-//        filterMap.put("/fonts/**", "anon");
-//        filterMap.put("/font-awesome/**", "anon");
-//        filterMap.put("/images/**", "anon");
-//        filterMap.put("/img/**", "anon");
-//        filterMap.put("/js/**", "anon");
-//        filterMap.put("/layer/**", "anon");
-//        filterMap.put("/ico/**", "anon");
-//        // 不需要拦截的访问
-//        filterMap.put("/api/v*/security/**", "anon");
-//        filterMap.put("/views/security/**", "anon");
-//        // 管理员能够访问的资源
-//        filterMap.put("/api/v*/cars/**", "roles[" + Identity.ADMIN.getIdentity() + "]");
-//        filterMap.put("/views/admin/**", "roles[" + Identity.ADMIN.getIdentity() + "]");
-//        // 所有其他资源都需要用户身份
-//        filterMap.put("/**", "roles[" + Identity.USER.getIdentity() + "]");
+        filterMap.put("/css/**", "anon");
+        filterMap.put("/bootstrap/**", "anon");
+        filterMap.put("/fonts/**", "anon");
+        filterMap.put("/font-awesome/**", "anon");
+        filterMap.put("/images/**", "anon");
+        filterMap.put("/img/**", "anon");
+        filterMap.put("/js/**", "anon");
+        filterMap.put("/layer/**", "anon");
+        filterMap.put("/ico/**", "anon");
+        // 不需要拦截的访问
+        filterMap.put("/api/v*/security/**", "anon");
+        filterMap.put("/views/security/**", "anon");
+        // 管理员能够访问的资源
+        filterMap.put("/api/v*/cars/**", "roles[" + Identity.ADMIN.getIdentity() + "]");
+        filterMap.put("/views/admin/**", "roles[" + Identity.ADMIN.getIdentity() + "]");
+        // 所有其他资源都需要用户身份
+        filterMap.put("/**", "roles[" + Identity.USER.getIdentity() + "]");
         bean.setFilterChainDefinitionMap(filterMap);
         return bean;
     }

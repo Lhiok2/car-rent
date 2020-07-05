@@ -15,7 +15,7 @@ import static com.car.rent.utils.UserUtils.getUserFromSubject;
  */
 public class VerifyUtils {
     private static final Pattern TEL_PATTERN = Pattern.compile("^((13[0-9])|(14[579])|(15[0-35-9])|(16[6])|(17[0135-8])|(18[0-9])|(19[89]))(\\d{8})$");
-    private static final Pattern PASS_PATTERN = Pattern.compile("^[a-zA-Z0-9]{10,30}$");
+    private static final Pattern PASS_PATTERN = Pattern.compile("^[a-zA-Z0-9]{6,30}$");
     private static final Pattern NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]{2,16}$");
 
     /**
