@@ -25,7 +25,7 @@ public class SwaggerExportTest {
     public void generateAsciiDocs() throws Exception {
         Swagger2MarkupConfig config = new Swagger2MarkupConfigBuilder()
                 // 设置生成格式
-                .withMarkupLanguage(MarkupLanguage.ASCIIDOC)
+                .withMarkupLanguage(MarkupLanguage.MARKDOWN)
                 // 设置语言
                 .withOutputLanguage(Language.ZH)
                 // 设置分组方式

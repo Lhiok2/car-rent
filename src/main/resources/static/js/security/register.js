@@ -10,9 +10,6 @@ $(function () {
     });
 
     $('#submit').click(function () {
-        var username = $('#username').val();
-        var tel = $('#tel').val();
-        var password = $('#password').val();
         $.ajax({
             async : false,
             url : registerUrl,
