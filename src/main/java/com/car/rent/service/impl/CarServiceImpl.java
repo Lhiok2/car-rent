@@ -97,7 +97,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<CarVO> getCarList(Pageable pageable) {
-        Page<Car> carList = carRepository.getCarList(pageable);
+        Page<Car> carList = carRepository.findAll(pageable);
         return DozerUtils.mapList(carList, CarVO.class);
     }
 }

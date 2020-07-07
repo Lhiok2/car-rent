@@ -27,8 +27,7 @@ public interface CarRepository extends CrudRepository<Car, Long> {
      * @param pageable
      * @return
      */
-    @Query("select c from Car c")
-    Page<Car> getCarList(Pageable pageable);
+    Page<Car> findAll(Pageable pageable);
 
     /**
      * 更新价格

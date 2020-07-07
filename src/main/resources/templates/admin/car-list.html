@@ -2,9 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>车辆管理</title>
+    <link rel="shortcut icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="/css/admin/car-list.css">
 </head>
 <body>
+<header class="bar bar-nav">
+    <h1 class='title'>车辆管理</h1>
+</header>
+<div class="content">
+    <div class="content-block">
+        <p><a class="pull-right" href="/views/admin/toCarAdd">新增车辆</a></p>
+        <br>
+        <table class="params-table">
+            <thead>
+                <tr>
+                    <th>车辆ID</th>
+                    <th>价格</th>
+                    <th>单价</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div class="content-block">
+        <div class="row">
+            <div class="col-50">
+                <a href="/views/user/toIndex" class="button button-big button-fill button-success">用户首页</a>
+            </div>
+            <div class="col-50">
+                <a href="#" id="logout" class="button button-big button-fill button-danger">退出系统</a>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script src="/js/admin/car-list.js"></script>
+<script src="/js/common/common.js"></script>
 </body>
 </html>
