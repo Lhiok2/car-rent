@@ -15,13 +15,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public enum State {
     // normal
-    NORMAL("正常"),
+    NORMAL("Normal"),
 
     // used
-    USED("使用中"),
+    USED("Used"),
 
     // malfunction
-    MALFUNCTION("待维修")
+    MALFUNCTION("Malfunction")
     ;
 
     private final String state;

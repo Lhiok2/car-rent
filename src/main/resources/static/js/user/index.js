@@ -66,7 +66,7 @@ $(function () {
             let td4 = document.createElement('td');
             td1.innerHTML = item.cid;
             td2.innerHTML = centToDollar(item.price);
-            td3.innerHTML = item.state;
+            td3.innerHTML = stateMess(item.state);
             td4.innerHTML = '<a href="#" onclick="carRent(' + item.cid + ')">租贷</a>';
             tr.appendChild(td1);
             tr.appendChild(td2);

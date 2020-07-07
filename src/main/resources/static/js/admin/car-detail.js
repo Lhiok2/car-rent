@@ -21,7 +21,7 @@ $(function () {
                         data.data.map(function (item, index) {
                             stateHtml += '<option data-id="' + item + '" '
                                 + (item == state? 'selected': '')
-                                + ' >' + item + '</option>';
+                                + ' >' + stateMess(item) + '</option>';
                         });
                         $('#state').html(stateHtml);
                     } else {
