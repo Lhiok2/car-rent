@@ -37,7 +37,7 @@ public class CarController {
             @ApiImplicitParam(name = "number", value = "车牌号", required = true, dataType = "String"),
             @ApiImplicitParam(name = "price", value = "单价", required = true, dataType = "Long")
     })
-    @PostMapping
+    @PostMapping("/admin")
     private CommonResult<Long> addCar(@RequestParam Integer lid, @RequestParam String number, @RequestParam Long price) {
         adminVerify();
         notNullVerify(lid, number, price);
@@ -47,7 +47,7 @@ public class CarController {
 
     @ApiOperation(value = "删除车辆", httpMethod = "DELETE")
     @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long")
-    @DeleteMapping
+    @DeleteMapping("/admin")
     private CommonResult<?> deleteCar(@RequestParam Long cid) {
         adminVerify();
         notNullVerify(cid);
@@ -63,7 +63,7 @@ public class CarController {
             @ApiImplicitParam(name = "price", value = "价格", required = true, dataType = "Long"),
             @ApiImplicitParam(name = "state", value = "车辆状态", required = true, dataType = "String")
     })
-    @PutMapping
+    @PutMapping("/admin")
     private CommonResult<?> updatePrice(@RequestParam Long cid, @RequestParam Integer lid, @RequestParam String number, @RequestParam Long price, @RequestParam String state) {
         adminVerify();
         notNullVerify(cid, lid, number, price);

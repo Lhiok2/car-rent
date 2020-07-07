@@ -2,7 +2,7 @@ $(function(){
     // 返回车辆列表Url
     let toCarListUrl = '/views/admin/toCarList';
     // 添加车辆api接口Url
-    let carAddUrl = '/api/v1/cars';
+    let carAddUrl = '/api/v1/cars/admin';
     // 车辆详情页
     let toCarDetailUrl = '/views/admin/toCarDetail?cid=';
     // 区号列表api接口Url

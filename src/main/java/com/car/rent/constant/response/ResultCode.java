@@ -48,6 +48,9 @@ public enum ResultCode implements IErrorCode {
 
     // 车辆正在使用中
     USING(4007, "该车出售中"),
+
+    // 禁止手动更新车辆为使用中
+    TO_USING_FORBIDDEN(4008, "禁止手动更新车辆信息为使用中");
     ;
 
     private final long code;

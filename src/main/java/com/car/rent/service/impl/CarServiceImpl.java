@@ -78,6 +78,7 @@ public class CarServiceImpl implements CarService {
         try {
             Car car = carRepository.findCarsByCid(cid);
             State.free(car);
+            State.unFree(state);
             if (!licenseRepository.existsByLid(lid)) {
                 Asserts.fail(ResultCode.VALIDATE_FAILED);
             }

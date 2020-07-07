@@ -3,6 +3,8 @@ $(function () {
     let toAdminIndexUrl = "/views/admin/toCarList";
     // 车辆操作api地址
     let carUrl = "/api/v1/cars";
+    // 车辆更新api地址
+    let carUpdateUrl = "/api/v1/cars/admin";
     // 获取车辆状态api地址
     let carStateUrl = "/api/v1/cars/states";
     // 区号列表api接口Url
@@ -58,7 +60,7 @@ $(function () {
     $('#submit').click(function () {
         $.ajax({
             async : false,
-            url : carUrl,
+            url : carUpdateUrl,
             type : 'PUT',
             contentType : 'application/x-www-form-urlencoded',
             data : ({

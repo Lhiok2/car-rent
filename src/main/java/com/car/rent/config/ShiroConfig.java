@@ -58,7 +58,7 @@ public class ShiroConfig {
         filterMap.put("/api/v*/security/**", "anon");
         filterMap.put("/views/security/**", "anon");
         // 管理员能够访问的资源
-        filterMap.put("/api/v*/cars/**", "roles[" + Identity.ADMIN.getIdentity() + "]");
+        filterMap.put("/api/v*/cars/admin/**", "roles[" + Identity.ADMIN.getIdentity() + "]");
         filterMap.put("/views/admin/**", "roles[" + Identity.ADMIN.getIdentity() + "]");
         // 所有其他资源都需要用户身份
         filterMap.put("/**", "roles[" + Identity.USER.getIdentity() + "]");

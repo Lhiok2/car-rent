@@ -54,22 +54,30 @@ function failHandle(code) {
         case 4007 :
             message = '车辆出租中';
             break;
+        case 4008 :
+            message = '禁止手动更新车辆信息为使用中';
+            break;
         default :
             message = '服务器繁忙，请重试';
             break;
     }
     if (question.length == 0) {
-        $.alert(message);
+        $.alert(message, function () {
+            window.location.reload();
+        });
     } else {
         $.confirm(question, message,
             function () {
                 if (url.length == 0) {
-                    $.alert('该功能尚未实现，敬请期待');
+                    $.alert('该功能尚未实现，敬请期待', function () {
+                        window.location.reload();
+                    });
                 } else {
                     window.location.href = url;
                 }
             },
             function () {
+                window.location.reload();
             }
         );
     }

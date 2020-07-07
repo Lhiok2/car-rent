@@ -2,7 +2,7 @@ package com.car.rent.constant;
 
 import com.car.rent.constant.response.ResultCode;
 import com.car.rent.domain.Car;
-import com.car.rent.exception.ApiException;
+import com.car.rent.exception.Asserts;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -38,9 +38,15 @@ public enum State {
 
     public static void free(Car car) {
         if (car == null) {
-            throw new ApiException(ResultCode.NOTFOUND);
+            Asserts.fail(ResultCode.NOTFOUND);
         } else if (USED.state.equals(car.getState())) {
-            throw new ApiException(ResultCode.USING);
+            Asserts.fail(ResultCode.USING);
+        }
+    }
+
+    public static void unFree(String stateStr) {
+        if (USED.state.equals(stateStr)) {
+            Asserts.fail(ResultCode.TO_USING_FORBIDDEN);
         }
     }
 }

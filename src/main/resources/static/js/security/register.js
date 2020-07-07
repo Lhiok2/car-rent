@@ -1,6 +1,8 @@
 $(function () {
     // 注册api接口url
-    let registerUrl = "/api/v1/security/register/tel";
+    let registerUrl = '/api/v1/security/register/tel';
+    // 登录页面url
+    let toLoginUrl = '/views/security/toLogin';
 
     $('#submit').click(function () {
         $.ajax({
