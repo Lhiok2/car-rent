@@ -1,5 +1,6 @@
 package com.car.rent.service.impl;
 
+import com.car.rent.exception.ApiException;
 import com.car.rent.repository.UserRepository;
 import com.car.rent.vo.UserVO;
 import com.car.rent.domain.User;
@@ -57,7 +58,7 @@ public class UserServiceImpl implements UserService {
             String encodedPass = getEncodedPass(password, salt);
             int code = userRepository.deleteByTelAndPassword(tel, encodedPass);
             if (code != 1) {
-                Asserts.fail(ResultCode.FORBIDDEN);
+                Asserts.fail(ResultCode.WRONG_PASS);
             }
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
@@ -89,7 +90,7 @@ public class UserServiceImpl implements UserService {
             String encodedNewPass = getEncodedPass(newPass, newSalt);
             int code = userRepository.updatePassword(uid, encodedOldPass, encodedNewPass, newSalt);
             if (code != 1) {
-                Asserts.fail(ResultCode.FORBIDDEN);
+                Asserts.fail(ResultCode.WRONG_PASS);
             }
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
@@ -101,6 +102,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO getUserByTel(String tel) {
         User user = userRepository.findUserByTel(tel);
+        if (user == null) {
+            throw new ApiException(ResultCode.USER_NOT_FOUND);
+        }
         return DozerUtils.map(user, UserVO.class);
     }
 

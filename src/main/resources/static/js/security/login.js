@@ -27,7 +27,7 @@ $(function () {
                     console.log(data.data);
                     window.location.href = (data.data? toAdminIndexUrl: toIndexUrl);
                 } else {
-                    $.toast(data.code + " : " + data.message);
+                    failHandle(data.code);
                 }
             }
         });

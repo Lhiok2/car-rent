@@ -24,6 +24,8 @@ $(function () {
                                 + ' >' + item + '</option>';
                         });
                         $('#state').html(stateHtml);
+                    } else {
+                        failHandle(data.code);
                     }
                 });
             }
@@ -50,7 +52,7 @@ $(function () {
                     $.toast('更新成功!');
                     window.location.reload();
                 } else {
-                    $.toast(data.code + " : " + data.message);
+                    failHandle(data.code);
                 }
             }
         });

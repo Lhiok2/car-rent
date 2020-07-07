@@ -1,5 +1,6 @@
 package com.car.rent.controller.api;
 
+import com.car.rent.constant.response.ResultCode;
 import com.car.rent.vo.CommonResult;
 import com.car.rent.service.UserService;
 import io.swagger.annotations.*;
@@ -10,6 +11,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+
 import static com.car.rent.utils.UserUtils.deleteUserFromSubject;
 import static com.car.rent.utils.UserUtils.isAdmin;
 import static com.car.rent.utils.VerifyUtils.*;
@@ -59,7 +61,7 @@ public class SecurityController {
             subject.login(token);
         } catch (IncorrectCredentialsException e) {
             // 密码错误
-            return CommonResult.forbiddenFailed();
+            return CommonResult.failed(ResultCode.WRONG_PASS);
         }
         return CommonResult.success(isAdmin());
     }

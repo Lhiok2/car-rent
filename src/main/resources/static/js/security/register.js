@@ -25,7 +25,7 @@ $(function () {
                     $.toast('注册成功!');
                     window.location.href = toLoginUrl;
                 } else {
-                    $.toast(data.code + " : " + data.message);
+                    failHandle(data.code);
                 }
             }
         });

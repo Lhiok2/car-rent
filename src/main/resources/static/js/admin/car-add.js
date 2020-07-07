@@ -22,10 +22,10 @@ $(function(){
             }),
             success : function (data) {
                 if (data.code == 200) {
-                    $.toast('添加成功!');
+                    $.alert('添加成功!');
                     window.location.href = toCarDetailUrl + data.data;
                 } else {
-                    $.toast(data.code + " : " + data.message);
+                    failHandle(data.code);
                 }
             }
         });

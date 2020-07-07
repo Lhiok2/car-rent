@@ -20,10 +20,10 @@ $(function(){
             }),
             success : function (data) {
                 if (data.code == 200) {
-                    $.toast('修改成功!');
+                    $.alert('修改成功!');
                     window.location.href = toProfileUrl;
                 } else {
-                    $.toast(data.code + " : " + data.message);
+                    failHandle(data.code);
                 }
             }
         });

@@ -27,7 +27,7 @@ $(function () {
                 if (data.code == 200) {
                     handleList(data.data);
                 } else {
-                    $.toast(data.code + " : " + data.message);
+                    failHandle(data.code);
                 }
             }
         });
@@ -63,7 +63,7 @@ $(function () {
                 if (data.code == 200) {
                     window.location.reload();
                 } else {
-                    $.toast(data.code + " : " + data.message);
+                    failHandle(data.code);
                 }
             }
         });
