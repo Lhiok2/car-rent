@@ -1,0 +1,17 @@
+*{
+    padding:0;
+    margin:0;
+}
+table{
+    width : 90%;
+    margin : 12% auto;
+    border-collapse : collapse;/*边框合并模式*/
+    text-align:center;
+}
+td,th{
+    border:1px solid #333;
+}
+thead tr{
+    height:40px;
+    background-color: #cccccc;
+}
