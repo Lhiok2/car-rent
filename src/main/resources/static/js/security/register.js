@@ -1,15 +1,8 @@
 $(function () {
-    // 登录页面url
-    let toLoginUrl = "/views/security/toLogin";
     // 注册api接口url
     let registerUrl = "/api/v1/security/register/tel";
 
-    // id=back的组件点击事件
-    $('#back').click(function () {
-        window.location.href = toLoginUrl;
-    });
-
-    $('#submit').click(function (message) {
+    $('#submit').click(function () {
         $.ajax({
             async : false,
             url : registerUrl,

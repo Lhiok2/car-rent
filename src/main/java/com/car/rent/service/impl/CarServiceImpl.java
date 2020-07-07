@@ -2,7 +2,6 @@ package com.car.rent.service.impl;
 
 import com.car.rent.constant.response.ResultCode;
 import com.car.rent.domain.License;
-import com.car.rent.exception.ApiException;
 import com.car.rent.repository.CarRepository;
 import com.car.rent.repository.LicenseRepository;
 import com.car.rent.vo.CarVO;
@@ -40,7 +39,7 @@ public class CarServiceImpl implements CarService {
         try {
             License license = licenseRepository.findByLid(lid);
             if (license == null) {
-                throw new ApiException(ResultCode.VALIDATE_FAILED);
+                Asserts.fail(ResultCode.VALIDATE_FAILED);
             }
             Car car = carRepository.save(Car.builder()
                     .license(license)
@@ -80,7 +79,7 @@ public class CarServiceImpl implements CarService {
             Car car = carRepository.findCarsByCid(cid);
             State.free(car);
             if (!licenseRepository.existsByLid(lid)) {
-                throw new ApiException(ResultCode.VALIDATE_FAILED);
+                Asserts.fail(ResultCode.VALIDATE_FAILED);
             }
             int code = carRepository.updateCar(cid, lid, number, price, state);
             if (code != 1) {

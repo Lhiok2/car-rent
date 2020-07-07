@@ -1,15 +1,13 @@
 $(function () {
-    // 用户首页url
-    let toIndexUrl = "/views/user/toIndex";
-    // 管理员首页url
-    let toAdminIndexUrl = "/views/admin/toCarList";
-    // 登录api接口url
-    let loginUrl = "/api/v1/security/login/tel";
+    // 注销api接口url
+    let logoffUrl = '/api/v1/security/logoff/tel';
+    // 注册页面url
+    let toLoginUrl = '/views/security/toLogin';
 
     $('#submit').click(function () {
         $.ajax({
             async : false,
-            url : loginUrl,
+            url : logoffUrl,
             type : 'POST',
             contentType : 'application/x-www-form-urlencoded',
             data : ({
@@ -18,7 +16,9 @@ $(function () {
             }),
             success : function (data) {
                 if (data.code == 200) {
-                    window.location.href = (data.data? toAdminIndexUrl: toIndexUrl);
+                    $.alert('注销成功!', function () {
+                        window.location.href = toLoginUrl;
+                    });
                 } else {
                     failHandle(data.code);
                 }

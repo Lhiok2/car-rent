@@ -1,6 +1,5 @@
 package com.car.rent.service.impl;
 
-import com.car.rent.exception.ApiException;
 import com.car.rent.repository.UserRepository;
 import com.car.rent.vo.UserVO;
 import com.car.rent.domain.User;
@@ -33,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addUser(String username, String tel, String password) {
         if (userRepository.existsByTel(tel)) {
-            throw new ApiException(ResultCode.REPEAT_TEL);
+            Asserts.fail(ResultCode.REPEAT_TEL);
         }
         String salt = getRandomSalt();
         String encodedPass = getEncodedPass(password, salt);
@@ -57,6 +56,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void logoffByTelAndPass(String tel, String password) {
         try {
+            if(!userRepository.existsByTel(tel)) {
+                Asserts.fail(ResultCode.USER_NOT_FOUND);
+            }
             String salt = userRepository.getSaltByTel(tel);
             String encodedPass = getEncodedPass(password, salt);
             int code = userRepository.deleteByTelAndPassword(tel, encodedPass);
