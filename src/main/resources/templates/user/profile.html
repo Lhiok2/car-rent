@@ -6,104 +6,96 @@
     <link rel="shortcut icon" href="/image/favicon.ico">
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="/css/user/profile.css">
 </head>
 <body>
 <div class="page-group">
     <div id="page-label-input" class="page">
         <header class="bar bar-nav">
-            <a class="button button-link button-nav pull-left back" href="/demos/form">
-                <span class="icon icon-left"></span>
-                返回
-            </a>
             <h1 class="title">用户信息</h1>
         </header>
         <div class="content">
             <div class="list-block">
                 <ul>
-                    <!-- 用户Id -->
-                    <li>
-                        <div class="item-content">
-                            <div class="item-inner">
-                                <div class="item-title label">用户Id</div>
-                                <div class="item-input">
-                                    <input id="uid" disabled type="text">
-                                </div>
+                    <!-- 用户ID -->
+                    <li class="item-content">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">用户ID</div>
+                            <div class="item-input">
+                                <input id="uid" disabled type="text">
                             </div>
                         </div>
                     </li>
                     <!-- 用户名 -->
-                    <li>
-                        <a href="/views/user/toChangeName" class="item-link item-content">
-                            <div class="item-inner">
-                                <div class="item-title label ">用户名</div>
-                                <div class="item-input">
-                                    <input   id="username" disabled type="text">
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- 手机号 -->
-                    <li>
-                        <div class="item-content">
-                            <div class="item-inner">
-                                <div class="item-title label">手机号</div>
-                                <div class="item-input ">
-                                    <input id="tel" disabled type="text">
-                                </div>
+                    <li onclick="pageSwitch('/views/user/toChangeName')" class="item-link item-content">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label ">用户名</div>
+                            <div style="padding-left: 8px" class="item-input">
+                                <input id="username" disabled type="text">
                             </div>
                         </div>
                     </li>
-                    <!-- 钱包 -->
-                    <li>
-                        <a href="/views/user/toWallet" class="item-link item-content">
-                            <div class="item-inner">
-                                <div class="item-title">钱包</div>
+                    <!-- 手机号 -->
+                    <li class="item-content">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">手机号</div>
+                            <div class="item-input">
+                                <input id="tel" disabled type="text">
                             </div>
-                        </a>
+                        </div>
+                    </li>
+                    <!-- 余额 -->
+                    <li onclick="pageSwitch('/views/user/toRecharge')" class="item-link item-content">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label ">余额</div>
+                            <div style="padding-left: 8px" class="item-input">
+                                <input id="balance" disabled type="text">
+                            </div>
+                        </div>
                     </li>
                     <!-- 注销账号 -->
-                    <li>
-                        <a href="/views/security/toLogoff" class="item-link item-content">
-                            <div class="item-inner">
-                                <div class="item-title">注销账号</div>
-                            </div>
-                        </a>
+                    <li onclick="pageSwitch('/views/security/toLogoff')" class="item-link item-content">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title">注销账号</div>
+                        </div>
                     </li>
                     <!-- 退出账号 -->
-                    <li>
-                        <a href="/views/security/toLogin" class="item-link item-content">
-                            <div class="item-inner">
-                                <div class="item-title"><font color=red>退出账号</font></div>
-                            </div>
-                        </a>
+                    <li onclick="logout()" class="item-link item-content">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title"><font color=red>退出账号</font></div>
+                        </div>
                     </li>
-
                 </ul>
 
                 <!-- 底部工具栏 -->
                 <nav class="bar bar-tab">
-                    <a class="tab-item external " href="#">
+                    <a onclick="toIndexPage()" class="tab-item external" href="#">
                         <span class="icon icon-home"></span>
                         <span class="tab-label">首页</span>
                     </a>
-                    <a class="tab-item external" href="#">
+                    <a onclick="toOrdersPage()" class="tab-item external" href="#">
                         <span class="icon icon-code"></span>
                         <span class="tab-label">账单</span>
                     </a>
-                    <a class="tab-item external active" href="#">
+                    <a onclick="toProfilePage()" class="tab-item external active" href="#">
                         <span class="icon icon-me"></span>
                         <span class="tab-label">用户</span>
                     </a>
                 </nav>
-
             </div>
         </div>
-    </div>
-</div>
-<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-<script src="/js/user/profile.js"></script>
-<script src="/js/common/common.js"></script>
+
+        <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+        <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+        <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+        <script src="/js/user/profile.js"></script>
+        <script src="/js/common/menu.js"></script>
+        <script src="/js/common/common.js"></script>
 </body>
 </html>

@@ -2,7 +2,6 @@ $(function () {
     let pageIndex;
     let pageSize;
     let getCarListUrl = '/api/v1/cars/list';
-    let logoutUrl = '/api/v1/security/logout';
     init();
 
     function init() {
@@ -55,20 +54,4 @@ $(function () {
             tr.appendChild(td5);
         });
     }
-
-    $('#logout').click(function () {
-        $.ajax({
-            async : false,
-            url : logoutUrl,
-            type : 'POST',
-            contentType : false,
-            success : function (data) {
-                if (data.code == 200) {
-                    window.location.reload();
-                } else {
-                    failHandle(data.code);
-                }
-            }
-        });
-    });
 });

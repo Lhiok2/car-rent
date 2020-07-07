@@ -1,19 +1,36 @@
 let toIndexUrl = '/views/user/toIndex';
 let toOrdersUrl = '/views/user/toOrders';
 let toProfileUrl = '/views/user/toProfile';
+let logoutUrl = '/api/v1/security/logout';
 
-let pageSwitch = function(url) {
+pageSwitch = function(url) {
     window.location.href = url;
 }
 
-let toIndexPage = function () {
+toIndexPage = function () {
     pageSwitch(toIndexUrl);
 }
 
-let toOrdersPage = function () {
+toOrdersPage = function () {
     pageSwitch(toOrdersUrl);
 }
 
-let toProfilePage = function () {
+toProfilePage = function () {
     pageSwitch(toProfileUrl);
+}
+
+logout = function() {
+    $.ajax({
+        async : false,
+        url : logoutUrl,
+        type : 'POST',
+        contentType : false,
+        success : function (data) {
+            if (data.code == 200) {
+                window.location.reload();
+            } else {
+                failHandle(data.code);
+            }
+        }
+    });
 }

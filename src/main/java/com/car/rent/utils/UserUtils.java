@@ -29,42 +29,12 @@ public class UserUtils {
         return userVO;
     }
 
-    private static Session getSessionFromSubject() {
-        Subject subject = SecurityUtils.getSubject();
-        return subject.getSession();
-    }
-
     /**
      * 判断当前用户是否为管理员
      */
     public static boolean isAdmin() {
         UserVO userVO = getUserFromSubject();
         return Identity.ADMIN.getIdentity().equals(userVO.getIdentity());
-    }
-
-    /**
-     * 将个人信息放入session
-     * @param profile 个人信息
-     */
-    public static void putProfileIntoSession(UserVO profile) {
-        Session session = getSessionFromSubject();
-        session.setAttribute(PROFILE_NAME_IN_SESSION, profile);
-    }
-
-    /**
-     * 将个人信息从session移除
-     */
-    public static void deleteProfileFromSession() {
-        Session session = getSessionFromSubject();
-        session.removeAttribute(PROFILE_NAME_IN_SESSION);
-    }
-
-    /**
-     * @return 个人信息
-     */
-    public static UserVO getProfileFromSession() {
-        Session session = getSessionFromSubject();
-        return (UserVO) session.getAttribute(PROFILE_NAME_IN_SESSION);
     }
 
     /**

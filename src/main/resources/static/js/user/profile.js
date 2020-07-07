@@ -11,6 +11,9 @@ $(function () {
                 $('#uid').val(data.data.uid);
                 $('#username').val(data.data.username);
                 $('#tel').val(data.data.tel);
+                $('#balance').val(centToDollar(data.data.balance));
+            } else {
+                failHandle(data.code);
             }
         });
     }
