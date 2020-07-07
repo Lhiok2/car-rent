@@ -48,6 +48,9 @@ function failHandle(code) {
             message = '密码错误';
             question = '去找回？';
             break;
+        case 4006 :
+            message = '账号被注册';
+            break;
         default :
             message = '服务器繁忙，请重试';
             break;

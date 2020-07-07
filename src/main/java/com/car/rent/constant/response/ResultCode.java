@@ -42,6 +42,9 @@ public enum ResultCode implements IErrorCode {
 
     // 密码错误
     WRONG_PASS(4005, "密码错误"),
+
+    // 账号被注册
+    REPEAT_TEL(4006, "账号被注册"),
     ;
 
     private final long code;

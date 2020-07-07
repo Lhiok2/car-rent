@@ -29,6 +29,13 @@ public interface UserRepository extends CrudRepository<User, Long> {
     String getSaltByTel(@Param("tel") String tel);
 
     /**
+     * 查询手机号是否被注册
+     * @param tel
+     * @return
+     */
+    boolean existsByTel(String tel);
+
+    /**
      * 通过tel查询用户
      * @param tel
      * @return

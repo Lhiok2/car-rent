@@ -32,6 +32,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void addUser(String username, String tel, String password) {
+        if (userRepository.existsByTel(tel)) {
+            throw new ApiException(ResultCode.REPEAT_TEL);
+        }
         String salt = getRandomSalt();
         String encodedPass = getEncodedPass(password, salt);
         try {
