@@ -1,6 +1,8 @@
 package com.car.rent.repository;
 
 import com.car.rent.domain.Bill;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -11,6 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
  * @date 2020/6/30 16:19
  */
 public interface BillRepository extends CrudRepository<Bill, Long> {
+
+    /**
+     * 获取账单列表
+     * @param uid
+     * @param pageable
+     * @return
+     */
+    @Query("select b from Bill b where b.user.uid = :uid order by b.startTime desc")
+    Page<Bill> findAllByUid(long uid, Pageable pageable);
+
     /**
      * 获取最近一笔未完成订单
      * @param uid

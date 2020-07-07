@@ -14,12 +14,15 @@ import com.car.rent.exception.Asserts;
 import com.car.rent.service.BillService;
 import com.car.rent.utils.DozerUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 import static com.car.rent.constant.BillState.isUnpaid;
 import static com.car.rent.constant.State.isNormal;
@@ -127,5 +130,11 @@ public class BillServiceImpl implements BillService {
     public BillVO getUnfinishedBill(long uid) {
         Bill bill = billRepository.getRecentBill(uid);
         return DozerUtils.map(bill, BillVO.class);
+    }
+
+    @Override
+    public List<BillVO> getBillList(long uid, Pageable pageable) {
+        Page<Bill> bills = billRepository.findAllByUid(uid, pageable);
+        return DozerUtils.mapList(bills, BillVO.class);
     }
 }

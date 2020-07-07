@@ -2,6 +2,9 @@ package com.car.rent.service;
 
 import com.car.rent.vo.BillVO;
 import com.car.rent.exception.ApiException;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 /**
  * @author nayix
@@ -38,4 +41,12 @@ public interface BillService {
      * @return
      */
     BillVO getUnfinishedBill(long uid);
+
+    /**
+     * 获取账单列表
+     * @param uid
+     * @param pageable
+     * @return
+     */
+    List<BillVO> getBillList(long uid, Pageable pageable);
 }

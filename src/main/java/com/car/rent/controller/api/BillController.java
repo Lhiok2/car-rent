@@ -4,9 +4,13 @@ import com.car.rent.vo.BillVO;
 import com.car.rent.vo.CommonResult;
 import com.car.rent.service.BillService;
 import io.swagger.annotations.*;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+
+import java.util.List;
 
 import static com.car.rent.utils.UserUtils.getUidFromSubject;
 import static com.car.rent.utils.VerifyUtils.notNullVerify;
@@ -22,6 +26,19 @@ public class BillController {
 
     @Resource
     private BillService billService;
+
+    @ApiOperation(value = "获取账单列表", httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageIndex", value = "页码", dataType = "Integer"),
+            @ApiImplicitParam(name = "pageSize", value = "页尺寸", dataType = "Integer")
+    })
+    @GetMapping("/list")
+    private CommonResult<List<BillVO>> getBillList(@RequestParam Integer pageIndex, @RequestParam Integer pageSize) {
+        long uid = getUidFromSubject();
+        Pageable pageable = PageRequest.of(pageSize, pageSize);
+        List<BillVO> billList = billService.getBillList(uid, pageable);
+        return CommonResult.success(billList);
+    }
 
     @ApiOperation(value = "租贷车辆", httpMethod = "POST")
     @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long")
