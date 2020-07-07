@@ -24,7 +24,6 @@ $(function () {
             }),
             success : function (data) {
                 if (data.code == 200) {
-                    console.log(data.data);
                     window.location.href = (data.data? toAdminIndexUrl: toIndexUrl);
                 } else {
                     failHandle(data.code);

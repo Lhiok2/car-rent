@@ -22,8 +22,9 @@ $(function(){
             }),
             success : function (data) {
                 if (data.code == 200) {
-                    $.alert('添加成功!');
-                    window.location.href = toCarDetailUrl + data.data;
+                    $.alert('添加成功!', function () {
+                        window.location.href = toCarDetailUrl + data.data;
+                    });
                 } else {
                     failHandle(data.code);
                 }

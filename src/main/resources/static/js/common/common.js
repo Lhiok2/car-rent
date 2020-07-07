@@ -21,10 +21,10 @@ function failHandle(code) {
             message = '权限不足，拒绝访问';
             break;
         case 404 :
-            message = '未找到该字段，请核对你的信息';
+            message = '数据不存在，请核对你的信息';
             break;
         case 406 :
-            message = '参数不符合要求，请重新输入';
+            message = '格式不符，请重新输入';
             break;
         case 4001 :
             message = '该车辆暂时不可用，请选择其他车辆';

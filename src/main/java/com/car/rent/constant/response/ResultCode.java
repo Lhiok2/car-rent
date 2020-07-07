@@ -37,8 +37,10 @@ public enum ResultCode implements IErrorCode {
     // 余额不足
     POOR(4003, "余额不足"),
 
+    // 账号不存在
     USER_NOT_FOUND(4004, "用户不存在"),
 
+    // 密码错误
     WRONG_PASS(4005, "密码错误"),
     ;
 

@@ -102,9 +102,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO getUserByTel(String tel) {
         User user = userRepository.findUserByTel(tel);
-        if (user == null) {
-            throw new ApiException(ResultCode.USER_NOT_FOUND);
-        }
         return DozerUtils.map(user, UserVO.class);
     }
 

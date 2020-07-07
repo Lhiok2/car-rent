@@ -9,7 +9,7 @@ $(function () {
         window.location.href = toLoginUrl;
     });
 
-    $('#submit').click(function () {
+    $('#submit').click(function (message) {
         $.ajax({
             async : false,
             url : registerUrl,
@@ -22,8 +22,9 @@ $(function () {
             }),
             success : function (data) {
                 if (data.code == 200) {
-                    $.toast('注册成功!');
-                    window.location.href = toLoginUrl;
+                    $.alert('注册成功!', function () {
+                        window.location.href = toLoginUrl;
+                    });
                 } else {
                     failHandle(data.code);
                 }

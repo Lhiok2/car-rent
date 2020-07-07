@@ -49,8 +49,9 @@ $(function () {
             }),
             success : function (data) {
                 if (data.code == 200) {
-                    $.toast('更新成功!');
-                    window.location.reload();
+                    $.alert('更新成功!', function () {
+                        window.location.reload();
+                    });
                 } else {
                     failHandle(data.code);
                 }

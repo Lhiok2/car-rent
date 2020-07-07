@@ -20,8 +20,9 @@ $(function(){
             }),
             success : function (data) {
                 if (data.code == 200) {
-                    $.alert('修改成功!');
-                    window.location.href = toProfileUrl;
+                    $.alert('修改成功!', function () {
+                        window.location.href = toProfileUrl;
+                    });
                 } else {
                     failHandle(data.code);
                 }

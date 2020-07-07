@@ -17,7 +17,7 @@ public class DozerUtils {
 
     public static <T> T map(Object sourceObj, Class<T> destinationClass) {
         if (sourceObj == null) {
-            Asserts.fail(ResultCode.NOTFOUND);
+            return null;
         }
         return dozerBeanMapper.map(sourceObj, destinationClass);
     }

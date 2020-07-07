@@ -1,5 +1,6 @@
 package com.car.rent.config;
 
+import com.car.rent.exception.ApiException;
 import com.car.rent.vo.UserVO;
 import com.car.rent.service.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -50,6 +51,9 @@ public class UserRealm extends AuthorizingRealm {
         UsernamePasswordToken userToken = (UsernamePasswordToken) token;
         // 连接真实数据库
         UserVO userVO = userService.getUserByTel(userToken.getUsername());
+        if (userVO == null) {
+            return null;
+        }
         // 密码认证，shiro做
         SimpleAuthenticationInfo authorizationInfo = new SimpleAuthenticationInfo(
                 userVO,

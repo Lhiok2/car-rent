@@ -6,6 +6,7 @@ import com.car.rent.service.UserService;
 import io.swagger.annotations.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +60,9 @@ public class SecurityController {
         // 执行登录方法，无异常说明登陆成功
         try {
             subject.login(token);
+        } catch (UnknownAccountException e) {
+            // 用户不存在
+            return CommonResult.failed(ResultCode.USER_NOT_FOUND);
         } catch (IncorrectCredentialsException e) {
             // 密码错误
             return CommonResult.failed(ResultCode.WRONG_PASS);
