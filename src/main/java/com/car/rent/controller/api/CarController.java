@@ -35,10 +35,10 @@ public class CarController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "lid", value = "车牌区号ID", required = true, dataType = "Integer"),
             @ApiImplicitParam(name = "number", value = "车牌号", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "price", value = "单价", required = true, dataType = "Integer")
+            @ApiImplicitParam(name = "price", value = "单价", required = true, dataType = "Long")
     })
     @PostMapping
-    private CommonResult<Long> addCar(@RequestParam Integer lid, @RequestParam String number, @RequestParam Integer price) {
+    private CommonResult<Long> addCar(@RequestParam Integer lid, @RequestParam String number, @RequestParam Long price) {
         adminVerify();
         notNullVerify(lid, number, price);
         long cid = carService.addCar(lid, number, price);
@@ -60,11 +60,11 @@ public class CarController {
             @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long"),
             @ApiImplicitParam(name = "lid", value = "车牌区号ID", required = true, dataType = "Integer"),
             @ApiImplicitParam(name = "number", value = "车牌号", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "price", value = "价格", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "price", value = "价格", required = true, dataType = "Long"),
             @ApiImplicitParam(name = "state", value = "车辆状态", required = true, dataType = "String")
     })
     @PutMapping
-    private CommonResult<?> updatePrice(@RequestParam Long cid, @RequestParam Integer lid, @RequestParam String number, @RequestParam Integer price, @RequestParam String state) {
+    private CommonResult<?> updatePrice(@RequestParam Long cid, @RequestParam Integer lid, @RequestParam String number, @RequestParam Long price, @RequestParam String state) {
         adminVerify();
         notNullVerify(cid, lid, number, price);
         stringVerify(state, State.toStringList());

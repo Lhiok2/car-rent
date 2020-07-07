@@ -36,7 +36,7 @@ public class UserVO {
     private String salt;
 
     @ApiModelProperty("用户余额")
-    private Integer balance;
+    private Long balance;
 
     @ApiModelProperty("用户状态")
     private String identity;

@@ -51,13 +51,13 @@ public class BillController {
     }
 
     @ApiOperation(value = "结束租贷", httpMethod = "PUT")
-    @ApiImplicitParam(name = "cid", value = "车辆id", required = true, dataType = "Long")
+    @ApiImplicitParam(name = "billId", value = "账单id", required = true, dataType = "Long")
     @PutMapping
-    private CommonResult<BillVO> updateBill(@RequestParam Long cid) {
+    private CommonResult<?> updateBill(@RequestParam Long billId) {
         long uid = getUidFromSubject();
-        notNullVerify(cid);
-        BillVO billVO = billService.updateState(uid, cid);
-        return CommonResult.success(billVO);
+        notNullVerify(billId);
+        billService.updateState(billId, uid);
+        return CommonResult.success();
     }
 
     @ApiOperation(value = "支付账单", httpMethod = "PUT")

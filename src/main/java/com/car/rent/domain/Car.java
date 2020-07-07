@@ -35,7 +35,7 @@ public class Car {
     private String state;
 
     @Column(nullable = false)
-    private Integer price;
+    private Long price;
 
     @Column(name = "create_time", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

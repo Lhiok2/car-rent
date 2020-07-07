@@ -17,7 +17,7 @@ public interface CarService {
      * @param price
      * @return
      */
-    long addCar(int lid, String number, int price);
+    long addCar(int lid, String number, long price);
 
     /**
      * 删除车辆
@@ -35,7 +35,7 @@ public interface CarService {
      * @param state
      * @return
      */
-    void updateCar(long cid, int lid, String number, int price, String state);
+    void updateCar(long cid, int lid, String number, long price, String state);
 
     /**
      * 获取车辆信息

@@ -36,7 +36,7 @@ public class CarVO {
     private String state;
 
     @ApiModelProperty("车辆基础价格")
-    private Integer price;
+    private Long price;
 
     @ApiModelProperty("车辆注册时间")
     private Date createTime;

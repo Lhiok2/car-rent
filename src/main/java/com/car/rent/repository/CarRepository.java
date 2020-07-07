@@ -41,7 +41,7 @@ public interface CarRepository extends CrudRepository<Car, Long> {
     @Modifying
     @Transactional
     @Query("update Car set license.lid = :lid, number = :number, price = :price, state = :state where cid = :cid")
-    int updateCar(long cid, int lid, String number, int price, String state);
+    int updateCar(long cid, int lid, String number, long price, String state);
 
     /**
      * 更新车辆状态

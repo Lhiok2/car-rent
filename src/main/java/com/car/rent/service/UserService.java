@@ -61,5 +61,5 @@ public interface UserService {
      * @param money
      * @return
      */
-    void recharge(long uid, int money);
+    void recharge(long uid, long money);
 }

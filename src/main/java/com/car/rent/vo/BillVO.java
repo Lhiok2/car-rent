@@ -33,7 +33,7 @@ public class BillVO {
 
     @ApiModelProperty("账单价格")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Integer cost;
+    private Long cost;
 
     @ApiModelProperty("账单状态")
     private String billState;

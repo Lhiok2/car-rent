@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
                     .tel(tel)
                     .password(encodedPass)
                     .salt(salt)
-                    .balance(0)
+                    .balance((long) 0)
                     .identity(Identity.USER.getIdentity())
                     .createTime(new Date()).build());
         } catch (Exception e) {
@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void recharge(long uid, int money) {
+    public void recharge(long uid, long money) {
         try {
             User user = userRepository.findUserByUid(uid);
             if (user == null) {

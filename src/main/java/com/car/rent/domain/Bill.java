@@ -33,7 +33,7 @@ public class Bill {
     private Car car;
 
     @Column(insertable = false)
-    private Integer cost;
+    private Long cost;
 
     @Column(name = "bill_state", nullable = false)
     private String billState;

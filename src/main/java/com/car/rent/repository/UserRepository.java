@@ -69,7 +69,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Modifying
     @Transactional
     @Query("update User set balance = :balance where uid = :uid")
-    int updateBalance(long uid, int balance);
+    int updateBalance(long uid, long balance);
 
     /**
      * 通过手机号更改用户名

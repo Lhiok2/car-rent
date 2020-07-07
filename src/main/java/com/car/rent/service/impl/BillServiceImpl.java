@@ -77,24 +77,23 @@ public class BillServiceImpl implements BillService {
 
     @Override
     @Transactional
-    public BillVO updateState(long uid, long cid) {
+    public void updateState(long billId, long uid) {
         try {
             // 查询订单正确性
-            Bill bill = billRepository.getRecentBill(uid);
-            if (bill == null || bill.getCar().getCid() != cid) {
+            Bill bill = billRepository.findByBillId(billId);
+            if (bill == null || bill.getUser().getUid() != uid) {
                 Asserts.notFound();
             }
             // 更新车辆状态
-            int code = carRepository.updateState(cid, State.NORMAL.getState());
+            int code = carRepository.updateState(bill.getCar().getCid(), State.NORMAL.getState());
             if (code != 1) {
                 Asserts.fail();
             }
             settleBill(bill);
             bill = billRepository.save(bill);
-            return DozerUtils.map(bill, BillVO.class);
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            log.info("BillService-updateState[ uid:" + uid + " cid:" + cid + " message:" + e.getMessage() + "]");
+            log.info("BillService-updateState[ uid:" + uid + " billId:" + billId + " message:" + e.getMessage() + "]");
             throw e;
         }
     }
@@ -113,7 +112,7 @@ public class BillServiceImpl implements BillService {
             if (user.getBalance() < bill.getCost()) {
                 Asserts.fail(ResultCode.POOR);
             }
-            int balance = user.getBalance() - bill.getCost();
+            long balance = user.getBalance() - bill.getCost();
             int code1 = userRepository.updateBalance(uid, balance);
             int code2 = billRepository.updateStateToPaid(billId);
             if (code1 != 1 || code2 != 1) {

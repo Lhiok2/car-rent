@@ -24,6 +24,13 @@ public interface BillRepository extends CrudRepository<Bill, Long> {
     Page<Bill> findAllByUid(long uid, Pageable pageable);
 
     /**
+     * 通过billId查询账单
+     * @param billId
+     * @return
+     */
+    Bill findByBillId(long billId);
+
+    /**
      * 获取最近一笔未完成订单
      * @param uid
      * @return

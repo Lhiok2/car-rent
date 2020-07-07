@@ -37,7 +37,7 @@ public class User {
     private String salt;
 
     @Column(nullable = false)
-    private Integer balance;
+    private Long balance;
 
     @Column(nullable = false)
     private String identity;

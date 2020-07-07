@@ -50,10 +50,4 @@ public class UserViewController {
     public String toRecharge() {
         return "/user/recharge";
     }
-
-    @ApiOperation(value = "前往钱包界面", httpMethod = "GET")
-    @GetMapping("/toWallet")
-    public String toWallet() {
-        return "/user/wallet";
-    }
 }

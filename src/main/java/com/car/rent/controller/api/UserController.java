@@ -52,9 +52,9 @@ public class UserController {
     }
 
     @ApiOperation(value = "充值", httpMethod = "PUT")
-    @ApiImplicitParam(name = "money", value = "金额", required = true, dataType = "Integer")
+    @ApiImplicitParam(name = "money", value = "金额", required = true, dataType = "Long")
     @PutMapping("/recharge")
-    private CommonResult<?> recharge(@RequestParam Integer money) {
+    private CommonResult<?> recharge(@RequestParam Long money) {
         long uid = getUidFromSubject();
         notNullVerify(money);
         // TODO 充值校验

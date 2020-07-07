@@ -35,7 +35,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional
-    public long addCar(int lid, String number, int price) {
+    public long addCar(int lid, String number, long price) {
         try {
             License license = licenseRepository.findByLid(lid);
             if (license == null) {
@@ -74,7 +74,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional
-    public void updateCar(long cid, int lid, String number, int price, String state) {
+    public void updateCar(long cid, int lid, String number, long price, String state) {
         try {
             Car car = carRepository.findCarsByCid(cid);
             State.free(car);

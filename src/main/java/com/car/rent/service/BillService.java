@@ -21,11 +21,11 @@ public interface BillService {
 
     /**
      * 结束骑行
+     * @param billId
      * @param uid
-     * @param cid
      * @return
      */
-    BillVO updateState(long uid, long cid);
+    void updateState(long billId, long uid);
 
     /**
      * 完成支付
