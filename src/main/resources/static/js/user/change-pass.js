@@ -21,7 +21,9 @@ $(function(){
             }),
             success : function (data) {
                 if (data.code == 200) {
-                    $.alert('修改成功!');
+                    $.alert('修改成功!', function () {
+                        window.location.reload();
+                    });
                 } else {
                     failHandle(data.code);
                 }
