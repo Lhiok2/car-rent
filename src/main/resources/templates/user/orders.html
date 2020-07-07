@@ -17,17 +17,17 @@
 
         <!-- 底部工具栏 -->
         <nav class="bar bar-tab">
-            <a class="tab-item external active" href="#">
+            <a onclick="toIndexPage()" class="tab-item external" href="#">
                 <span class="icon icon-home"></span>
-                <span onclick="toIndexPage()" class="tab-label">首页</span>
+                <span class="tab-label">首页</span>
             </a>
-            <a class="tab-item external" href="#">
+            <a onclick="toOrdersPage()" class="tab-item external active" href="#">
                 <span class="icon icon-code"></span>
-                <span onclick="toOrdersPage()" class="tab-label">账单</span>
+                <span class="tab-label">账单</span>
             </a>
-            <a class="tab-item external" href="#">
+            <a onclick="toProfilePage()" class="tab-item external" href="#">
                 <span class="icon icon-me"></span>
-                <span onclick="toProfilePage()" class="tab-label">用户</span>
+                <span class="tab-label">用户</span>
             </a>
         </nav>
     </div>
