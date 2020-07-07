@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 
 import java.util.List;
 
+import static com.car.rent.utils.PageUtils.getPageable;
 import static com.car.rent.utils.UserUtils.getUidFromSubject;
 import static com.car.rent.utils.VerifyUtils.notNullVerify;
 
@@ -35,7 +36,7 @@ public class BillController {
     @GetMapping("/list")
     private CommonResult<List<BillVO>> getBillList(@RequestParam Integer pageIndex, @RequestParam Integer pageSize) {
         long uid = getUidFromSubject();
-        Pageable pageable = PageRequest.of(pageSize, pageSize);
+        Pageable pageable = getPageable(pageIndex, pageSize);
         List<BillVO> billList = billService.getBillList(uid, pageable);
         return CommonResult.success(billList);
     }

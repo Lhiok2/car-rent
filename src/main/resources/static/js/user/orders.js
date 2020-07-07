@@ -47,10 +47,23 @@ $(function () {
             let td6 = document.createElement('td');
             td1.innerHTML = item.billId;
             td2.innerHTML = item.car.license.brand + '*' + item.car.number;
-            td3.innerHTML = centToDollar(item.cost);
+            td3.innerHTML = (item.cost == null? '': centToDollar(item.cost));
             td4.innerHTML = item.startTime;
-            td5.innerHTML = item.endTime;
-            td6.innerHTML = operatorHtml(item.billId, item.billState);
+            td5.innerHTML = (item.endTime == null? '': item.endTime);
+            switch (item.billState) {
+                case 'Trading' :
+                    td6.innerHTML = '<a href="#" onclick="updateBill(' + item.billId + ')">还车</a>';
+                    break;
+                case 'Unpaid' :
+                    td6.innerHTML = '<a href="#" onclick="payBill(' + item.billId + ')">去支付</a>';
+                    break;
+                case 'Paid' :
+                    td6.innerHTML = '<a style="color: #7d7d7d" href="#" onclick="payBill(' + item.billId + ')">已支付</a>';
+                    break;
+                default :
+                    td6.innerHTML = '';
+                    break;
+            }
             tr.appendChild(td1);
             tr.appendChild(td2);
             tr.appendChild(td3);
@@ -63,11 +76,11 @@ $(function () {
     let operatorHtml = function(billId, billSate) {
         switch (billSate) {
             case 'Trading' :
-                return '<a href="#" onclick="updateBill(' + billId + ')">还车</a>'
+                return '<a href="#" onclick="updateBill(' + billId + ')">还车</a>';
             case 'Unpaid' :
-                return '<a href="#" onclick="payBill(' + billId + ')">去支付</a>'
+                return '<a href="#" onclick="payBill(' + billId + ')">去支付</a>';
             case 'Paid' :
-                return '<a style="color: #7d7d7d" href="#" onclick="payBill(' + billId + ')">已支付</a>'
+                return '<a style="color: #7d7d7d" href="#" onclick="payBill(' + billId + ')">已支付</a>';
             default :
         }
     }
