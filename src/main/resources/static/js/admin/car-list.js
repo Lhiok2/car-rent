@@ -43,7 +43,7 @@ $(function () {
             let td3 = document.createElement('td');
             let td4 = document.createElement('td');
             td1.innerHTML = item.cid;
-            td2.innerHTML = item.price;
+            td2.innerHTML = centToDollar(item.price);
             td3.innerHTML = item.state;
             td4.innerHTML = '<a href="/views/admin/toCarDetail?cid=' + item.cid + '">详情</a>';
             tr.appendChild(td1);

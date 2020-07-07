@@ -18,7 +18,7 @@ $(function(){
             type : 'POST',
             contentType : 'application/x-www-form-urlencoded',
             data : ({
-                "price" : $('#price').val(),
+                "price" : dollarToCent($('#price').val()),
             }),
             success : function (data) {
                 if (data.code == 200) {

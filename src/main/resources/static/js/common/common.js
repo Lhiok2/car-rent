@@ -68,3 +68,14 @@ function failHandle(code) {
         );
     }
 }
+
+// 金额 分->元
+let centToDollar = function(value) {
+    value /= 100;
+    return value.toFixed(2);
+}
+
+// 金额 元->分
+let dollarToCent = function(value) {
+    return Math.ceil(value * 100);
+}

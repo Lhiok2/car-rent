@@ -12,7 +12,7 @@ $(function () {
         $.getJSON(getCarInfoUrl, function(data) {
             if (data.code == 200) {
                 $('#cid').val(data.data.cid);
-                $('#price').val(data.data.price);
+                $('#price').val(centToDollar(data.data.price));
                 $('#create-time').val(data.data.createTime);
                 let state = data.data.state;
                 $.getJSON(carStateUrl, function (data) {
@@ -44,7 +44,7 @@ $(function () {
             contentType : 'application/x-www-form-urlencoded',
             data : ({
                 "cid" : $('#cid').val(),
-                "price" : $('#price').val(),
+                "price" : dollarToCent($('#price').val()),
                 "state" : $('#state').find('option').not(function() { return !this.selected; }).data('id')
             }),
             success : function (data) {
