@@ -45,6 +45,9 @@ public enum ResultCode implements IErrorCode {
 
     // 账号被注册
     REPEAT_TEL(4006, "账号被注册"),
+
+    // 车辆正在使用中
+    USING(4007, "该车出售中"),
     ;
 
     private final long code;

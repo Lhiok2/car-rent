@@ -51,6 +51,9 @@ function failHandle(code) {
         case 4006 :
             message = '账号被注册';
             break;
+        case 4007 :
+            message = '车辆出租中';
+            break;
         default :
             message = '服务器繁忙，请重试';
             break;

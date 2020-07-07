@@ -1,5 +1,6 @@
 package com.car.rent.service.impl;
 
+import com.car.rent.constant.response.ResultCode;
 import com.car.rent.repository.CarRepository;
 import com.car.rent.vo.CarVO;
 import com.car.rent.domain.Car;
@@ -48,6 +49,12 @@ public class CarServiceImpl implements CarService {
     @Transactional
     public void deleteCar(long cid) {
         try {
+            Car car = carRepository.findCarsByCid(cid);
+            if (car == null) {
+                Asserts.fail(ResultCode.NOTFOUND);
+            } else if (State.USED.equals(car.getState())) {
+                Asserts.fail(ResultCode.USING);
+            }
             int code = carRepository.deleteCarByCid(cid);
             if (code != 1) {
                 Asserts.fail();
