@@ -1,6 +1,8 @@
 package com.car.rent.constant;
 
+import com.car.rent.constant.response.ResultCode;
 import com.car.rent.domain.Car;
+import com.car.rent.exception.ApiException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -32,5 +34,13 @@ public enum State {
 
     public static boolean isNormal(Car car) {
         return NORMAL.state.equals(car.getState());
+    }
+
+    public static void free(Car car) {
+        if (car == null) {
+            throw new ApiException(ResultCode.NOTFOUND);
+        } else if (USED.state.equals(car.getState())) {
+            throw new ApiException(ResultCode.USING);
+        }
     }
 }

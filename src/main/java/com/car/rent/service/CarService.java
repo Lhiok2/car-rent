@@ -25,21 +25,13 @@ public interface CarService {
     void deleteCar(long cid);
 
     /**
-     * 更新价格
+     * 更新车辆信息
      * @param cid
      * @param price
      * @param state
      * @return
      */
-    void updatePrice(long cid, int price, String state);
-
-    /**
-     * 更新状态
-     * @param cid
-     * @param state
-     * @return
-     */
-    void updateState(long cid, String state);
+    void updateCar(long cid, int price, String state);
 
     /**
      * 获取车辆信息

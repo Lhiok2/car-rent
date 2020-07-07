@@ -1,6 +1,5 @@
 package com.car.rent.service.impl;
 
-import com.car.rent.constant.response.ResultCode;
 import com.car.rent.repository.CarRepository;
 import com.car.rent.vo.CarVO;
 import com.car.rent.domain.Car;
@@ -50,11 +49,7 @@ public class CarServiceImpl implements CarService {
     public void deleteCar(long cid) {
         try {
             Car car = carRepository.findCarsByCid(cid);
-            if (car == null) {
-                Asserts.fail(ResultCode.NOTFOUND);
-            } else if (State.USED.equals(car.getState())) {
-                Asserts.fail(ResultCode.USING);
-            }
+            State.free(car);
             int code = carRepository.deleteCarByCid(cid);
             if (code != 1) {
                 Asserts.fail();
@@ -68,8 +63,10 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional
-    public void updatePrice(long cid, int price, String state) {
+    public void updateCar(long cid, int price, String state) {
         try {
+            Car car = carRepository.findCarsByCid(cid);
+            State.free(car);
             int code = carRepository.updatePrice(cid, price, state);
             if (code != 1) {
                 Asserts.fail();
@@ -77,21 +74,6 @@ public class CarServiceImpl implements CarService {
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             log.info("CarService-updatePrice[ cid:" + cid + " message:" + e.getMessage() + "]");
-            throw e;
-        }
-    }
-
-    @Override
-    @Transactional
-    public void updateState(long cid, String state) {
-        try {
-            int code = carRepository.updateState(cid, state);
-            if (code != 1) {
-                Asserts.fail();
-            }
-        } catch (Exception e) {
-            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            log.info("CarService-updateState[ cid:" + cid + " message:" + e.getMessage() + "]");
             throw e;
         }
     }

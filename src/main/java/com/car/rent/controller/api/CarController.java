@@ -58,7 +58,7 @@ public class CarController {
         adminVerify();
         notNullVerify(cid, price);
         stringVerify(state, State.toStringList());
-        carService.updatePrice(cid, price, state);
+        carService.updateCar(cid, price, state);
         return CommonResult.success();
     }
 
