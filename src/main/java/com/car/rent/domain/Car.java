@@ -24,6 +24,13 @@ public class Car {
     @Column(length = 13, updatable = false)
     private Long cid;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "lid", referencedColumnName = "lid")
+    private License license;
+
+    @Column(length = 20, nullable = false)
+    private String number;
+
     @Column(nullable = false)
     private String state;
 

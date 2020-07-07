@@ -42,14 +42,17 @@ $(function () {
             let td2 = document.createElement('td');
             let td3 = document.createElement('td');
             let td4 = document.createElement('td');
+            let td5 = document.createElement('td');
             td1.innerHTML = item.cid;
-            td2.innerHTML = centToDollar(item.price);
-            td3.innerHTML = stateMess(item.state);
-            td4.innerHTML = '<a href="/views/admin/toCarDetail?cid=' + item.cid + '">详情</a>';
+            td2.innerHTML = item.license.brand + '*' + item.number;
+            td3.innerHTML = centToDollar(item.price);
+            td4.innerHTML = stateMess(item.state);
+            td5.innerHTML = '<a href="/views/admin/toCarDetail?cid=' + item.cid + '">详情</a>';
             tr.appendChild(td1);
             tr.appendChild(td2);
             tr.appendChild(td3);
             tr.appendChild(td4);
+            tr.appendChild(td5);
         });
     }
 

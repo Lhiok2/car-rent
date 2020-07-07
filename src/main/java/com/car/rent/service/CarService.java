@@ -12,10 +12,12 @@ import java.util.List;
 public interface CarService {
     /**
      * 新增车辆
+     * @param lid
+     * @param number
      * @param price
      * @return
      */
-    long addCar(int price);
+    long addCar(int lid, String number, int price);
 
     /**
      * 删除车辆
@@ -27,11 +29,13 @@ public interface CarService {
     /**
      * 更新车辆信息
      * @param cid
+     * @param lid
+     * @param number
      * @param price
      * @param state
      * @return
      */
-    void updateCar(long cid, int price, String state);
+    void updateCar(long cid, int lid, String number, int price, String state);
 
     /**
      * 获取车辆信息

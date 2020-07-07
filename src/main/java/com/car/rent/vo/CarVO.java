@@ -1,5 +1,6 @@
 package com.car.rent.vo;
 
+import com.car.rent.domain.License;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 /**
@@ -21,6 +25,12 @@ import java.util.Date;
 public class CarVO {
     @ApiModelProperty("车辆id")
     private Long cid;
+
+    @ApiModelProperty("车牌区号信息")
+    private License license;
+
+    @ApiModelProperty("车牌号")
+    private String number;
 
     @ApiModelProperty("车辆状态")
     private String state;

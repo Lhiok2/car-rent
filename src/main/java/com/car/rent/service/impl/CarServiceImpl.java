@@ -1,6 +1,10 @@
 package com.car.rent.service.impl;
 
+import com.car.rent.constant.response.ResultCode;
+import com.car.rent.domain.License;
+import com.car.rent.exception.ApiException;
 import com.car.rent.repository.CarRepository;
+import com.car.rent.repository.LicenseRepository;
 import com.car.rent.vo.CarVO;
 import com.car.rent.domain.Car;
 import com.car.rent.constant.State;
@@ -27,12 +31,20 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
     @Resource
     private CarRepository carRepository;
+    @Resource
+    private LicenseRepository licenseRepository;
 
     @Override
     @Transactional
-    public long addCar(int price) {
+    public long addCar(int lid, String number, int price) {
         try {
+            License license = licenseRepository.findByLid(lid);
+            if (license == null) {
+                throw new ApiException(ResultCode.VALIDATE_FAILED);
+            }
             Car car = carRepository.save(Car.builder()
+                    .license(license)
+                    .number(number)
                     .price(price)
                     .state(State.NORMAL.getState())
                     .createTime(new Date()).build());
@@ -63,11 +75,14 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional
-    public void updateCar(long cid, int price, String state) {
+    public void updateCar(long cid, int lid, String number, int price, String state) {
         try {
             Car car = carRepository.findCarsByCid(cid);
             State.free(car);
-            int code = carRepository.updatePrice(cid, price, state);
+            if (!licenseRepository.existsByLid(lid)) {
+                throw new ApiException(ResultCode.VALIDATE_FAILED);
+            }
+            int code = carRepository.updateCar(cid, lid, number, price, state);
             if (code != 1) {
                 Asserts.fail();
             }

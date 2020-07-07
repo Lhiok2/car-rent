@@ -5,6 +5,8 @@ $(function () {
     let carUrl = "/api/v1/cars";
     // 获取车辆状态api地址
     let carStateUrl = "/api/v1/cars/states";
+    // 区号列表api接口Url
+    let licensesUrl = '/api/v1/cars/licenses';
     init();
 
     function init() {
@@ -12,22 +14,39 @@ $(function () {
         $.getJSON(getCarInfoUrl, function(data) {
             if (data.code == 200) {
                 $('#cid').val(data.data.cid);
+                $('#number').val(data.data.number);
                 $('#price').val(centToDollar(data.data.price));
                 $('#create-time').val(data.data.createTime);
+                let lid = data.data.license.lid;
                 let state = data.data.state;
-                $.getJSON(carStateUrl, function (data) {
+                $.getJSON(licensesUrl, function (data) {
                     if (data.code == 200) {
-                        let stateHtml = '';
+                        let licenseHtml = '';
                         data.data.map(function (item, index) {
-                            stateHtml += '<option data-id="' + item + '" '
-                                + (item == state? 'selected': '')
-                                + ' >' + stateMess(item) + '</option>';
+                            licenseHtml += '<option data-id="' + item.lid + '"'
+                                + (item.lid == lid? 'selected': '')
+                                + '>' + item.brand + '</option>';
                         });
-                        $('#state').html(stateHtml);
+                        $('#lid').html(licenseHtml);
+                        $.getJSON(carStateUrl, function (data) {
+                            if (data.code == 200) {
+                                let stateHtml = '';
+                                data.data.map(function (item, index) {
+                                    stateHtml += '<option data-id="' + item + '" '
+                                        + (item == state? 'selected': '')
+                                        + ' >' + stateMess(item) + '</option>';
+                                });
+                                $('#state').html(stateHtml);
+                            } else {
+                                failHandle(data.code);
+                            }
+                        });
                     } else {
                         failHandle(data.code);
                     }
                 });
+            } else {
+                failHandle(data.code);
             }
         });
     }
@@ -43,9 +62,11 @@ $(function () {
             type : 'PUT',
             contentType : 'application/x-www-form-urlencoded',
             data : ({
-                "cid" : $('#cid').val(),
-                "price" : dollarToCent($('#price').val()),
-                "state" : $('#state').find('option').not(function() { return !this.selected; }).data('id')
+                'cid' : $('#cid').val(),
+                'lid' : $('#lid').find('option').not(function () { return !this.selected; }).data('id'),
+                'number' : $('#number').val(),
+                'price' : dollarToCent($('#price').val()),
+                'state' : $('#state').find('option').not(function() { return !this.selected; }).data('id')
             }),
             success : function (data) {
                 if (data.code == 200) {

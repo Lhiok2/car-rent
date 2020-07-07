@@ -30,16 +30,18 @@ public interface CarRepository extends CrudRepository<Car, Long> {
     Page<Car> findAll(Pageable pageable);
 
     /**
-     * 更新价格
+     * 更新车辆信息
      * @param cid
+     * @param lid
+     * @param number
      * @param price
      * @param state
      * @return
      */
     @Modifying
     @Transactional
-    @Query("update Car set price = :price, state = :state where cid = :cid")
-    int updatePrice(long cid, int price, String state);
+    @Query("update Car set license.lid = :lid, number = :number, price = :price, state = :state where cid = :cid")
+    int updateCar(long cid, int lid, String number, int price, String state);
 
     /**
      * 更新车辆状态
