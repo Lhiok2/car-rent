@@ -2,9 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>钱包</title>
+    <link rel="shortcut icon" href="/image/favicon.ico">
+    <link rel="shortcut icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
 </head>
 <body>
 
+<div id="page-label-input" class="page">
+    <header class="bar bar-nav">
+        <a class="button button-link button-nav pull-left back" href="/demos/form">
+            <span class="icon icon-left"></span>
+            返回
+        </a>
+        <h1 class="title">钱包</h1>
+        <a  id="bal" class="button button-link button-nav pull-right " href="#">
+            <span class="icon icon"></span>
+            充值
+        </a>
+    </header>
+    <div class="content">
+        <div class="list-block">
+            <ul>
+
+
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">充值金额</div>
+                            <div class="item-input ">
+                                <input id="money" type="text" style="text-align: right" placeholder="  " />
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- 余额 -->
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">余额</div>
+                            <div class="item-input" >
+                                <input id="balance" disabled type="text" style="text-align: right">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script src="/js/common/common.js"></script>
+<script src="/js/user/recharge.js"></script>
 </body>
 </html>
