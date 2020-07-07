@@ -1,5 +1,7 @@
 package com.car.rent.service.impl;
 
+import com.car.rent.domain.Bill;
+import com.car.rent.repository.BillRepository;
 import com.car.rent.repository.UserRepository;
 import com.car.rent.vo.UserVO;
 import com.car.rent.domain.User;
@@ -27,6 +29,8 @@ import static com.car.rent.utils.PassUtils.*;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserRepository userRepository;
+    @Resource
+    private BillRepository billRepository;
 
     @Transactional
     @Override
@@ -59,7 +63,12 @@ public class UserServiceImpl implements UserService {
             if(!userRepository.existsByTel(tel)) {
                 Asserts.fail(ResultCode.USER_NOT_FOUND);
             }
-            String salt = userRepository.getSaltByTel(tel);
+            User user = userRepository.findUserByTel(tel);
+            Bill bill = billRepository.getRecentBill(user.getUid());
+            if (bill != null) {
+                Asserts.fail(ResultCode.UNFINISHED);
+            }
+            String salt = user.getSalt();
             String encodedPass = getEncodedPass(password, salt);
             int code = userRepository.deleteByTelAndPassword(tel, encodedPass);
             if (code != 1) {
