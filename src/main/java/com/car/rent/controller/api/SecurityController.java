@@ -79,8 +79,8 @@ public class SecurityController {
     private CommonResult<?> logoffByTelAndPassword(@RequestParam String tel, @RequestParam String password) {
         telVerify(tel);
         passwordVerify(password);
-        deleteUserFromSubject();
         userService.logoffByTelAndPass(tel, password);
+        deleteUserFromSubject();
         return CommonResult.success();
     }
 
