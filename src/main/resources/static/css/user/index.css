@@ -7,6 +7,7 @@ table{
     margin : 12% auto;
     border-collapse : collapse;/*边框合并模式*/
     text-align:center;
+    font-family: "monospace";
 }
 td,th{
     border:1px solid #333;
