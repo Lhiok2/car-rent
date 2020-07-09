@@ -69,7 +69,7 @@ $(function () {
             td2.innerHTML = item.license.brand + '*' + item.number;
             td3.innerHTML = centToDollar(item.price);
             td4.innerHTML = stateMess(item.state);
-            td5.innerHTML = '<a href="#" onclick="carRent(' + item.cid + ')">租赁</a>';
+            td5.innerHTML = '<a href="#" ' + (item.state == "Normal"? '': 'style="color: #7d7d7d"') + ' onclick="carRent(' + item.cid + ')">租赁</a>';
             tr.appendChild(td1);
             tr.appendChild(td2);
             tr.appendChild(td3);

@@ -4,7 +4,7 @@
 }
 table{
     width : 90%;
-    margin : 12% auto;
+    margin : 2% auto;
     border-collapse : collapse;/*边框合并模式*/
     text-align:center;
     font-family: "monospace";
@@ -15,4 +15,8 @@ td,th{
 thead tr{
     height:40px;
     background-color: #cccccc;
+}
+
+.pull-right{
+    margin-right: 8%;
 }
