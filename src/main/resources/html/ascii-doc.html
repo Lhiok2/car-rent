@@ -536,8 +536,9 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel3">
 <li><a href="#_addbillusingpost">2.1.1. 租贷车辆</a></li>
 <li><a href="#_updatebillusingput">2.1.2. 结束租贷</a></li>
-<li><a href="#_paybillusingput">2.1.3. 支付账单</a></li>
-<li><a href="#_getunfinishedbillusingget">2.1.4. 获取未完成订单信息</a></li>
+<li><a href="#_getbilllistusingget">2.1.3. 获取账单列表</a></li>
+<li><a href="#_paybillusingput">2.1.4. 支付账单</a></li>
+<li><a href="#_getunfinishedbillusingget">2.1.5. 获取未完成订单信息</a></li>
 </ul>
 </li>
 <li><a href="#_e01e2f0e04f2177266b031b6cf063891">2.2. 安全相关</a>
@@ -551,17 +552,20 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_60dde0f49f7ce039b17e49eae5687c9e">2.3. 用户信息</a>
 <ul class="sectlevel3">
 <li><a href="#_updatepasswordusingput">2.3.1. 更改密码</a></li>
-<li><a href="#_rechargeusingput">2.3.2. 充值</a></li>
-<li><a href="#_updateusernameusingput">2.3.3. 更改用户名</a></li>
+<li><a href="#_getprofileusingget">2.3.2. 获取个人信息</a></li>
+<li><a href="#_rechargeusingput">2.3.3. 充值</a></li>
+<li><a href="#_updateusernameusingput">2.3.4. 更改用户名</a></li>
 </ul>
 </li>
 <li><a href="#_1b179c9abbec782bc336c39b4e1bdb52">2.4. 车辆管理</a>
 <ul class="sectlevel3">
-<li><a href="#_addcarusingpost">2.4.1. 添加车辆</a></li>
-<li><a href="#_getcarusingget">2.4.2. 获取车辆信息</a></li>
-<li><a href="#_deletecarusingdelete">2.4.3. 删除车辆</a></li>
-<li><a href="#_updatepriceusingput">2.4.4. 更新车辆价格</a></li>
-<li><a href="#_updatestateusingput">2.4.5. 更新车辆状态</a></li>
+<li><a href="#_getcarusingget">2.4.1. 获取车辆信息</a></li>
+<li><a href="#_addcarusingpost">2.4.2. 添加车辆</a></li>
+<li><a href="#_updatepriceusingput">2.4.3. 更新车辆信息</a></li>
+<li><a href="#_deletecarusingdelete">2.4.4. 删除车辆</a></li>
+<li><a href="#_getlicensesusingget">2.4.5. 获取区号列表</a></li>
+<li><a href="#_getcarlistusingget">2.4.6. 获取车辆列表</a></li>
+<li><a href="#_getstatesusingget">2.4.7. 获取车辆状态列表</a></li>
 </ul>
 </li>
 </ul>
@@ -569,12 +573,21 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_definitions">3. 定义</a>
 <ul class="sectlevel2">
 <li><a href="#_car">3.1. Car</a></li>
-<li><a href="#_user">3.2. User</a></li>
-<li><a href="#_a0fc378e12a63b55e0c8efbc17f7c8d9">3.3. 账单信息构造类</a></li>
-<li><a href="#_632bdc41786a16f54ae345210d828dcd">3.4. 车辆信息构造类</a></li>
-<li><a href="#_df580c20e80ec85f87a1879ed07e557f">3.5. 通用响应数据构造类«object»</a></li>
-<li><a href="#_bd24d8ef62fa01f42c74364a830b9a30">3.6. 通用响应数据构造类«账单信息构造类»</a></li>
-<li><a href="#_cb47b5e1ec320e3c6f62e964385aca73">3.7. 通用响应数据构造类«车辆信息构造类»</a></li>
+<li><a href="#_license">3.2. License</a></li>
+<li><a href="#_user">3.3. User</a></li>
+<li><a href="#_cd25c2d2e32f946af4456cf281a66a54">3.4. 用户信息构造类</a></li>
+<li><a href="#_a0fc378e12a63b55e0c8efbc17f7c8d9">3.5. 账单信息构造类</a></li>
+<li><a href="#_632bdc41786a16f54ae345210d828dcd">3.6. 车辆信息构造类</a></li>
+<li><a href="#_c3a4fa62e1e9ccf02d2439439c575e27">3.7. 通用响应数据构造类«List«License»»</a></li>
+<li><a href="#_572c5730c015cc9a743a8b9141c1f45d">3.8. 通用响应数据构造类«List«string»»</a></li>
+<li><a href="#_781317d73c9b34fa675124ee51acb795">3.9. 通用响应数据构造类«List«账单信息构造类»»</a></li>
+<li><a href="#_59eee59e4bebc9fbf466174b2a24fb2d">3.10. 通用响应数据构造类«List«车辆信息构造类»»</a></li>
+<li><a href="#_fbf6d82a552e5b54e6117423f6801f0e">3.11. 通用响应数据构造类«boolean»</a></li>
+<li><a href="#_b80decf382577a5a0531282446a5a6b8">3.12. 通用响应数据构造类«long»</a></li>
+<li><a href="#_df580c20e80ec85f87a1879ed07e557f">3.13. 通用响应数据构造类«object»</a></li>
+<li><a href="#_d2775f6254700e80f137ac940bd1ff4f">3.14. 通用响应数据构造类«用户信息构造类»</a></li>
+<li><a href="#_bd24d8ef62fa01f42c74364a830b9a30">3.15. 通用响应数据构造类«账单信息构造类»</a></li>
+<li><a href="#_cb47b5e1ec320e3c6f62e964385aca73">3.16. 通用响应数据构造类«车辆信息构造类»</a></li>
 </ul>
 </li>
 </ul>
@@ -759,6 +772,12 @@ table.CodeRay td.code>pre{padding:0}
     <span class="key"><span class="delimiter">&quot;</span><span class="content">car</span><span class="delimiter">&quot;</span></span> : {
       <span class="key"><span class="delimiter">&quot;</span><span class="content">cid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
       <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">license</span><span class="delimiter">&quot;</span></span> : {
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">brand</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">lid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">region</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+      },
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">number</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
       <span class="key"><span class="delimiter">&quot;</span><span class="content">price</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
       <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
     },
@@ -810,9 +829,9 @@ table.CodeRay td.code>pre{padding:0}
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>cid</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>billId</strong><br>
 <em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">车辆id</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">账单id</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_long">Long</a></p></td>
 </tr>
 </tbody>
@@ -837,7 +856,7 @@ table.CodeRay td.code>pre{padding:0}
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_bd24d8ef62fa01f42c74364a830b9a30">通用响应数据构造类«账单信息构造类»</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_df580c20e80ec85f87a1879ed07e557f">通用响应数据构造类«object»</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
@@ -901,29 +920,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : {
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">billId</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">billState</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">car</span><span class="delimiter">&quot;</span></span> : {
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">cid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">price</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
-    },
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">cost</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">endTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">startTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">user</span><span class="delimiter">&quot;</span></span> : {
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">balance</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">identity</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">password</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">salt</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">tel</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">uid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">username</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
-    }
-  },
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
   <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
@@ -932,10 +929,10 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_paybillusingput">2.1.3. 支付账单</h4>
+<h4 id="_getbilllistusingget">2.1.3. 获取账单列表</h4>
 <div class="literalblock">
 <div class="content">
-<pre>PUT /api/v1/bills/pay</pre>
+<pre>GET /api/v1/bills/list</pre>
 </div>
 </div>
 <div class="sect4">
@@ -958,10 +955,17 @@ table.CodeRay td.code>pre{padding:0}
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>billId</strong><br>
-<em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">账单id</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_long">Long</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>pageIndex</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">页码</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_integer">Integer</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>pageSize</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">页尺寸</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_integer">Integer</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -985,12 +989,7 @@ table.CodeRay td.code>pre{padding:0}
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_df580c20e80ec85f87a1879ed07e557f">通用响应数据构造类«object»</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Created</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_781317d73c9b34fa675124ee51acb795">通用响应数据构造类«List«账单信息构造类»»</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -1036,7 +1035,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_3">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/bills/pay</pre>
+<pre>/api/v1/bills/list</pre>
 </div>
 </div>
 </div>
@@ -1049,7 +1048,35 @@ table.CodeRay td.code>pre{padding:0}
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : [ {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">billId</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">billState</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">car</span><span class="delimiter">&quot;</span></span> : {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">cid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">license</span><span class="delimiter">&quot;</span></span> : {
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">brand</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">lid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">region</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+      },
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">number</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">price</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+    },
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">cost</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">endTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">startTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">user</span><span class="delimiter">&quot;</span></span> : {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">balance</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">identity</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">password</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">salt</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">tel</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">uid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">username</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+    }
+  } ],
   <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
@@ -1058,11 +1085,39 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getunfinishedbillusingget">2.1.4. 获取未完成订单信息</h4>
+<h4 id="_paybillusingput">2.1.4. 支付账单</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /api/v1/bills/unfinished</pre>
+<pre>PUT /api/v1/bills/pay</pre>
 </div>
+</div>
+<div class="sect4">
+<h5 id="_参数_4">参数</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 16.6666%;">
+<col style="width: 50%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">类型</th>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>billId</strong><br>
+<em>必填</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">账单id</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_long">Long</a></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect4">
 <h5 id="_响应_4">响应</h5>
@@ -1083,7 +1138,12 @@ table.CodeRay td.code>pre{padding:0}
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_bd24d8ef62fa01f42c74364a830b9a30">通用响应数据构造类«账单信息构造类»</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_df580c20e80ec85f87a1879ed07e557f">通用响应数据构造类«object»</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Created</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -1129,7 +1189,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_4">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/bills/unfinished</pre>
+<pre>/api/v1/bills/pay</pre>
 </div>
 </div>
 </div>
@@ -1142,29 +1202,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : {
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">billId</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">billState</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">car</span><span class="delimiter">&quot;</span></span> : {
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">cid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">price</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
-    },
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">cost</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">endTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">startTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">user</span><span class="delimiter">&quot;</span></span> : {
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">balance</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">identity</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">password</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">salt</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">tel</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">uid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">username</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
-    }
-  },
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
   <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
@@ -1172,53 +1210,12 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_e01e2f0e04f2177266b031b6cf063891">2.2. 安全相关</h3>
-<div class="paragraph">
-<p>Security Controller</p>
-</div>
 <div class="sect3">
-<h4 id="_loginbytelandpasswordusingpost">2.2.1. 通过手机和密码登录</h4>
+<h4 id="_getunfinishedbillusingget">2.1.5. 获取未完成订单信息</h4>
 <div class="literalblock">
 <div class="content">
-<pre>POST /api/v1/security/login/tel</pre>
+<pre>GET /api/v1/bills/unfinished</pre>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_参数_4">参数</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 16.6666%;">
-<col style="width: 50%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">类型</th>
-<th class="tableblock halign-left valign-middle">名称</th>
-<th class="tableblock halign-left valign-middle">说明</th>
-<th class="tableblock halign-left valign-middle">类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>password</strong><br>
-<em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">密码</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>tel</strong><br>
-<em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">手机号</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect4">
 <h5 id="_响应_5">响应</h5>
@@ -1239,12 +1236,7 @@ table.CodeRay td.code>pre{padding:0}
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_df580c20e80ec85f87a1879ed07e557f">通用响应数据构造类«object»</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Created</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_bd24d8ef62fa01f42c74364a830b9a30">通用响应数据构造类«账单信息构造类»</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -1290,7 +1282,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_5">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/security/login/tel</pre>
+<pre>/api/v1/bills/unfinished</pre>
 </div>
 </div>
 </div>
@@ -1303,7 +1295,35 @@ table.CodeRay td.code>pre{padding:0}
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">billId</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">billState</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">car</span><span class="delimiter">&quot;</span></span> : {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">cid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">license</span><span class="delimiter">&quot;</span></span> : {
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">brand</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">lid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">region</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+      },
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">number</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">price</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+    },
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">cost</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">endTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">startTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">user</span><span class="delimiter">&quot;</span></span> : {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">balance</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">identity</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">password</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">salt</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">tel</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">uid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">username</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+    }
+  },
   <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
@@ -1311,11 +1331,17 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_e01e2f0e04f2177266b031b6cf063891">2.2. 安全相关</h3>
+<div class="paragraph">
+<p>Security Controller</p>
+</div>
 <div class="sect3">
-<h4 id="_logoffbytelandpasswordusingpost">2.2.2. 通过手机和密码注销</h4>
+<h4 id="_loginbytelandpasswordusingpost">2.2.1. 通过手机和密码登录</h4>
 <div class="literalblock">
 <div class="content">
-<pre>POST /api/v1/security/logoff/tel</pre>
+<pre>POST /api/v1/security/login/tel</pre>
 </div>
 </div>
 <div class="sect4">
@@ -1372,7 +1398,7 @@ table.CodeRay td.code>pre{padding:0}
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_df580c20e80ec85f87a1879ed07e557f">通用响应数据构造类«object»</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_fbf6d82a552e5b54e6117423f6801f0e">通用响应数据构造类«boolean»</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
@@ -1423,7 +1449,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_6">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/security/logoff/tel</pre>
+<pre>/api/v1/security/login/tel</pre>
 </div>
 </div>
 </div>
@@ -1436,7 +1462,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="value">false</span>,
   <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
@@ -1445,11 +1471,46 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_logoutusingpost">2.2.3. 登出</h4>
+<h4 id="_logoffbytelandpasswordusingpost">2.2.2. 通过手机和密码注销</h4>
 <div class="literalblock">
 <div class="content">
-<pre>POST /api/v1/security/logout</pre>
+<pre>POST /api/v1/security/logoff/tel</pre>
 </div>
+</div>
+<div class="sect4">
+<h5 id="_参数_6">参数</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 16.6666%;">
+<col style="width: 50%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">类型</th>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>password</strong><br>
+<em>必填</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">密码</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>tel</strong><br>
+<em>必填</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">手机号</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect4">
 <h5 id="_响应_7">响应</h5>
@@ -1521,7 +1582,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_7">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/security/logout</pre>
+<pre>/api/v1/security/logoff/tel</pre>
 </div>
 </div>
 </div>
@@ -1543,53 +1604,11 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_registerbytelandpasswordusingpost">2.2.4. 通过手机号和密码进行注册</h4>
+<h4 id="_logoutusingpost">2.2.3. 登出</h4>
 <div class="literalblock">
 <div class="content">
-<pre>POST /api/v1/security/register/tel</pre>
+<pre>POST /api/v1/security/logout</pre>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_参数_6">参数</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 16.6666%;">
-<col style="width: 50%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">类型</th>
-<th class="tableblock halign-left valign-middle">名称</th>
-<th class="tableblock halign-left valign-middle">说明</th>
-<th class="tableblock halign-left valign-middle">类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>password</strong><br>
-<em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">密码</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>tel</strong><br>
-<em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">手机号</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>username</strong><br>
-<em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">用户名</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect4">
 <h5 id="_响应_8">响应</h5>
@@ -1661,7 +1680,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_8">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/security/register/tel</pre>
+<pre>/api/v1/security/logout</pre>
 </div>
 </div>
 </div>
@@ -1682,17 +1701,11 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_60dde0f49f7ce039b17e49eae5687c9e">2.3. 用户信息</h3>
-<div class="paragraph">
-<p>User Controller</p>
-</div>
 <div class="sect3">
-<h4 id="_updatepasswordusingput">2.3.1. 更改密码</h4>
+<h4 id="_registerbytelandpasswordusingpost">2.2.4. 通过手机号和密码进行注册</h4>
 <div class="literalblock">
 <div class="content">
-<pre>PUT /api/v1/users/password</pre>
+<pre>POST /api/v1/security/register/tel</pre>
 </div>
 </div>
 <div class="sect4">
@@ -1715,16 +1728,23 @@ table.CodeRay td.code>pre{padding:0}
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>newPass</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>password</strong><br>
 <em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">新密码</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">密码</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oldPass</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>tel</strong><br>
 <em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">旧密码</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">手机号</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>username</strong><br>
+<em>必填</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">用户名</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
 </tr>
 </tbody>
@@ -1800,7 +1820,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_9">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/users/password</pre>
+<pre>/api/v1/security/register/tel</pre>
 </div>
 </div>
 </div>
@@ -1821,11 +1841,17 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_60dde0f49f7ce039b17e49eae5687c9e">2.3. 用户信息</h3>
+<div class="paragraph">
+<p>User Controller</p>
+</div>
 <div class="sect3">
-<h4 id="_rechargeusingput">2.3.2. 充值</h4>
+<h4 id="_updatepasswordusingput">2.3.1. 更改密码</h4>
 <div class="literalblock">
 <div class="content">
-<pre>PUT /api/v1/users/recharge</pre>
+<pre>PUT /api/v1/users/password</pre>
 </div>
 </div>
 <div class="sect4">
@@ -1848,10 +1874,17 @@ table.CodeRay td.code>pre{padding:0}
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>money</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>newPass</strong><br>
 <em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">金额</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">新密码</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oldPass</strong><br>
+<em>必填</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">旧密码</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -1926,7 +1959,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_10">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/users/recharge</pre>
+<pre>/api/v1/users/password</pre>
 </div>
 </div>
 </div>
@@ -1948,39 +1981,11 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_updateusernameusingput">2.3.3. 更改用户名</h4>
+<h4 id="_getprofileusingget">2.3.2. 获取个人信息</h4>
 <div class="literalblock">
 <div class="content">
-<pre>PUT /api/v1/users/username</pre>
+<pre>GET /api/v1/users/profile</pre>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_参数_9">参数</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 16.6666%;">
-<col style="width: 50%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">类型</th>
-<th class="tableblock halign-left valign-middle">名称</th>
-<th class="tableblock halign-left valign-middle">说明</th>
-<th class="tableblock halign-left valign-middle">类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>username</strong><br>
-<em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">用户名</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect4">
 <h5 id="_响应_11">响应</h5>
@@ -2001,12 +2006,7 @@ table.CodeRay td.code>pre{padding:0}
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_df580c20e80ec85f87a1879ed07e557f">通用响应数据构造类«object»</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Created</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_d2775f6254700e80f137ac940bd1ff4f">通用响应数据构造类«用户信息构造类»</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -2052,7 +2052,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_11">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/users/username</pre>
+<pre>/api/v1/users/profile</pre>
 </div>
 </div>
 </div>
@@ -2065,7 +2065,14 @@ table.CodeRay td.code>pre{padding:0}
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">balance</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">identity</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">tel</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">uid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">username</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+  },
   <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
@@ -2073,21 +2080,15 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_1b179c9abbec782bc336c39b4e1bdb52">2.4. 车辆管理</h3>
-<div class="paragraph">
-<p>Car Controller</p>
-</div>
 <div class="sect3">
-<h4 id="_addcarusingpost">2.4.1. 添加车辆</h4>
+<h4 id="_rechargeusingput">2.3.3. 充值</h4>
 <div class="literalblock">
 <div class="content">
-<pre>POST /api/v1/cars</pre>
+<pre>PUT /api/v1/users/recharge</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_参数_10">参数</h5>
+<h5 id="_参数_9">参数</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2106,10 +2107,10 @@ table.CodeRay td.code>pre{padding:0}
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>price</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>money</strong><br>
 <em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">单价</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">金额</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_long">Long</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -2133,7 +2134,7 @@ table.CodeRay td.code>pre{padding:0}
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_cb47b5e1ec320e3c6f62e964385aca73">通用响应数据构造类«车辆信息构造类»</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_df580c20e80ec85f87a1879ed07e557f">通用响应数据构造类«object»</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
@@ -2184,7 +2185,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_12">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/cars</pre>
+<pre>/api/v1/users/recharge</pre>
 </div>
 </div>
 </div>
@@ -2197,12 +2198,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : {
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">cid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">price</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
-  },
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
   <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
@@ -2211,14 +2207,14 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getcarusingget">2.4.2. 获取车辆信息</h4>
+<h4 id="_updateusernameusingput">2.3.4. 更改用户名</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /api/v1/cars</pre>
+<pre>PUT /api/v1/users/username</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_参数_11">参数</h5>
+<h5 id="_参数_10">参数</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2237,10 +2233,10 @@ table.CodeRay td.code>pre{padding:0}
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>cid</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>username</strong><br>
 <em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">车辆id</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_long">Long</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">用户名</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -2264,7 +2260,12 @@ table.CodeRay td.code>pre{padding:0}
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_cb47b5e1ec320e3c6f62e964385aca73">通用响应数据构造类«车辆信息构造类»</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_df580c20e80ec85f87a1879ed07e557f">通用响应数据构造类«object»</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Created</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -2310,7 +2311,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_13">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/cars</pre>
+<pre>/api/v1/users/username</pre>
 </div>
 </div>
 </div>
@@ -2323,12 +2324,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : {
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">cid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">price</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
-  },
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
   <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
@@ -2336,15 +2332,21 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_1b179c9abbec782bc336c39b4e1bdb52">2.4. 车辆管理</h3>
+<div class="paragraph">
+<p>Car Controller</p>
+</div>
 <div class="sect3">
-<h4 id="_deletecarusingdelete">2.4.3. 删除车辆</h4>
+<h4 id="_getcarusingget">2.4.1. 获取车辆信息</h4>
 <div class="literalblock">
 <div class="content">
-<pre>DELETE /api/v1/cars</pre>
+<pre>GET /api/v1/cars</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_参数_12">参数</h5>
+<h5 id="_参数_11">参数</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2390,12 +2392,7 @@ table.CodeRay td.code>pre{padding:0}
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_df580c20e80ec85f87a1879ed07e557f">通用响应数据构造类«object»</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>204</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_cb47b5e1ec320e3c6f62e964385aca73">通用响应数据构造类«车辆信息构造类»</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -2405,6 +2402,11 @@ table.CodeRay td.code>pre{padding:0}
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
 </tr>
 </tbody>
@@ -2449,7 +2451,18 @@ table.CodeRay td.code>pre{padding:0}
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">cid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">license</span><span class="delimiter">&quot;</span></span> : {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">brand</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">lid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">region</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+    },
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">number</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">price</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+  },
   <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
@@ -2458,14 +2471,14 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_updatepriceusingput">2.4.4. 更新车辆价格</h4>
+<h4 id="_addcarusingpost">2.4.2. 添加车辆</h4>
 <div class="literalblock">
 <div class="content">
-<pre>PUT /api/v1/cars/price</pre>
+<pre>POST /api/v1/cars/admin</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_参数_13">参数</h5>
+<h5 id="_参数_12">参数</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2484,17 +2497,24 @@ table.CodeRay td.code>pre{padding:0}
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>cid</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>lid</strong><br>
 <em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">车辆id</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_long">Long</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">车牌区号ID</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_integer">Integer</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>number</strong><br>
+<em>必填</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">车牌号</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>price</strong><br>
 <em>必填</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">价格</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">单价</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_long">Long</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -2518,7 +2538,7 @@ table.CodeRay td.code>pre{padding:0}
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_df580c20e80ec85f87a1879ed07e557f">通用响应数据构造类«object»</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_b80decf382577a5a0531282446a5a6b8">通用响应数据构造类«long»</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>201</strong></p></td>
@@ -2569,7 +2589,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_15">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/cars/price</pre>
+<pre>/api/v1/cars/admin</pre>
 </div>
 </div>
 </div>
@@ -2582,7 +2602,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
   <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
@@ -2591,14 +2611,14 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_updatestateusingput">2.4.5. 更新车辆状态</h4>
+<h4 id="_updatepriceusingput">2.4.3. 更新车辆信息</h4>
 <div class="literalblock">
 <div class="content">
-<pre>PUT /api/v1/cars/state</pre>
+<pre>PUT /api/v1/cars/admin</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_参数_14">参数</h5>
+<h5 id="_参数_13">参数</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2620,6 +2640,27 @@ table.CodeRay td.code>pre{padding:0}
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>cid</strong><br>
 <em>必填</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">车辆id</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_long">Long</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>lid</strong><br>
+<em>必填</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">车牌区号ID</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_integer">Integer</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>number</strong><br>
+<em>必填</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">车牌号</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_string">String</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>price</strong><br>
+<em>必填</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">价格</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_long">Long</a></p></td>
 </tr>
 <tr>
@@ -2702,7 +2743,7 @@ table.CodeRay td.code>pre{padding:0}
 <h6 id="_请求_path_16">请求 path</h6>
 <div class="listingblock">
 <div class="content">
-<pre>/api/v1/cars/state</pre>
+<pre>/api/v1/cars/admin</pre>
 </div>
 </div>
 </div>
@@ -2716,6 +2757,456 @@ table.CodeRay td.code>pre{padding:0}
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
   <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_deletecarusingdelete">2.4.4. 删除车辆</h4>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /api/v1/cars/admin</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_参数_14">参数</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 16.6666%;">
+<col style="width: 50%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">类型</th>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>cid</strong><br>
+<em>必填</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">车辆id</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_long">Long</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_响应_17">响应</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP代码</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_df580c20e80ec85f87a1879ed07e557f">通用响应数据构造类«object»</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>204</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unauthorized</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_消耗_17">消耗</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_生成_17">生成</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><code><strong>/</strong></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_http请求示例_17">HTTP请求示例</h5>
+<div class="sect5">
+<h6 id="_请求_path_17">请求 path</h6>
+<div class="listingblock">
+<div class="content">
+<pre>/api/v1/cars/admin</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_http响应示例_17">HTTP响应示例</h5>
+<div class="sect5">
+<h6 id="_响应_200_17">响应 200</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">object</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_getlicensesusingget">2.4.5. 获取区号列表</h4>
+<div class="literalblock">
+<div class="content">
+<pre>GET /api/v1/cars/licenses</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_响应_18">响应</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP代码</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_c3a4fa62e1e9ccf02d2439439c575e27">通用响应数据构造类«List«License»»</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unauthorized</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_消耗_18">消耗</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_生成_18">生成</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><code><strong>/</strong></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_http请求示例_18">HTTP请求示例</h5>
+<div class="sect5">
+<h6 id="_请求_path_18">请求 path</h6>
+<div class="listingblock">
+<div class="content">
+<pre>/api/v1/cars/licenses</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_http响应示例_18">HTTP响应示例</h5>
+<div class="sect5">
+<h6 id="_响应_200_18">响应 200</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : [ {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">brand</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">lid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">region</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+  } ],
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_getcarlistusingget">2.4.6. 获取车辆列表</h4>
+<div class="literalblock">
+<div class="content">
+<pre>GET /api/v1/cars/list</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_参数_15">参数</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 16.6666%;">
+<col style="width: 50%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">类型</th>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>pageIndex</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">页码</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_integer">Integer</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Body</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>pageSize</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">页尺寸</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_integer">Integer</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_响应_19">响应</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP代码</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_59eee59e4bebc9fbf466174b2a24fb2d">通用响应数据构造类«List«车辆信息构造类»»</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unauthorized</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_消耗_19">消耗</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_生成_19">生成</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><code><strong>/</strong></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_http请求示例_19">HTTP请求示例</h5>
+<div class="sect5">
+<h6 id="_请求_path_19">请求 path</h6>
+<div class="listingblock">
+<div class="content">
+<pre>/api/v1/cars/list</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_http响应示例_19">HTTP响应示例</h5>
+<div class="sect5">
+<h6 id="_响应_200_19">响应 200</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : [ {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">cid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">createTime</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">license</span><span class="delimiter">&quot;</span></span> : {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">brand</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">lid</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">region</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+    },
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">number</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">price</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+  } ],
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_getstatesusingget">2.4.7. 获取车辆状态列表</h4>
+<div class="literalblock">
+<div class="content">
+<pre>GET /api/v1/cars/states</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_响应_20">响应</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 70%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">HTTP代码</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_572c5730c015cc9a743a8b9141c1f45d">通用响应数据构造类«List«string»»</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unauthorized</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">无内容</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_消耗_20">消耗</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_生成_20">生成</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><code><strong>/</strong></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_http请求示例_20">HTTP请求示例</h5>
+<div class="sect5">
+<h6 id="_请求_path_20">请求 path</h6>
+<div class="listingblock">
+<div class="content">
+<pre>/api/v1/cars/states</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_http响应示例_20">HTTP响应示例</h5>
+<div class="sect5">
+<h6 id="_响应_200_20">响应 200</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span> : <span class="integer">0</span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span> : [ <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span> ],
   <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
@@ -2758,10 +3249,22 @@ table.CodeRay td.code>pre{padding:0}
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>license</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>样例</strong> : <code>"<a href="#_license">License</a>"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_license">License</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>number</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>price</strong><br>
 <em>可选</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>样例</strong> : <code>0</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>state</strong><br>
@@ -2773,7 +3276,44 @@ table.CodeRay td.code>pre{padding:0}
 </table>
 </div>
 <div class="sect2">
-<h3 id="_user">3.2. User</h3>
+<h3 id="_license">3.2. License</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>brand</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>lid</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>region</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_user">3.3. User</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -2792,7 +3332,7 @@ table.CodeRay td.code>pre{padding:0}
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>balance</strong><br>
 <em>可选</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>样例</strong> : <code>0</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>createTime</strong><br>
@@ -2840,7 +3380,68 @@ table.CodeRay td.code>pre{padding:0}
 </table>
 </div>
 <div class="sect2">
-<h3 id="_a0fc378e12a63b55e0c8efbc17f7c8d9">3.3. 账单信息构造类</h3>
+<h3 id="_cd25c2d2e32f946af4456cf281a66a54">3.4. 用户信息构造类</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>balance</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">用户余额<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>createTime</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">用户注册时间<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>identity</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">用户状态<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>tel</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">11位电话号码<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>uid</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">用户id<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>username</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">用户名(2-16位英文字母及数字)<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_a0fc378e12a63b55e0c8efbc17f7c8d9">3.5. 账单信息构造类</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -2881,7 +3482,7 @@ table.CodeRay td.code>pre{padding:0}
 <em>可选</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">账单价格<br>
 <strong>样例</strong> : <code>0</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>endTime</strong><br>
@@ -2908,7 +3509,7 @@ table.CodeRay td.code>pre{padding:0}
 </table>
 </div>
 <div class="sect2">
-<h3 id="_632bdc41786a16f54ae345210d828dcd">3.4. 车辆信息构造类</h3>
+<h3 id="_632bdc41786a16f54ae345210d828dcd">3.6. 车辆信息构造类</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -2938,11 +3539,25 @@ table.CodeRay td.code>pre{padding:0}
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>license</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">车牌区号信息<br>
+<strong>样例</strong> : <code>"<a href="#_license">License</a>"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_license">License</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>number</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">车牌号<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>price</strong><br>
 <em>可选</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">车辆基础价格<br>
 <strong>样例</strong> : <code>0</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>state</strong><br>
@@ -2955,7 +3570,247 @@ table.CodeRay td.code>pre{padding:0}
 </table>
 </div>
 <div class="sect2">
-<h3 id="_df580c20e80ec85f87a1879ed07e557f">3.5. 通用响应数据构造类«object»</h3>
+<h3 id="_c3a4fa62e1e9ccf02d2439439c575e27">3.7. 通用响应数据构造类«List«License»»</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>code</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求响应状态码<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>data</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果数据<br>
+<strong>样例</strong> : <code>[ "<a href="#_license">License</a>" ]</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_license">License</a> &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>message</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果描述信息<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_572c5730c015cc9a743a8b9141c1f45d">3.8. 通用响应数据构造类«List«string»»</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>code</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求响应状态码<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>data</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果数据<br>
+<strong>样例</strong> : <code>[ "string" ]</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>message</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果描述信息<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_781317d73c9b34fa675124ee51acb795">3.9. 通用响应数据构造类«List«账单信息构造类»»</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>code</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求响应状态码<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>data</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果数据<br>
+<strong>样例</strong> : <code>[ "<a href="#_a0fc378e12a63b55e0c8efbc17f7c8d9">账单信息构造类</a>" ]</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_a0fc378e12a63b55e0c8efbc17f7c8d9">账单信息构造类</a> &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>message</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果描述信息<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_59eee59e4bebc9fbf466174b2a24fb2d">3.10. 通用响应数据构造类«List«车辆信息构造类»»</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>code</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求响应状态码<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>data</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果数据<br>
+<strong>样例</strong> : <code>[ "<a href="#_632bdc41786a16f54ae345210d828dcd">车辆信息构造类</a>" ]</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_632bdc41786a16f54ae345210d828dcd">车辆信息构造类</a> &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>message</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果描述信息<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_fbf6d82a552e5b54e6117423f6801f0e">3.11. 通用响应数据构造类«boolean»</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>code</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求响应状态码<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>data</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果数据<br>
+<strong>样例</strong> : <code>false</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>message</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果描述信息<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_b80decf382577a5a0531282446a5a6b8">3.12. 通用响应数据构造类«long»</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>code</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求响应状态码<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>data</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果数据<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>message</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果描述信息<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_df580c20e80ec85f87a1879ed07e557f">3.13. 通用响应数据构造类«object»</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -2995,7 +3850,47 @@ table.CodeRay td.code>pre{padding:0}
 </table>
 </div>
 <div class="sect2">
-<h3 id="_bd24d8ef62fa01f42c74364a830b9a30">3.6. 通用响应数据构造类«账单信息构造类»</h3>
+<h3 id="_d2775f6254700e80f137ac940bd1ff4f">3.14. 通用响应数据构造类«用户信息构造类»</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">名称</th>
+<th class="tableblock halign-left valign-middle">说明</th>
+<th class="tableblock halign-left valign-middle">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>code</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求响应状态码<br>
+<strong>样例</strong> : <code>0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int64)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>data</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果数据<br>
+<strong>样例</strong> : <code>"<a href="#_cd25c2d2e32f946af4456cf281a66a54">用户信息构造类</a>"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_cd25c2d2e32f946af4456cf281a66a54">用户信息构造类</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>message</strong><br>
+<em>可选</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">请求结果描述信息<br>
+<strong>样例</strong> : <code>"string"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_bd24d8ef62fa01f42c74364a830b9a30">3.15. 通用响应数据构造类«账单信息构造类»</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -3035,7 +3930,7 @@ table.CodeRay td.code>pre{padding:0}
 </table>
 </div>
 <div class="sect2">
-<h3 id="_cb47b5e1ec320e3c6f62e964385aca73">3.7. 通用响应数据构造类«车辆信息构造类»</h3>
+<h3 id="_cb47b5e1ec320e3c6f62e964385aca73">3.16. 通用响应数据构造类«车辆信息构造类»</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -3079,7 +3974,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-05 01:31:44 CST
+Last updated 2020-07-10 09:07:25 CST
 </div>
 </div>
 </body>

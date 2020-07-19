@@ -101,6 +101,12 @@ __必填__|车辆id|<<_long,Long>>
     "car" : {
       "cid" : 0,
       "createTime" : "string",
+      "license" : {
+        "brand" : "string",
+        "lid" : 0,
+        "region" : "string"
+      },
+      "number" : "string",
       "price" : 0,
       "state" : "string"
     },
@@ -135,8 +141,8 @@ PUT /api/v1/bills
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Body**|**cid** +
-__必填__|车辆id|<<_long,Long>>
+|**Body**|**billId** +
+__必填__|账单id|<<_long,Long>>
 |===
 
 
@@ -145,7 +151,7 @@ __必填__|车辆id|<<_long,Long>>
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP代码|说明|类型
-|**200**|OK|<<_bd24d8ef62fa01f42c74364a830b9a30,通用响应数据构造类«账单信息构造类»>>
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
 |**201**|Created|无内容
 |**401**|Unauthorized|无内容
 |**403**|Forbidden|无内容
@@ -178,12 +184,80 @@ __必填__|车辆id|<<_long,Long>>
 ----
 {
   "code" : 0,
-  "data" : {
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_getbilllistusingget]]
+==== 获取账单列表
+....
+GET /api/v1/bills/list
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Body**|**pageIndex** +
+__可选__|页码|<<_integer,Integer>>
+|**Body**|**pageSize** +
+__可选__|页尺寸|<<_integer,Integer>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_781317d73c9b34fa675124ee51acb795,通用响应数据构造类«List«账单信息构造类»»>>
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/bills/list
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : [ {
     "billId" : 0,
     "billState" : "string",
     "car" : {
       "cid" : 0,
       "createTime" : "string",
+      "license" : {
+        "brand" : "string",
+        "lid" : 0,
+        "region" : "string"
+      },
+      "number" : "string",
       "price" : 0,
       "state" : "string"
     },
@@ -200,7 +274,7 @@ __必填__|车辆id|<<_long,Long>>
       "uid" : 0,
       "username" : "string"
     }
-  },
+  } ],
   "message" : "string"
 }
 ----
@@ -317,6 +391,12 @@ GET /api/v1/bills/unfinished
     "car" : {
       "cid" : 0,
       "createTime" : "string",
+      "license" : {
+        "brand" : "string",
+        "lid" : 0,
+        "region" : "string"
+      },
+      "number" : "string",
       "price" : 0,
       "state" : "string"
     },
@@ -368,7 +448,7 @@ __必填__|手机号|<<_string,String>>
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP代码|说明|类型
-|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**200**|OK|<<_fbf6d82a552e5b54e6117423f6801f0e,通用响应数据构造类«boolean»>>
 |**201**|Created|无内容
 |**401**|Unauthorized|无内容
 |**403**|Forbidden|无内容
@@ -401,7 +481,7 @@ __必填__|手机号|<<_string,String>>
 ----
 {
   "code" : 0,
-  "data" : "object",
+  "data" : false,
   "message" : "string"
 }
 ----
@@ -654,6 +734,63 @@ __必填__|旧密码|<<_string,String>>
 ----
 
 
+[[_getprofileusingget]]
+==== 获取个人信息
+....
+GET /api/v1/users/profile
+....
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_d2775f6254700e80f137ac940bd1ff4f,通用响应数据构造类«用户信息构造类»>>
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/users/profile
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : {
+    "balance" : 0,
+    "createTime" : "string",
+    "identity" : "string",
+    "tel" : "string",
+    "uid" : 0,
+    "username" : "string"
+  },
+  "message" : "string"
+}
+----
+
+
 [[_rechargeusingput]]
 ==== 充值
 ....
@@ -667,7 +804,7 @@ PUT /api/v1/users/recharge
 |===
 |类型|名称|说明|类型
 |**Body**|**money** +
-__必填__|金额|<<_integer,Integer>>
+__必填__|金额|<<_long,Long>>
 |===
 
 
@@ -781,72 +918,6 @@ __必填__|用户名|<<_string,String>>
 Car Controller
 
 
-[[_addcarusingpost]]
-==== 添加车辆
-....
-POST /api/v1/cars
-....
-
-
-===== 参数
-
-[options="header", cols=".^2,.^3,.^9,.^4"]
-|===
-|类型|名称|说明|类型
-|**Body**|**price** +
-__必填__|单价|<<_integer,Integer>>
-|===
-
-
-===== 响应
-
-[options="header", cols=".^2,.^14,.^4"]
-|===
-|HTTP代码|说明|类型
-|**200**|OK|<<_cb47b5e1ec320e3c6f62e964385aca73,通用响应数据构造类«车辆信息构造类»>>
-|**201**|Created|无内容
-|**401**|Unauthorized|无内容
-|**403**|Forbidden|无内容
-|**404**|Not Found|无内容
-|===
-
-
-===== 消耗
-
-* `application/json`
-
-
-===== 生成
-
-* `*/*`
-
-
-===== HTTP请求示例
-
-====== 请求 path
-----
-/api/v1/cars
-----
-
-
-===== HTTP响应示例
-
-====== 响应 200
-[source,json]
-----
-{
-  "code" : 0,
-  "data" : {
-    "cid" : 0,
-    "createTime" : "string",
-    "price" : 0,
-    "state" : "string"
-  },
-  "message" : "string"
-}
-----
-
-
 [[_getcarusingget]]
 ==== 获取车辆信息
 ....
@@ -904,6 +975,12 @@ __必填__|车辆id|<<_long,Long>>
   "data" : {
     "cid" : 0,
     "createTime" : "string",
+    "license" : {
+      "brand" : "string",
+      "lid" : 0,
+      "region" : "string"
+    },
+    "number" : "string",
     "price" : 0,
     "state" : "string"
   },
@@ -912,10 +989,144 @@ __必填__|车辆id|<<_long,Long>>
 ----
 
 
+[[_addcarusingpost]]
+==== 添加车辆
+....
+POST /api/v1/cars/admin
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Body**|**lid** +
+__必填__|车牌区号ID|<<_integer,Integer>>
+|**Body**|**number** +
+__必填__|车牌号|<<_string,String>>
+|**Body**|**price** +
+__必填__|单价|<<_long,Long>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_b80decf382577a5a0531282446a5a6b8,通用响应数据构造类«long»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/cars/admin
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : 0,
+  "message" : "string"
+}
+----
+
+
+[[_updatepriceusingput]]
+==== 更新车辆信息
+....
+PUT /api/v1/cars/admin
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Body**|**cid** +
+__必填__|车辆id|<<_long,Long>>
+|**Body**|**lid** +
+__必填__|车牌区号ID|<<_integer,Integer>>
+|**Body**|**number** +
+__必填__|车牌号|<<_string,String>>
+|**Body**|**price** +
+__必填__|价格|<<_long,Long>>
+|**Body**|**state** +
+__必填__|车辆状态|<<_string,String>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/cars/admin
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
 [[_deletecarusingdelete]]
 ==== 删除车辆
 ....
-DELETE /api/v1/cars
+DELETE /api/v1/cars/admin
 ....
 
 
@@ -955,7 +1166,7 @@ __必填__|车辆id|<<_long,Long>>
 
 ====== 请求 path
 ----
-/api/v1/cars
+/api/v1/cars/admin
 ----
 
 
@@ -972,23 +1183,11 @@ __必填__|车辆id|<<_long,Long>>
 ----
 
 
-[[_updatepriceusingput]]
-==== 更新车辆价格
+[[_getlicensesusingget]]
+==== 获取区号列表
 ....
-PUT /api/v1/cars/price
+GET /api/v1/cars/licenses
 ....
-
-
-===== 参数
-
-[options="header", cols=".^2,.^3,.^9,.^4"]
-|===
-|类型|名称|说明|类型
-|**Body**|**cid** +
-__必填__|车辆id|<<_long,Long>>
-|**Body**|**price** +
-__必填__|价格|<<_integer,Integer>>
-|===
 
 
 ===== 响应
@@ -996,8 +1195,7 @@ __必填__|价格|<<_integer,Integer>>
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP代码|说明|类型
-|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
-|**201**|Created|无内容
+|**200**|OK|<<_c3a4fa62e1e9ccf02d2439439c575e27,通用响应数据构造类«List«License»»>>
 |**401**|Unauthorized|无内容
 |**403**|Forbidden|无内容
 |**404**|Not Found|无内容
@@ -1018,7 +1216,7 @@ __必填__|价格|<<_integer,Integer>>
 
 ====== 请求 path
 ----
-/api/v1/cars/price
+/api/v1/cars/licenses
 ----
 
 
@@ -1029,16 +1227,20 @@ __必填__|价格|<<_integer,Integer>>
 ----
 {
   "code" : 0,
-  "data" : "object",
+  "data" : [ {
+    "brand" : "string",
+    "lid" : 0,
+    "region" : "string"
+  } ],
   "message" : "string"
 }
 ----
 
 
-[[_updatestateusingput]]
-==== 更新车辆状态
+[[_getcarlistusingget]]
+==== 获取车辆列表
 ....
-PUT /api/v1/cars/state
+GET /api/v1/cars/list
 ....
 
 
@@ -1047,10 +1249,10 @@ PUT /api/v1/cars/state
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Body**|**cid** +
-__必填__|车辆id|<<_long,Long>>
-|**Body**|**state** +
-__必填__|车辆状态|<<_string,String>>
+|**Body**|**pageIndex** +
+__可选__|页码|<<_integer,Integer>>
+|**Body**|**pageSize** +
+__可选__|页尺寸|<<_integer,Integer>>
 |===
 
 
@@ -1059,8 +1261,7 @@ __必填__|车辆状态|<<_string,String>>
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP代码|说明|类型
-|**200**|OK|<<_df580c20e80ec85f87a1879ed07e557f,通用响应数据构造类«object»>>
-|**201**|Created|无内容
+|**200**|OK|<<_59eee59e4bebc9fbf466174b2a24fb2d,通用响应数据构造类«List«车辆信息构造类»»>>
 |**401**|Unauthorized|无内容
 |**403**|Forbidden|无内容
 |**404**|Not Found|无内容
@@ -1081,7 +1282,7 @@ __必填__|车辆状态|<<_string,String>>
 
 ====== 请求 path
 ----
-/api/v1/cars/state
+/api/v1/cars/list
 ----
 
 
@@ -1092,7 +1293,68 @@ __必填__|车辆状态|<<_string,String>>
 ----
 {
   "code" : 0,
-  "data" : "object",
+  "data" : [ {
+    "cid" : 0,
+    "createTime" : "string",
+    "license" : {
+      "brand" : "string",
+      "lid" : 0,
+      "region" : "string"
+    },
+    "number" : "string",
+    "price" : 0,
+    "state" : "string"
+  } ],
+  "message" : "string"
+}
+----
+
+
+[[_getstatesusingget]]
+==== 获取车辆状态列表
+....
+GET /api/v1/cars/states
+....
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_572c5730c015cc9a743a8b9141c1f45d,通用响应数据构造类«List«string»»>>
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/api/v1/cars/states
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : [ "string" ],
   "message" : "string"
 }
 ----
@@ -1113,9 +1375,28 @@ __必填__|车辆状态|<<_string,String>>
 __可选__|**样例** : `0`|integer (int64)
 |**createTime** +
 __可选__|**样例** : `"string"`|string (date-time)
+|**license** +
+__可选__|**样例** : `"<<_license>>"`|<<_license,License>>
+|**number** +
+__可选__|**样例** : `"string"`|string
 |**price** +
-__可选__|**样例** : `0`|integer (int32)
+__可选__|**样例** : `0`|integer (int64)
 |**state** +
+__可选__|**样例** : `"string"`|string
+|===
+
+
+[[_license]]
+=== License
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**brand** +
+__可选__|**样例** : `"string"`|string
+|**lid** +
+__可选__|**样例** : `0`|integer (int32)
+|**region** +
 __可选__|**样例** : `"string"`|string
 |===
 
@@ -1127,7 +1408,7 @@ __可选__|**样例** : `"string"`|string
 |===
 |名称|说明|类型
 |**balance** +
-__可选__|**样例** : `0`|integer (int32)
+__可选__|**样例** : `0`|integer (int64)
 |**createTime** +
 __可选__|**样例** : `"string"`|string (date-time)
 |**identity** +
@@ -1142,6 +1423,33 @@ __可选__|**样例** : `"string"`|string
 __可选__|**样例** : `0`|integer (int64)
 |**username** +
 __可选__|**样例** : `"string"`|string
+|===
+
+
+[[_cd25c2d2e32f946af4456cf281a66a54]]
+=== 用户信息构造类
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**balance** +
+__可选__|用户余额 +
+**样例** : `0`|integer (int64)
+|**createTime** +
+__可选__|用户注册时间 +
+**样例** : `"string"`|string (date-time)
+|**identity** +
+__可选__|用户状态 +
+**样例** : `"string"`|string
+|**tel** +
+__可选__|11位电话号码 +
+**样例** : `"string"`|string
+|**uid** +
+__可选__|用户id +
+**样例** : `0`|integer (int64)
+|**username** +
+__可选__|用户名(2-16位英文字母及数字) +
+**样例** : `"string"`|string
 |===
 
 
@@ -1162,7 +1470,7 @@ __可选__|账单关联车辆 +
 **样例** : `"<<_car>>"`|<<_car,Car>>
 |**cost** +
 __可选__|账单价格 +
-**样例** : `0`|integer (int32)
+**样例** : `0`|integer (int64)
 |**endTime** +
 __可选__|交易结束时间 +
 **样例** : `"string"`|string (date-time)
@@ -1187,11 +1495,125 @@ __可选__|车辆id +
 |**createTime** +
 __可选__|车辆注册时间 +
 **样例** : `"string"`|string (date-time)
+|**license** +
+__可选__|车牌区号信息 +
+**样例** : `"<<_license>>"`|<<_license,License>>
+|**number** +
+__可选__|车牌号 +
+**样例** : `"string"`|string
 |**price** +
 __可选__|车辆基础价格 +
-**样例** : `0`|integer (int32)
+**样例** : `0`|integer (int64)
 |**state** +
 __可选__|车辆状态 +
+**样例** : `"string"`|string
+|===
+
+
+[[_c3a4fa62e1e9ccf02d2439439c575e27]]
+=== 通用响应数据构造类«List«License»»
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|请求响应状态码 +
+**样例** : `0`|integer (int64)
+|**data** +
+__可选__|请求结果数据 +
+**样例** : `[ "<<_license>>" ]`|< <<_license,License>> > array
+|**message** +
+__可选__|请求结果描述信息 +
+**样例** : `"string"`|string
+|===
+
+
+[[_572c5730c015cc9a743a8b9141c1f45d]]
+=== 通用响应数据构造类«List«string»»
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|请求响应状态码 +
+**样例** : `0`|integer (int64)
+|**data** +
+__可选__|请求结果数据 +
+**样例** : `[ "string" ]`|< string > array
+|**message** +
+__可选__|请求结果描述信息 +
+**样例** : `"string"`|string
+|===
+
+
+[[_781317d73c9b34fa675124ee51acb795]]
+=== 通用响应数据构造类«List«账单信息构造类»»
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|请求响应状态码 +
+**样例** : `0`|integer (int64)
+|**data** +
+__可选__|请求结果数据 +
+**样例** : `[ "<<_a0fc378e12a63b55e0c8efbc17f7c8d9>>" ]`|< <<_a0fc378e12a63b55e0c8efbc17f7c8d9,账单信息构造类>> > array
+|**message** +
+__可选__|请求结果描述信息 +
+**样例** : `"string"`|string
+|===
+
+
+[[_59eee59e4bebc9fbf466174b2a24fb2d]]
+=== 通用响应数据构造类«List«车辆信息构造类»»
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|请求响应状态码 +
+**样例** : `0`|integer (int64)
+|**data** +
+__可选__|请求结果数据 +
+**样例** : `[ "<<_632bdc41786a16f54ae345210d828dcd>>" ]`|< <<_632bdc41786a16f54ae345210d828dcd,车辆信息构造类>> > array
+|**message** +
+__可选__|请求结果描述信息 +
+**样例** : `"string"`|string
+|===
+
+
+[[_fbf6d82a552e5b54e6117423f6801f0e]]
+=== 通用响应数据构造类«boolean»
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|请求响应状态码 +
+**样例** : `0`|integer (int64)
+|**data** +
+__可选__|请求结果数据 +
+**样例** : `false`|boolean
+|**message** +
+__可选__|请求结果描述信息 +
+**样例** : `"string"`|string
+|===
+
+
+[[_b80decf382577a5a0531282446a5a6b8]]
+=== 通用响应数据构造类«long»
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|请求响应状态码 +
+**样例** : `0`|integer (int64)
+|**data** +
+__可选__|请求结果数据 +
+**样例** : `0`|integer (int64)
+|**message** +
+__可选__|请求结果描述信息 +
 **样例** : `"string"`|string
 |===
 
@@ -1208,6 +1630,24 @@ __可选__|请求响应状态码 +
 |**data** +
 __可选__|请求结果数据 +
 **样例** : `"object"`|object
+|**message** +
+__可选__|请求结果描述信息 +
+**样例** : `"string"`|string
+|===
+
+
+[[_d2775f6254700e80f137ac940bd1ff4f]]
+=== 通用响应数据构造类«用户信息构造类»
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|请求响应状态码 +
+**样例** : `0`|integer (int64)
+|**data** +
+__可选__|请求结果数据 +
+**样例** : `"<<_cd25c2d2e32f946af4456cf281a66a54>>"`|<<_cd25c2d2e32f946af4456cf281a66a54,用户信息构造类>>
 |**message** +
 __可选__|请求结果描述信息 +
 **样例** : `"string"`|string
